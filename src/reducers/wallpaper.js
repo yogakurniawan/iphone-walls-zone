@@ -94,6 +94,7 @@ function wallpaper(state = initialState, action) {
       return state
         .setIn(['loading', 'sendLike'], false)
         .setIn(['error', 'sendLike'], null)
+        .setIn(['payload', 'wallpaper'], payload)
         .setIn(['payload', 'wallpapers'], newWallpaperList);
     }
     case UPDATE_WALLPAPER_ERROR:

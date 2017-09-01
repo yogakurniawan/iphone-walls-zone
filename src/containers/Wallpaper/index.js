@@ -13,14 +13,12 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
 
   componentDidMount() {
     const {
-      setWallpaper,
       getWallpapersByCategory,
       sendUpdateWallpaper,
       wallpaper,
       wallpapers,
     } = this.props;
     const totalView = wallpaper.total_view + 1;
-    const newWallpaper = { ...wallpaper, total_view: totalView };
     const totalPage = wallpaper.total / PER_PAGE;
     if (!wallpapers.size) {
       getWallpapersByCategory({
@@ -35,29 +33,24 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
       id: wallpaper.id,
       total_view: totalView,
     });
-    setWallpaper(newWallpaper);
   }
 
   onClick = (wallpaper) => {
-    const { sendUpdateWallpaper, setWallpaper } = this.props;
+    const { sendUpdateWallpaper } = this.props;
     const totalView = wallpaper.total_view + 1;
-    const newWallpaper = { ...wallpaper, total_view: totalView };
     sendUpdateWallpaper({
       id: wallpaper.id,
       total_view: totalView,
     });
-    setWallpaper(newWallpaper);
   }
 
   onClickLike = (wallpaper) => {
-    const { sendUpdateWallpaper, setWallpaper } = this.props;
+    const { sendUpdateWallpaper } = this.props;
     const totalLike = wallpaper.total_like + 1;
-    const newWallpaper = { ...wallpaper, total_like: totalLike };
     sendUpdateWallpaper({
       id: wallpaper.id,
       total_like: totalLike,
     });
-    setWallpaper(newWallpaper);
   }
 
   download = (url) => {
