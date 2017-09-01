@@ -1,6 +1,8 @@
 import React from 'react';
 import Layout from '../../containers/Layout';
 import Category from '../../containers/Category';
+import * as categoryActions from '../../actions/category';
+
 
 async function action({ fetch, params, store }) {
   const state = store.getState();
@@ -31,6 +33,7 @@ async function action({ fetch, params, store }) {
 
   const { pageNumber, category } = params;
   const selectedCategory = categoriesData.find(item => item.name === category);
+  store.dispatch(categoryActions.setSelectedCategory(selectedCategory));
   const parameters = {
     pageNumber: pageNumber ? parseInt(pageNumber, 10) : 1,
     category: {
