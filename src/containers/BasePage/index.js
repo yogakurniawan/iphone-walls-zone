@@ -6,23 +6,11 @@ import { Grid, Loader } from 'semantic-ui-react';
 import WallpaperCard from '../../components/WallpaperCard';
 import { setSelectedIphoneModel, getIphoneModelById } from '../../actions/global';
 import { updateWallpaper } from '../../actions/wallpaper';
-import { saveItem } from '../../utils/common';
 import * as selectors from './selectors';
 
 class BasePage extends Component { // eslint-disable-line react/prefer-stateless-function
 
-  onImageClick = (wallpaper) => {
-    const { categories, category } = this.props;
-    let thisCategory = category;
-    if (!thisCategory) {
-      thisCategory = categories.find(item => item.id === wallpaper.categoryId);
-    }
-
-    saveItem('selectedWallpaper', {
-      ...wallpaper,
-      category: thisCategory.name,
-      total: thisCategory.total_wallpaper,
-    });
+  onImageClick = () => {
   }
 
   onLabelClick = (wallpaper) => {
@@ -84,18 +72,6 @@ class BasePage extends Component { // eslint-disable-line react/prefer-stateless
 BasePage.propTypes = {
   params: PropTypes.shape({
     pageNumber: PropTypes.number,
-  }),
-  categories: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string,
-      id: PropTypes.string,
-      total_wallpaper: PropTypes.number,
-    })),
-    PropTypes.object,
-  ]),
-  category: PropTypes.shape({
-    name: PropTypes.string,
-    id: PropTypes.string,
   }),
   selectedIphoneModel: PropTypes.string,
   setIphoneModel: PropTypes.func.isRequired,

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Breadcrumb, Loader, Popup, Image, Button, Card, Grid, Header, Icon } from 'semantic-ui-react';
-import { loadItem, saveItem, replaceSpaceWithDash } from '../../utils/common';
-import history from '../../history';
+import { replaceSpaceWithDash } from '../../utils/common';
 import { PER_PAGE } from '../../constants/index';
 import Link from '../../components/Link';
 import * as wallpaperActions from '../../actions/wallpaper';
@@ -13,14 +12,16 @@ import * as selectors from '../BasePage/selectors';
 class Wallpaper extends Component { // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
-    const { getWallpapersByCategory, sendUpdateWallpaper, wallpapers } = this.props;
-    const wallpaper = loadItem('selectedWallpaper');
+    const {
+      setWallpaper,
+      getWallpapersByCategory,
+      sendUpdateWallpaper,
+      wallpaper,
+      wallpapers,
+    } = this.props;
     const totalView = wallpaper.total_view + 1;
     const newWallpaper = { ...wallpaper, total_view: totalView };
     const totalPage = wallpaper.total / PER_PAGE;
-    if (!wallpaper) {
-      history.push('/');
-    }
     if (!wallpapers.size) {
       getWallpapersByCategory({
         page: Math.floor(Math.random() * totalPage) + 1,
@@ -34,49 +35,40 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
       id: wallpaper.id,
       total_view: totalView,
     });
-    saveItem('selectedWallpaper', newWallpaper);
-  }
-
-  componentWillReceiveProps() {
-    const wallpaperFromStorage = loadItem('selectedWallpaper');
-    if (!wallpaperFromStorage) {
-      history.push('/');
-    }
+    setWallpaper(newWallpaper);
   }
 
   onClick = (wallpaper) => {
-    const { sendUpdateWallpaper } = this.props;
-    const selectedWallpaper = loadItem('selectedWallpaper');
+    const { sendUpdateWallpaper, setWallpaper } = this.props;
     const totalView = wallpaper.total_view + 1;
     const newWallpaper = { ...wallpaper, total_view: totalView };
     sendUpdateWallpaper({
       id: wallpaper.id,
       total_view: totalView,
     });
-    saveItem('selectedWallpaper', { ...selectedWallpaper, ...newWallpaper });
+    setWallpaper(newWallpaper);
   }
 
   onClickLike = (wallpaper) => {
-    const { sendUpdateWallpaper } = this.props;
+    const { sendUpdateWallpaper, setWallpaper } = this.props;
     const totalLike = wallpaper.total_like + 1;
     const newWallpaper = { ...wallpaper, total_like: totalLike };
     sendUpdateWallpaper({
       id: wallpaper.id,
       total_like: totalLike,
     });
-    saveItem('selectedWallpaper', newWallpaper);
+    setWallpaper(newWallpaper);
   }
 
   download = (url) => {
-    const { sendUpdateWallpaper } = this.props;
-    const wallpaper = loadItem('selectedWallpaper');
+    const { sendUpdateWallpaper, setWallpaper, wallpaper } = this.props;
     const totalDownload = wallpaper.total_download + 1;
     sendUpdateWallpaper({
       id: wallpaper.id,
       total_download: wallpaper.total_download + 1,
     });
     const newWallpaper = { ...wallpaper, total_download: totalDownload };
-    saveItem('selectedWallpaper', newWallpaper);
+    setWallpaper(newWallpaper);
     const tempLink = document.createElement('a');
     tempLink.style.display = 'none';
     tempLink.href = url;
@@ -87,8 +79,7 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
   }
 
   render() {
-    const { width, wallpapers } = this.props;
-    const wallpaper = loadItem('selectedWallpaper');
+    const { width, wallpapers, wallpaper } = this.props;
     const name = wallpaper.name.length > 20 ?
     `${wallpaper.name.substring(0, 20)} ...` : wallpaper.name;
     const theWallpapers = wallpapers.filter(item => item.id !== wallpaper.id).slice(0, 10);
@@ -235,20 +226,33 @@ Wallpaper.propTypes = {
     })).isRequired,
     PropTypes.object,
   ]).isRequired,
+  wallpaper: PropTypes.shape({
+    name: PropTypes.string,
+    code: PropTypes.string,
+    thumbnail: PropTypes.string,
+    original: PropTypes.string,
+    categoryId: PropTypes.string,
+    iphoneModelId: PropTypes.string,
+    id: PropTypes.string,
+  }),
   sendUpdateWallpaper: PropTypes.func.isRequired,
+  setWallpaper: PropTypes.func.isRequired,
 };
 
 Wallpaper.defaultProps = {
   name: null,
+  wallpaper: null,
 };
 
 const mapDispatchToProps = {
+  setWallpaper: wallpaperActions.updateWallpaper,
   sendUpdateWallpaper: wallpaperActions.updateWallpaper,
   getWallpapersByCategory: wallpaperActions.getWallpapersByCategory,
 };
 
 const mapStateToProps = createStructuredSelector({
   wallpapers: selectors.selectWallpapers(),
+  wallpaper: selectors.selectWallpaper(),
   width: selectors.selectScreenWidth(),
 });
 

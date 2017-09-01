@@ -6,6 +6,7 @@ import {
   SET_TOTAL_WALLPAPER,
   GET_TOTAL_WALLPAPER,
   SET_PAGE,
+  SET_WALLPAPER,
 } from 'constants/ActionTypes';
 import {
   BASE_API_URL,
@@ -86,5 +87,12 @@ export function updateWallpaper(data) {
   return {
     type: UPDATE_WALLPAPER,
     promise: axios.put(WALLPAPERS_API, data),
+  };
+}
+
+export function setWallpaper(wallpaper) {
+  return {
+    type: SET_WALLPAPER,
+    payload: wallpaper,
   };
 }

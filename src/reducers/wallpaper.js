@@ -12,6 +12,7 @@ import {
   GET_TOTAL_WALLPAPER_ERROR,
   SET_TOTAL_WALLPAPER,
   SET_PAGE,
+  SET_WALLPAPER,
 } from 'constants/ActionTypes';
 
 const initialState = fromJS({
@@ -29,7 +30,7 @@ const initialState = fromJS({
   },
   payload: {
     wallpapers: [],
-    wallpaper: null,
+    wallpaper: [],
     page: 0,
     total: 0,
   },
@@ -41,6 +42,9 @@ function wallpaper(state = initialState, action) {
     case SET_PAGE:
       return state
         .setIn(['payload', 'page'], payload);
+    case SET_WALLPAPER:
+      return state
+        .setIn(['payload', 'wallpaper'], payload);
     case SET_TOTAL_WALLPAPER:
       return state
         .setIn(['payload', 'total'], payload);
