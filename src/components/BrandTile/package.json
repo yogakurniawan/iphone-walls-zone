@@ -1,0 +1,6 @@
+{
+  "name": "brandtile",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./BrandTile.js"
+}

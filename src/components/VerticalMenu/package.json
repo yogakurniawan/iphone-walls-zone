@@ -1,0 +1,6 @@
+{
+  "name": "VerticalMenu",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./VerticalMenu.js"
+}
