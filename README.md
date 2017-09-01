@@ -1,10 +1,10 @@
 ## iPhone Walls Zone
 
+<img width="50%" height="50%" src="public/apple-touch-icon.png" alt="iPhone Walls Zone - Logo" align="center" />
+
 Best iPhone wallpapers for iPhone 6, iPhone 5, iPhone 4, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPod Touch backgrounds.
 
 ## Open Source Used
-
-<img src="public/apple-touch-icon.png" alt="iPhone Walls Zone - Logo" align="center" />
 
 This project is using [React Starter Kit](https://www.reactstarterkit.com).
 
@@ -18,4 +18,4 @@ and newcomers to the industry.
 
 ## Live Playground
 
-[live]: http://iphonewallszone.com
+http://iphonewallszone.com
