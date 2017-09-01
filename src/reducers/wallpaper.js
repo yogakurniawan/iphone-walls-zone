@@ -84,6 +84,7 @@ function wallpaper(state = initialState, action) {
         .setIn(['error', 'sendLike'], null);
     case UPDATE_WALLPAPER_SUCCESS: {
       const wallpaperList = state.getIn(['payload', 'wallpapers']).slice(0);
+      const wallpaperState = state.getIn(['payload', 'wallpaper']);
       const newWallpaperList = wallpaperList.map((item) => {
         let result = item;
         if (result.id === payload.id) {
@@ -94,7 +95,7 @@ function wallpaper(state = initialState, action) {
       return state
         .setIn(['loading', 'sendLike'], false)
         .setIn(['error', 'sendLike'], null)
-        .setIn(['payload', 'wallpaper'], payload)
+        .setIn(['payload', 'wallpaper'], { ...wallpaperState, ...payload })
         .setIn(['payload', 'wallpapers'], newWallpaperList);
     }
     case UPDATE_WALLPAPER_ERROR:
