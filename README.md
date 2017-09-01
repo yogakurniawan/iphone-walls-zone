@@ -1,6 +1,6 @@
 ## iPhone Walls Zone
 
-<img width="50%" height="50%" src="public/apple-touch-icon.png" alt="iPhone Walls Zone - Logo" align="center" />
+<img src="public/apple-touch-icon.png" alt="iPhone Walls Zone - Logo" align="center" />
 
 Best iPhone wallpapers for iPhone 6, iPhone 5, iPhone 4, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPod Touch backgrounds.
 
