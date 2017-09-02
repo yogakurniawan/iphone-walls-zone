@@ -58,13 +58,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
     const { page } = this.state;
     return (
       <div>
-        <Grid>
-          <Grid.Row columns={1}>
-            <Grid.Column>
-              <Header as="h2" textAlign="center">Cool iPhone Wallpapers</Header>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <Header color="grey" as="h3">Free iPhone Wallpapers</Header>
         <BasePage
           params={params}
           iphoneModels={params.iphoneModels}

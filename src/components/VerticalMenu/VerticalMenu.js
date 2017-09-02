@@ -25,8 +25,8 @@ export default class VerticalMenu extends Component {
       );
     }
     return (
-      <div style={{ marginTop: 25 }}>
-        <Header as="h4">{title}</Header>
+      <div style={{ marginBottom: 25 }}>
+        <Header color="grey" as="h4">{title}</Header>
         <Menu vertical>
           {
             menuItems.map(item => (

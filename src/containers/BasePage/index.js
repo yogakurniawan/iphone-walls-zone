@@ -43,7 +43,7 @@ class BasePage extends Component { // eslint-disable-line react/prefer-stateless
             inline="centered"
           />
         }
-        <Grid.Row centered>
+        <Grid.Row>
           {
             theWallpapers.map(wallpaper => (
               <Grid.Column

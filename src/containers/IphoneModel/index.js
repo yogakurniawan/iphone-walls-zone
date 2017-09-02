@@ -66,7 +66,7 @@ class IphoneModel extends Component { // eslint-disable-line react/prefer-statel
     }
 
     if (params.pageNumber !== this.state.page
-        || params.iphoneModel.meta_route !== this.state.metaRoute) {
+      || params.iphoneModel.meta_route !== this.state.metaRoute) {
       getWallpapersByIphoneModel({
         page: params.pageNumber,
         modelId: selectIphoneModel.id,
@@ -95,13 +95,7 @@ class IphoneModel extends Component { // eslint-disable-line react/prefer-statel
     }
     return (
       <div>
-        <Grid>
-          <Grid.Row columns={1}>
-            <Grid.Column>
-              <Header as="h2" textAlign="center">{`${replaceDashWithSpace(iphoneModel.name)} Wallpapers`}</Header>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <Header color="grey" as="h3">{`${replaceDashWithSpace(iphoneModel.name)} Wallpapers`}</Header>
         <BasePage iphoneModels={params.iphoneModels} />
         <Grid>
           {wallpapers.length > 0 && <Grid.Row columns={1}>

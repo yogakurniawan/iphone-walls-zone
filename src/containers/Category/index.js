@@ -77,13 +77,7 @@ class Category extends Component { // eslint-disable-line react/prefer-stateless
     const route = categoryFromRoute.name;
     return (
       <div>
-        <Grid>
-          <Grid.Row columns={1}>
-            <Grid.Column>
-              <Header as="h2" textAlign="center">{`${route} Wallpapers`}</Header>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <Header color="grey" as="h3">{`${route} Wallpapers`}</Header>
         <BasePage iphoneModels={params.iphoneModels} />
         <Grid>
           {wallpapers.length > 0 && <Grid.Row columns={1}>

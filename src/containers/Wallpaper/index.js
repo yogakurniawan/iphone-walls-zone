@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Breadcrumb, Loader, Popup, Image, Button, Card, Grid, Header, Icon } from 'semantic-ui-react';
+import { Loader, Popup, Image, Button, Card, Grid, Header, Icon } from 'semantic-ui-react';
 import { replaceSpaceWithDash } from '../../utils/common';
 import { PER_PAGE } from '../../constants/index';
 import Link from '../../components/Link';
+import BreadCrumb from '../../components/BreadCrumb';
 import * as wallpaperActions from '../../actions/wallpaper';
 import * as selectors from '../BasePage/selectors';
 
@@ -79,22 +80,15 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
     return (
       <div>
         <Grid>
-          <Grid.Row centered style={{ borderBottom: '1px solid #e1e4e8' }}>
-            <Grid.Column mobile={16} tablet={14} computer={14}>
-              <Breadcrumb size="tiny">
-                <Link to="/" component={Breadcrumb.Section}>Home</Link>
-                <Breadcrumb.Divider icon="right angle" />
-                <Link to={`/category/${wallpaper.category}`} component={Breadcrumb.Section}>{wallpaper.category}</Link>
-                <Breadcrumb.Divider icon="right angle" />
-                <Breadcrumb.Section active>
-                  {width <= 414 ? name : wallpaper.name}
-                </Breadcrumb.Section>
-              </Breadcrumb>
-            </Grid.Column>
-          </Grid.Row>
+          <BreadCrumb name={name} width={width} wallpaper={wallpaper} />
           <Grid.Row centered>
             <Grid.Column width={12}>
-              <Header textAlign="center" as="h2">{wallpaper.name}</Header>
+              <Header
+                textAlign="center"
+                as={width <= 480 ? 'h5' : 'h3'}
+              >
+                {wallpaper.name}
+              </Header>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row centered>
