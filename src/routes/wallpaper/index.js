@@ -24,7 +24,7 @@ async function action({ fetch, params, store }) {
 
   // Wallpaper
   if (!wallpaperData.length) {
-    const url = `/api/Wallpapers?filter[where][name]=${replaceDashWithSpace(params.name)}`;
+    const url = `/api/Wallpapers?filter[where][name]=${decodeURI(replaceDashWithSpace(params.name))}`;
     const resp = await fetch(url, {
       method: 'GET',
     });
