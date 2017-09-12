@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Navbar, NavDropdown, FormControl, FormGroup, NavItem, MenuItem } from 'react-bootstrap/lib';
 import Link from '../../components/Link';
 import Nav from './Nav';
 import NavbarToggle from './NavbarToggle';
+import NavbarForm from './NavbarForm';
 import logoUrl from './iphonewallszone.png';
+import navCss from './nav.css';
 
 class Header extends React.Component {
   constructor(props) {
@@ -59,11 +60,11 @@ class Header extends React.Component {
               </NavDropdown>
             }
             {
-              display && <Navbar.Form pullLeft>
+              display && <NavbarForm pullLeft>
                 <FormGroup>
                   <FormControl type="text" placeholder="Search" />
                 </FormGroup>
-              </Navbar.Form>
+              </NavbarForm>
             }
           </Nav>
         </Navbar.Collapse>
@@ -87,4 +88,4 @@ Header.defaultProps = {
   categories: null,
 };
 
-export default withStyles(bootstrap)(Header);
+export default withStyles(navCss)(Header);

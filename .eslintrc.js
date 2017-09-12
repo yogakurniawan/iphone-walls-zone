@@ -15,12 +15,10 @@ module.exports = {
   extends: [
     'airbnb',
     'plugin:flowtype/recommended',
-    'plugin:css-modules/recommended',
   ],
 
   plugins: [
     'flowtype',
-    'css-modules',
   ],
 
   globals: {
