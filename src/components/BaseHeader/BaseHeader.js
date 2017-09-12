@@ -13,7 +13,7 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: true,
+      display: false,
     };
   }
 
@@ -38,7 +38,7 @@ class Header extends React.Component {
               display && <Link to="/" name="MyCollection" component={NavItem}>My Collection</Link>
             }
             {isMobileOrTablet &&
-              <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+              <NavDropdown eventKey={3} title="Categories" id="basic-nav-dropdown">
                 {
                   categories && categories.map((category, index) => (
                     <Link

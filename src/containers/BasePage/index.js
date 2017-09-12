@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Loader } from 'semantic-ui-react';
-import { Row, Col } from 'react-flexgrid';
+import { Row, Col } from 'react-styled-flexboxgrid';
 import WallpaperCard from '../../components/WallpaperCard';
 import { setSelectedIphoneModel, getIphoneModelById } from '../../actions/global';
 import { updateWallpaper } from '../../actions/wallpaper';

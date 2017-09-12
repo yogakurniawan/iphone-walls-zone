@@ -4,9 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import Dimensions from 'react-sizer';
 import normalizeCss from 'normalize.css';
 import sanitizeCss from 'sanitize.css/sanitize.css';
-import FlexgridCSS from 'react-flexgrid/lib/flexgrid.css';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Grid, Row, Col } from 'react-flexgrid';
+import { Grid, Row, Col } from 'react-styled-flexboxgrid';
 import s from './BaseLayout.css';
 import ChildrenWrapper from './ChildrenWrapper';
 import BaseHeader from '../BaseHeader';
@@ -114,4 +113,4 @@ Layout.defaultProps = {
 
 const enhancedLayout = Dimensions()(Layout);
 
-export default withStyles(FlexgridCSS, s, normalizeCss, sanitizeCss)(enhancedLayout);
+export default withStyles(s, normalizeCss, sanitizeCss)(enhancedLayout);

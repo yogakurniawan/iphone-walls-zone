@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Header } from 'semantic-ui-react';
-import { Row, Col } from 'react-flexgrid';
+import { Row, Col } from 'react-styled-flexboxgrid';
 import * as wallpaperActions from 'actions/wallpaper';
 import Pagination from '../../components/Pagination';
 import { PER_PAGE } from '../../constants/index';

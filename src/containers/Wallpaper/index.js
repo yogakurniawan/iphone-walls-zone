@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Grid, Row, Col } from 'react-flexgrid';
-import { Loader, Popup, Image, Button, Card, Header, Icon } from 'semantic-ui-react';
+import { Grid, Row, Col } from 'react-styled-flexboxgrid';
+import { Loader, Popup, Button, Card, Header, Icon } from 'semantic-ui-react';
 import { replaceSpaceWithDash } from '../../utils/common';
 import { PER_PAGE } from '../../constants/index';
 import Link from '../../components/Link';
@@ -77,124 +77,125 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
     const { width, wallpapers, wallpaper } = this.props;
     const name = wallpaper.name.length > 20 ?
       `${wallpaper.name.substring(0, 20)} ...` : wallpaper.name;
-    const theWallpapers = wallpapers.filter(item => item.id !== wallpaper.id).slice(0, 10);
+    const theWallpapers = wallpapers.filter(item => item.id !== wallpaper.id).slice(0, 12);
     return (
       <div>
-        <Grid>
-          <BreadCrumb name={name} width={width} wallpaper={wallpaper} />
-          <Row style={{ textAlign: 'center' }}>
-            <Col xs={12}>
-              <Header
-                textAlign="center"
-                as={width <= 480 ? 'h5' : 'h3'}
-              >
-                {wallpaper.name}
-              </Header>
-            </Col>
-          </Row>
-          <Row style={{ textAlign: 'center' }}>
-            <Col xs={12} textAlign="center">
-              <span style={{ marginRight: 20 }}>
-                <Popup
-                  trigger={<Icon onClick={() => this.onClickLike(wallpaper)} link circular name="like" />}
-                  inverted
-                  size="mini"
-                  content="Like"
-                  position="top center"
-                />
-                <Popup
-                  trigger={<span>{`${wallpaper.total_like}`}</span>}
-                  inverted
-                  size="mini"
-                  content="Total Like"
-                  position="top center"
-                />
-              </span>
-              <span style={{ marginRight: 20 }}>
-                <Icon circular name="eye" />
-                <Popup
-                  trigger={<span>{`${wallpaper.total_view}`}</span>}
-                  inverted
-                  size="mini"
-                  content="Total View"
-                  position="top center"
-                />
-              </span>
-              <span>
-                <Icon circular name="cloud download" />
-                <Popup
-                  trigger={<span>{`${wallpaper.total_download}`}</span>}
-                  inverted
-                  size="mini"
-                  content="Total View"
-                  position="top center"
-                />
-              </span>
-            </Col>
-          </Row>
-          <Row center="xs">
-            <Col xs={12} sm={10} md={6} lg={4}>
-              <Button fluid color="green" onClick={() => this.download(wallpaper.original)}>
-                <Icon name="cloud download" />Download Wallpaper
+        <BreadCrumb name={name} width={width} wallpaper={wallpaper} />
+        <Row center="xs" style={{ marginBottom: 20 }}>
+          <Col xs={12}>
+            <Header
+              textAlign="center"
+              as={width <= 480 ? 'h5' : 'h3'}
+            >
+              {wallpaper.name}
+            </Header>
+          </Col>
+        </Row>
+        <Row center="xs" style={{ marginBottom: 20 }}>
+          <Col xs={12} textAlign="center">
+            <span style={{ marginRight: 20 }}>
+              <Popup
+                trigger={<Icon onClick={() => this.onClickLike(wallpaper)} link circular name="like" />}
+                inverted
+                size="mini"
+                content="Like"
+                position="top center"
+              />
+              <Popup
+                trigger={<span>{`${wallpaper.total_like}`}</span>}
+                inverted
+                size="mini"
+                content="Total Like"
+                position="top center"
+              />
+            </span>
+            <span style={{ marginRight: 20 }}>
+              <Icon circular name="eye" />
+              <Popup
+                trigger={<span>{`${wallpaper.total_view}`}</span>}
+                inverted
+                size="mini"
+                content="Total View"
+                position="top center"
+              />
+            </span>
+            <span>
+              <Icon circular name="cloud download" />
+              <Popup
+                trigger={<span>{`${wallpaper.total_download}`}</span>}
+                inverted
+                size="mini"
+                content="Total View"
+                position="top center"
+              />
+            </span>
+          </Col>
+        </Row>
+        <Row center="xs" style={{ marginBottom: 20 }}>
+          <Col xs={10} sm={6} md={4} lg={4}>
+            <Button fluid color="green" onClick={() => this.download(wallpaper.original)}>
+              <Icon name="cloud download" />Download Wallpaper
               </Button>
-            </Col>
-          </Row>
-          <Row center="xs">
-            <Col xs={12} sm={12} md={6} lg={4}>
-              <Card
-                fluid
-                centered
-                raised
-                image={wallpaper.original}
-              />
-            </Col>
-          </Row>
-        </Grid>
-        <Grid style={{ width: '80%', margin: '20px auto 0 auto' }}>
-          <Row style={{ textAlign: 'center' }}>
-            <Col xs={12}>
-              <Header textAlign="center" as="h3">{`More ${wallpaper.category} iPhone Wallpapers`}</Header>
-            </Col>
-          </Row>
-          <Row style={{ textAlign: 'center' }}>
-            {
-              !theWallpapers.length &&
-              <Loader
-                active
-                inline="centered"
-              />
-            }
-            {
-              theWallpapers.map(wall => (
-                <Col
-                  key={Math.random()}
-                  style={{ marginBottom: 15, paddingRight: 20, paddingLeft: 20 }}
-                  xs={6}
-                  sm={4}
-                  md={3}
-                  computer={3}
-                >
-                  <Popup
-                    inverted
-                    position="bottom center"
-                    trigger={
-                      <Link
-                        onClick={() => this.onClick(wall)}
-                        to={`/wallpaper/${replaceSpaceWithDash(wall.name)}`}
-                        component={Image}
-                        centered
-                        size="small"
-                        src={wall.thumbnail}
-                      />
-                    }
-                    content={wall.name}
-                    basic
-                  />
-                </Col>
-              ))
-            }
-          </Row>
-        </Grid>
+          </Col>
+        </Row>
+        <Row center="xs" style={{ marginBottom: 20 }}>
+          <Col xs={10} sm={6} md={4} lg={4}>
+            <Card
+              fluid
+              centered
+              raised
+              image={wallpaper.original}
+            />
+          </Col>
+        </Row>
+        <Row style={{ marginBottom: 20 }}>
+          <Col xs={12}>
+            <Header textAlign="center" as="h3">{`More ${wallpaper.category} iPhone Wallpapers`}</Header>
+          </Col>
+        </Row>
+        <Row center="xs">
+          {
+            !theWallpapers.length &&
+            <Loader
+              active
+              inline="centered"
+            />
+          }
+          <Col xs={12} sm={12} md={10} lg={10}>
+            <Row center="xs">
+              {
+                theWallpapers.map(wall => (
+                  <Col
+                    key={Math.random()}
+                    style={{ marginBottom: 15 }}
+                    xs={6}
+                    sm={4}
+                    md={3}
+                    lg={3}
+                  >
+                    <Popup
+                      inverted
+                      position="bottom center"
+                      trigger={
+                        <Link
+                          onClick={() => this.onClick(wall)}
+                          to={`/wallpaper/${replaceSpaceWithDash(wall.name)}`}
+                          component="img"
+                          style={{ width: '85%' }}
+                          centered
+                          size="small"
+                          src={wall.thumbnail}
+                        />
+                      }
+                      content={wall.name}
+                      basic
+                    />
+                  </Col>
+                ))
+              }
+            </Row>
+          </Col>
+        </Row>
       </div>
     );
   }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import { createStructuredSelector } from 'reselect';
 import { Header } from 'semantic-ui-react';
-import { Row, Col } from 'react-flexgrid';
+import { Row, Col } from 'react-styled-flexboxgrid';
 import * as wallpaperActions from 'actions/wallpaper';
 import * as categoryActions from '../../actions/category';
 import * as globalActions from '../../actions/global';
