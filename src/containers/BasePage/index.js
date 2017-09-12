@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Grid, Loader } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
+import { Row, Col } from 'react-flexgrid';
 import WallpaperCard from '../../components/WallpaperCard';
 import { setSelectedIphoneModel, getIphoneModelById } from '../../actions/global';
 import { updateWallpaper } from '../../actions/wallpaper';
@@ -34,7 +35,7 @@ class BasePage extends Component { // eslint-disable-line react/prefer-stateless
     const wallpapersFromParam = params ? params.wallpapers : [];
     const theWallpapers = wallpapers.length ? wallpapers : wallpapersFromParam;
     return (
-      <Grid>
+      <div>
         {
           !theWallpapers.length &&
           <Loader
@@ -43,15 +44,16 @@ class BasePage extends Component { // eslint-disable-line react/prefer-stateless
             inline="centered"
           />
         }
-        <Grid.Row>
+        <Row>
           {
             theWallpapers.map(wallpaper => (
-              <Grid.Column
+              <Col
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
                 style={{ marginBottom: 15 }}
-                mobile={14}
-                tablet={5}
                 key={wallpaper.id}
-                computer={5}
               >
                 <WallpaperCard
                   iphoneModels={iphoneModels}
@@ -60,11 +62,11 @@ class BasePage extends Component { // eslint-disable-line react/prefer-stateless
                   onImageClick={() => this.onImageClick(wallpaper)}
                   wallpaper={wallpaper}
                 />
-              </Grid.Column>
+              </Col>
             ))
           }
-        </Grid.Row>
-      </Grid>
+        </Row>
+      </div>
     );
   }
 }

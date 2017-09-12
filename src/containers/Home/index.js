@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Grid, Header } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
+import { Grid, Row, Col } from 'react-flexgrid';
 import BasePage from '../BasePage';
 import * as wallpaperActions from '../../actions/wallpaper';
 import * as globalActions from '../../actions/global';
@@ -63,9 +64,9 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
           params={params}
           iphoneModels={params.iphoneModels}
         />
-        <Grid>
-          {wallpapers.length > 0 && <Grid.Row columns={1}>
-            <Grid.Column textAlign="center">
+        <Row style={{ textAlign: 'center' }}>
+          {wallpapers.length > 0 &&
+            <Col xs={12}>
               <Pagination
                 screenWidth={width}
                 page={page}
@@ -73,9 +74,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                 total={total}
                 setPage={this.goToPage}
               />
-            </Grid.Column>
-          </Grid.Row>}
-        </Grid>
+            </Col>}
+        </Row>
       </div>
     );
   }

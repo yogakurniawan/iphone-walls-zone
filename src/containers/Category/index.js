@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Grid, Header } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
+import { Row, Col } from 'react-flexgrid';
 import * as wallpaperActions from 'actions/wallpaper';
 import Pagination from '../../components/Pagination';
 import { PER_PAGE } from '../../constants/index';
@@ -50,7 +51,7 @@ class Category extends Component { // eslint-disable-line react/prefer-stateless
       category: thisCategory.name,
     });
     if (params.pageNumber !== this.state.page
-        || thisCategory.name !== this.state.category) {
+      || thisCategory.name !== this.state.category) {
       getWallpapersByCategory({
         page: params.pageNumber,
         category: thisCategory,
@@ -79,9 +80,9 @@ class Category extends Component { // eslint-disable-line react/prefer-stateless
       <div>
         <Header color="grey" as="h3">{`${route} Wallpapers`}</Header>
         <BasePage iphoneModels={params.iphoneModels} />
-        <Grid>
-          {wallpapers.length > 0 && <Grid.Row columns={1}>
-            <Grid.Column textAlign="center">
+        <Row style={{ textAlign: 'center' }}>
+          {wallpapers.length > 0 &&
+            <Col xs={12}>
               <Pagination
                 screenWidth={width}
                 route={`category/${route}`}
@@ -90,9 +91,8 @@ class Category extends Component { // eslint-disable-line react/prefer-stateless
                 total={total}
                 setPage={this.goToPage}
               />
-            </Grid.Column>
-          </Grid.Row>}
-        </Grid>
+            </Col>}
+        </Row>
       </div>
     );
   }

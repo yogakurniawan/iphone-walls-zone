@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import Dimensions from 'react-sizer';
+import FlexgridCSS from 'react-flexgrid/lib/flexgrid.css';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Row, Col } from 'react-flexgrid';
 import s from './BaseLayout.css';
 import ChildrenWrapper from './ChildrenWrapper';
 import BaseHeader from '../BaseHeader';
@@ -33,38 +34,40 @@ class Layout extends React.Component {
             miniHeader={isSmallMobile}
           />
           <ChildrenWrapper>
-            <Grid>
-              {!isMobileOrTablet && showSideMenu &&
-                <Grid.Column mobile={16} tablet={4} computer={4}>
-                  <VerticalMenu
-                    name="model"
-                    metaRoute="meta_route"
-                    title="Choose your iPhone"
-                    activeItem={activeModel}
-                    onClick={onIphoneModelClick}
-                    menuItems={iphoneModels}
-                  />
-                  <VerticalMenu
-                    name="category"
-                    metaRoute="name"
-                    title="Categories"
-                    activeItem={activeCategory}
-                    onClick={onCategoryClick}
-                    menuItems={categories}
-                  />
-                </Grid.Column>}
-              {!isMobileOrTablet &&
-                <Grid.Column
-                  mobile={16}
-                  tablet={showSideMenu ? 12 : 16}
-                  computer={showSideMenu ? 12 : 16}
-                >
-                  {this.props.children}
-                </Grid.Column>}
-              {isMobileOrTablet && <Grid.Column mobile={16} tablet={16} computer={16}>
-                {this.props.children}
-              </Grid.Column>}
-            </Grid>
+            {!isMobileOrTablet && showSideMenu &&
+              <Grid fluid>
+                <Row>
+                  <Col sm={6} md={3} lg={3}>
+                    <VerticalMenu
+                      name="model"
+                      metaRoute="meta_route"
+                      title="Choose your iPhone"
+                      activeItem={activeModel}
+                      onClick={onIphoneModelClick}
+                      menuItems={iphoneModels}
+                    />
+                    <VerticalMenu
+                      name="category"
+                      metaRoute="name"
+                      title="Categories"
+                      activeItem={activeCategory}
+                      onClick={onCategoryClick}
+                      menuItems={categories}
+                    />
+                  </Col>
+                  <Col sm={6} md={9} lg={9}>
+                    {this.props.children}
+                  </Col>
+                </Row>
+              </Grid>}
+            {(isMobileOrTablet || !showSideMenu) &&
+              <Grid fluid>
+                <Row>
+                  <Col xs={12}>
+                    {this.props.children}
+                  </Col>
+                </Row>
+              </Grid>}
           </ChildrenWrapper>
         </div>
       </ThemeProvider>
@@ -109,4 +112,4 @@ Layout.defaultProps = {
 
 const enhancedLayout = Dimensions()(Layout);
 
-export default withStyles(s)(enhancedLayout);
+export default withStyles(FlexgridCSS, s)(enhancedLayout);

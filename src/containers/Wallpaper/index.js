@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Loader, Popup, Image, Button, Card, Grid, Header, Icon } from 'semantic-ui-react';
+import { Grid, Row, Col } from 'react-flexgrid';
+import { Loader, Popup, Image, Button, Card, Header, Icon } from 'semantic-ui-react';
 import { replaceSpaceWithDash } from '../../utils/common';
 import { PER_PAGE } from '../../constants/index';
 import Link from '../../components/Link';
@@ -75,24 +76,24 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
   render() {
     const { width, wallpapers, wallpaper } = this.props;
     const name = wallpaper.name.length > 20 ?
-    `${wallpaper.name.substring(0, 20)} ...` : wallpaper.name;
+      `${wallpaper.name.substring(0, 20)} ...` : wallpaper.name;
     const theWallpapers = wallpapers.filter(item => item.id !== wallpaper.id).slice(0, 10);
     return (
       <div>
         <Grid>
           <BreadCrumb name={name} width={width} wallpaper={wallpaper} />
-          <Grid.Row centered>
-            <Grid.Column width={12}>
+          <Row style={{ textAlign: 'center' }}>
+            <Col xs={12}>
               <Header
                 textAlign="center"
                 as={width <= 480 ? 'h5' : 'h3'}
               >
                 {wallpaper.name}
               </Header>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row centered>
-            <Grid.Column width={12} textAlign="center">
+            </Col>
+          </Row>
+          <Row style={{ textAlign: 'center' }}>
+            <Col xs={12} textAlign="center">
               <span style={{ marginRight: 20 }}>
                 <Popup
                   trigger={<Icon onClick={() => this.onClickLike(wallpaper)} link circular name="like" />}
@@ -129,33 +130,33 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
                   position="top center"
                 />
               </span>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row centered>
-            <Grid.Column mobile={16} tablet={6} computer={4}>
+            </Col>
+          </Row>
+          <Row center="xs">
+            <Col xs={12} sm={10} md={6} lg={4}>
               <Button fluid color="green" onClick={() => this.download(wallpaper.original)}>
                 <Icon name="cloud download" />Download Wallpaper
               </Button>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row centered>
-            <Grid.Column mobile={16} tablet={8} computer={4}>
+            </Col>
+          </Row>
+          <Row center="xs">
+            <Col xs={12} sm={12} md={6} lg={4}>
               <Card
                 fluid
                 centered
                 raised
                 image={wallpaper.original}
               />
-            </Grid.Column>
-          </Grid.Row>
+            </Col>
+          </Row>
         </Grid>
         <Grid style={{ width: '80%', margin: '20px auto 0 auto' }}>
-          <Grid.Row centered>
-            <Grid.Column width={12}>
+          <Row style={{ textAlign: 'center' }}>
+            <Col xs={12}>
               <Header textAlign="center" as="h3">{`More ${wallpaper.category} iPhone Wallpapers`}</Header>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row centered>
+            </Col>
+          </Row>
+          <Row style={{ textAlign: 'center' }}>
             {
               !theWallpapers.length &&
               <Loader
@@ -165,11 +166,12 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
             }
             {
               theWallpapers.map(wall => (
-                <Grid.Column
+                <Col
                   key={Math.random()}
                   style={{ marginBottom: 15, paddingRight: 20, paddingLeft: 20 }}
-                  mobile={8}
-                  tablet={4}
+                  xs={6}
+                  sm={4}
+                  md={3}
                   computer={3}
                 >
                   <Popup
@@ -188,10 +190,10 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
                     content={wall.name}
                     basic
                   />
-                </Grid.Column>
+                </Col>
               ))
             }
-          </Grid.Row>
+          </Row>
         </Grid>
       </div>
     );

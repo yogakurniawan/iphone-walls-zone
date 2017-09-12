@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Breadcrumb } from 'semantic-ui-react';
+import { Breadcrumb } from 'semantic-ui-react';
+import { Row, Col } from 'react-flexgrid';
 import Link from '../../components/Link';
 
 export default class BreadCrumb extends Component {
@@ -8,8 +9,8 @@ export default class BreadCrumb extends Component {
   render() {
     const { wallpaper, width, name } = this.props;
     return (
-      <Grid.Row centered style={{ borderBottom: '1px solid #e1e4e8' }}>
-        <Grid.Column mobile={16} tablet={14} computer={14}>
+      <Row style={{ borderBottom: '1px solid #e1e4e8' }}>
+        <Col xs={12} sm={12} md={10} lg={10}>
           <Breadcrumb size="tiny">
             <Link to="/" component={Breadcrumb.Section}>Home</Link>
             <Breadcrumb.Divider icon="right angle" />
@@ -19,8 +20,8 @@ export default class BreadCrumb extends Component {
               {width <= 480 ? name : wallpaper.name}
             </Breadcrumb.Section>
           </Breadcrumb>
-        </Grid.Column>
-      </Grid.Row>
+        </Col>
+      </Row>
     );
   }
 }

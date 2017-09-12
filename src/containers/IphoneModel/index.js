@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import { createStructuredSelector } from 'reselect';
-import { Grid, Header } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
+import { Row, Col } from 'react-flexbox-grid';
 import * as wallpaperActions from 'actions/wallpaper';
 import * as categoryActions from '../../actions/category';
 import * as globalActions from '../../actions/global';
@@ -97,9 +98,9 @@ class IphoneModel extends Component { // eslint-disable-line react/prefer-statel
       <div>
         <Header color="grey" as="h3">{`${replaceDashWithSpace(iphoneModel.name)} Wallpapers`}</Header>
         <BasePage iphoneModels={params.iphoneModels} />
-        <Grid>
-          {wallpapers.length > 0 && <Grid.Row columns={1}>
-            <Grid.Column textAlign="center">
+        <Row style={{ textAlign: 'center' }}>
+          {wallpapers.length > 0 &&
+            <Col xs={12}>
               <Pagination
                 screenWidth={width}
                 route={route}
@@ -108,9 +109,8 @@ class IphoneModel extends Component { // eslint-disable-line react/prefer-statel
                 total={total}
                 setPage={this.goToPage}
               />
-            </Grid.Column>
-          </Grid.Row>}
-        </Grid>
+            </Col>}
+        </Row>
       </div>
     );
   }
