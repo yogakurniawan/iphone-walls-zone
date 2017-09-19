@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Grid, Row, Col } from 'react-styled-flexboxgrid';
+import { Row, Col } from 'react-styled-flexboxgrid';
 import { Loader, Popup, Button, Card, Header, Icon } from 'semantic-ui-react';
 import { replaceSpaceWithDash } from '../../utils/common';
 import { PER_PAGE } from '../../constants/index';
@@ -150,7 +150,12 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
         </Row>
         <Row style={{ marginBottom: 20 }}>
           <Col xs={12}>
-            <Header textAlign="center" as="h3">{`More ${wallpaper.category} iPhone Wallpapers`}</Header>
+            <Header
+              textAlign="center"
+              as={width <= 480 ? 'h5' : 'h3'}
+            >
+              {`More ${wallpaper.category} iPhone Wallpapers`}
+            </Header>
           </Col>
         </Row>
         <Row center="xs">

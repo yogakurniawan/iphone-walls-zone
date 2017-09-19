@@ -61,14 +61,7 @@ class Layout extends React.Component {
                   </Col>
                 </Row>
               </Grid>}
-            {(isMobileOrTablet || !showSideMenu) &&
-              <Grid fluid>
-                <Row>
-                  <Col xs={12}>
-                    {this.props.children}
-                  </Col>
-                </Row>
-              </Grid>}
+            {(isMobileOrTablet || !showSideMenu) && this.props.children }
           </ChildrenWrapper>
         </div>
       </ThemeProvider>
