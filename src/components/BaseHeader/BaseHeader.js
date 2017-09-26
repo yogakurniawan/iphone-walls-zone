@@ -24,7 +24,9 @@ class Header extends React.Component {
       <Navbar style={{ background: '#00b5ad' }}>
         <Navbar.Header>
           <Navbar.Brand>
-            <img
+            <Link
+              to="/"
+              component="img"
               src={logoUrl}
               alt="Iphone Walls Zone"
             />

@@ -9,8 +9,8 @@ export default class BreadCrumb extends Component {
   render() {
     const { wallpaper, width, name } = this.props;
     return (
-      <Row style={{ marginBottom: 20, paddingBottom: 15, borderBottom: '1px solid #e1e4e8' }}>
-        <Col xs={12} sm={12} md={10} lg={10}>
+      <Row style={{ marginBottom: 20 }}>
+        <Col xs={12} sm={12} md={10} lg={11} style={{ margin: '0 auto', paddingBottom: 15, borderBottom: '1px solid #e1e4e8' }}>
           <Breadcrumb size="tiny">
             <Link to="/" component={Breadcrumb.Section}>Home</Link>
             <Breadcrumb.Divider icon="right angle" />

@@ -23,6 +23,7 @@ class Link extends React.Component {
   static propTypes = {
     to: PropTypes.string.isRequired,
     children: PropTypes.node,
+    style: PropTypes.objectOf,
     onClick: PropTypes.func,
     component: PropTypes.func.isRequired,
   };
@@ -30,6 +31,7 @@ class Link extends React.Component {
   static defaultProps = {
     onClick: null,
     children: null,
+    style: null,
   };
 
   handleClick = (event) => {
@@ -50,12 +52,14 @@ class Link extends React.Component {
   };
 
   render() {
-    const { component, to, children, ...props } = this.props;
+    const { component, to, children, style, ...props } = this.props;
     const ComponentToRender = component;
+    const thisStyle = style ? { ...style, cursor: 'pointer' } : { cursor: 'pointer' };
     if (children) {
       return (
         <ComponentToRender
           href={to}
+          style={thisStyle}
           {...props}
           onClick={this.handleClick}
         >
@@ -66,6 +70,7 @@ class Link extends React.Component {
     return (
       <ComponentToRender
         href={to}
+        style={thisStyle}
         {...props}
         onClick={this.handleClick}
       />

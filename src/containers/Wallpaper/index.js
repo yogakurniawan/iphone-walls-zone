@@ -158,15 +158,17 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
             </Header>
           </Col>
         </Row>
-        <Row center="xs">
-          {
-            !theWallpapers.length &&
+        {
+          !theWallpapers.length &&
+          <Row center="xs">
             <Loader
               active
               inline="centered"
             />
-          }
-          <Col xs={12} sm={12} md={10} lg={10}>
+          </Row>
+        }
+        <Row center="xs">
+          <Col xs={12} sm={12} md={10} lg={9}>
             <Row center="xs">
               {
                 theWallpapers.map(wall => (
@@ -188,7 +190,6 @@ class Wallpaper extends Component { // eslint-disable-line react/prefer-stateles
                           component="img"
                           style={{ width: '85%' }}
                           centered
-                          size="small"
                           src={wall.thumbnail}
                         />
                       }
