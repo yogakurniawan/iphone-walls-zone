@@ -38,7 +38,7 @@ function WallpaperCard({ wallpaper, iphoneModels, onImageClick, onLabelClick, on
       <Card.Content extra>
         <Popup
           trigger={
-            <a>
+            <a style={{ textDecoration: 'none' }}>
               <Icon name="like" onClick={onClickLike} />
               {`${wallpaper.total_like}`}
             </a>
