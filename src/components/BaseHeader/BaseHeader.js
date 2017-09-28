@@ -25,6 +25,7 @@ class Header extends React.Component {
         <Navbar.Header>
           <Navbar.Brand>
             <Link
+              style={{ padding: 12 }}
               to="/"
               component="img"
               src={logoUrl}
