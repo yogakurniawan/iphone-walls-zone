@@ -19,7 +19,7 @@ html {
   font-size: 1em;
 
   /* ~16px; */
-  font-family: var(--font-family-base);
+  font-family: var(--font-family-base) !important;
   line-height: 1.375;
 
   /* ~22px */

@@ -48,7 +48,7 @@ class BasePage extends Component { // eslint-disable-line react/prefer-stateless
           {
             theWallpapers.map(wallpaper => (
               <Col
-                xs={12}
+                xs={6}
                 sm={6}
                 md={4}
                 lg={3}

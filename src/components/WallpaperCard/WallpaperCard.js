@@ -1,30 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Popup, Card, Label, Icon, Image } from 'semantic-ui-react';
+import { Popup, Icon, Image } from 'semantic-ui-react';
 import Link from '../../components/Link';
 import { replaceSpaceWithDash } from '../../utils/common';
+import Header from './Header';
+import Meta from './Meta';
 
-function WallpaperCard({ wallpaper, iphoneModels, onImageClick, onLabelClick, onClickLike }) {
-  const name = wallpaper.name.length > 40 ?
-    `${wallpaper.name.substring(0, 40)} ...` : wallpaper.name;
-  const iphoneModel = iphoneModels.find(item => item.id === wallpaper.iphoneModelId);
+function WallpaperCard({ wallpaper, onImageClick, onClickLike }) {
+  const name = wallpaper.name.length > 25 ?
+    `${wallpaper.name.substring(0, 25)} ...` : wallpaper.name;
   const WallpaperHeader =
-    wallpaper.name.length > 40 ?
+    wallpaper.name.length > 25 ?
       (<Popup
         inverted
-        trigger={
-          <Card.Header style={{ fontSize: '1em' }}>
-            {name}
-          </Card.Header>
-        }
+        trigger={<span>{name}</span>}
         content={wallpaper.name}
         basic
-      />) :
-      (<Card.Header style={{ fontSize: '1em' }}>
-        {name}
-      </Card.Header>);
+      />) : (<span>{name}</span>);
   return (
-    <Card centered fluid>
+    <div>
       <Link
         as="a"
         src={wallpaper.thumbnail}
@@ -32,13 +26,13 @@ function WallpaperCard({ wallpaper, iphoneModels, onImageClick, onLabelClick, on
         to={`/wallpaper/${replaceSpaceWithDash(wallpaper.name)}`}
         component={Image}
       />
-      <Card.Content>
+      <Header>
         {WallpaperHeader}
-      </Card.Content>
-      <Card.Content extra>
+      </Header>
+      <Meta>
         <Popup
           trigger={
-            <a style={{ textDecoration: 'none' }}>
+            <a style={{ cursor: 'pointer', textDecoration: 'none' }}>
               <Icon name="like" onClick={onClickLike} />
               {`${wallpaper.total_like}`}
             </a>
@@ -50,41 +44,18 @@ function WallpaperCard({ wallpaper, iphoneModels, onImageClick, onLabelClick, on
         />
         <div style={{ float: 'right' }}>
           <span style={{ marginRight: 10 }}>
-            {`${wallpaper.total_download}`} Downloads
+            <Icon name="cloud download" onClick={onClickLike} /> {`${wallpaper.total_download}`}
           </span>
           <span>
-            {`${wallpaper.total_view}`} Views
+            <Icon name="eye" onClick={onClickLike} /> {`${wallpaper.total_view}`}
           </span>
         </div>
-      </Card.Content>
-      <Card.Content extra>
-        <Link
-          basic
-          size="mini"
-          color="teal"
-          key={Math.random()}
-          as="a"
-          onClick={onLabelClick}
-          to={`/model/${iphoneModel && iphoneModel.meta_route}`}
-          component={Label}
-        >
-          {iphoneModel && iphoneModel.name}
-        </Link>
-      </Card.Content>
-    </Card>
+      </Meta>
+    </div>
   );
 }
 
 WallpaperCard.propTypes = {
-  iphoneModels: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string,
-      id: PropTypes.string,
-      code: PropTypes.string,
-      meta_route: PropTypes.string,
-      total_wallpaper: PropTypes.number,
-    })),
-  ]),
   wallpaper: PropTypes.shape({
     name: PropTypes.string,
     thumbnail: PropTypes.string,
@@ -94,7 +65,6 @@ WallpaperCard.propTypes = {
     id: PropTypes.string,
   }).isRequired,
   onImageClick: PropTypes.func,
-  onLabelClick: PropTypes.func,
   onClickLike: PropTypes.func,
 };
 

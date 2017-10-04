@@ -52,9 +52,9 @@ class Link extends React.Component {
   };
 
   render() {
-    const { component, to, children, style, ...props } = this.props;
+    const { component, to, children, ...props } = this.props;
     const ComponentToRender = component;
-    const thisStyle = style ? { ...style, cursor: 'pointer' } : { cursor: 'pointer' };
+    const thisStyle = props.style ? { ...props.style, cursor: 'pointer' } : { cursor: 'pointer' };
     if (children) {
       return (
         <ComponentToRender
