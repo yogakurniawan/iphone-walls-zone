@@ -1021,11 +1021,7 @@ babel-register@^6.24.1, babel-register@^6.26.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-<<<<<<< Updated upstream
-babel-runtime@6.23.0, babel-runtime@^6.11.6, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.6.1:
-=======
 babel-runtime@6.23.0, babel-runtime@^6.2.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0:
->>>>>>> Stashed changes
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
   dependencies:
@@ -1155,29 +1151,7 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-<<<<<<< Updated upstream
-bootstrap@3.3.7:
-  version "3.3.7"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
-
-boxen@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/boxen/-/boxen-0.6.0.tgz#8364d4248ac34ff0ef1b2f2bf49a6c60ce0d81b6"
-  dependencies:
-    ansi-align "^1.1.0"
-    camelcase "^2.1.0"
-    chalk "^1.1.1"
-    cli-boxes "^1.0.0"
-    filled-array "^1.0.0"
-    object-assign "^4.0.1"
-    repeating "^2.0.0"
-    string-width "^1.0.1"
-    widest-line "^1.0.0"
-
-brace-expansion@^1.0.0, brace-expansion@^1.1.7:
-=======
 brace-expansion@^1.1.7:
->>>>>>> Stashed changes
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
   dependencies:
@@ -1748,43 +1722,6 @@ doctrine@^2.0.0:
     esutils "^2.0.2"
     isarray "^1.0.0"
 
-<<<<<<< Updated upstream
-doiuse@^2.4.1:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/doiuse/-/doiuse-2.6.0.tgz#1892d10b61a9a356addbf2b614933e81f8bb3834"
-  dependencies:
-    browserslist "^1.1.1"
-    caniuse-db "^1.0.30000187"
-    css-rule-stream "^1.1.0"
-    duplexer2 "0.0.2"
-    jsonfilter "^1.1.2"
-    ldjson-stream "^1.2.1"
-    lodash "^4.0.0"
-    multimatch "^2.0.0"
-    postcss "^5.0.8"
-    source-map "^0.4.2"
-    through2 "^0.6.3"
-    yargs "^3.5.4"
-
-dom-converter@~0.1:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/dom-converter/-/dom-converter-0.1.4.tgz#a45ef5727b890c9bffe6d7c876e7b19cb0e17f3b"
-  dependencies:
-    utila "~0.3"
-
-dom-helpers@^3.2.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.2.1.tgz#3203e07fed217bd1f424b019735582fc37b2825a"
-
-dom-serializer@0, dom-serializer@~0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.1.0.tgz#073c697546ce0780ce23be4a28e293e40bc30c82"
-  dependencies:
-    domelementtype "~1.1.1"
-    entities "~1.1.1"
-
-=======
->>>>>>> Stashed changes
 dom-walk@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/dom-walk/-/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
@@ -2684,11 +2621,7 @@ interpret@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.4.tgz#820cdd588b868ffb191a809506d6c9c8f212b1b0"
 
-<<<<<<< Updated upstream
-invariant@^2.0.0, invariant@^2.1.0, invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2:
-=======
 invariant@^2.0.0, invariant@^2.2.0, invariant@^2.2.2:
->>>>>>> Stashed changes
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:
@@ -2976,11 +2909,6 @@ jsx-ast-utils@^1.4.0:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-1.4.1.tgz#3867213e8dd79bf1e8f2300c0cfc1efb182c0df1"
 
-<<<<<<< Updated upstream
-keycode@^2.1.2:
-  version "2.1.9"
-  resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.1.9.tgz#964a23c54e4889405b4861a5c9f0480d45141dfa"
-=======
 jsx-ast-utils@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-2.0.1.tgz#e801b1b39985e20fffc87b40e3748080e2dcac7f"
@@ -2990,7 +2918,6 @@ jsx-ast-utils@^2.0.0:
 junk@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/junk/-/junk-1.0.3.tgz#87be63488649cbdca6f53ab39bec9ccd2347f592"
->>>>>>> Stashed changes
 
 kind-of@^3.0.2:
   version "3.2.2"
@@ -3808,21 +3735,9 @@ promise@^7.0.1, promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-<<<<<<< Updated upstream
-prop-types-extra@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/prop-types-extra/-/prop-types-extra-1.0.1.tgz#a57bd4810e82d27a3ff4317ecc1b4ad005f79a82"
-  dependencies:
-    warning "^3.0.0"
-
-prop-types@15.5.8:
-  version "15.5.8"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
-=======
 prop-types-exact@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/prop-types-exact/-/prop-types-exact-1.1.1.tgz#c2620207e4f77f9762fa1835b0387a464bd08978"
->>>>>>> Stashed changes
   dependencies:
     has "^1.0.1"
     object.assign "^4.0.4"
@@ -3931,41 +3846,6 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-<<<<<<< Updated upstream
-react-autosuggest@^9.3.1:
-  version "9.3.1"
-  resolved "https://registry.yarnpkg.com/react-autosuggest/-/react-autosuggest-9.3.1.tgz#cf106d95e650de292a08e6506372d3eb4b6b2614"
-  dependencies:
-    prop-types "^15.5.10"
-    react-autowhatever "^10.1.0"
-    shallow-equal "^1.0.0"
-
-react-autowhatever@^10.1.0:
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/react-autowhatever/-/react-autowhatever-10.1.0.tgz#41f6d69382437d3447a0a3c8913bb8ca2feaabc1"
-  dependencies:
-    prop-types "^15.5.8"
-    react-themeable "^1.1.0"
-    section-iterator "^2.0.0"
-
-react-bootstrap@^0.31.3:
-  version "0.31.3"
-  resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-0.31.3.tgz#db2b7d45b00b5dac1ab8b6de3dd97feb3091b849"
-  dependencies:
-    babel-runtime "^6.11.6"
-    classnames "^2.2.5"
-    dom-helpers "^3.2.0"
-    invariant "^2.2.1"
-    keycode "^2.1.2"
-    prop-types "^15.5.10"
-    prop-types-extra "^1.0.1"
-    react-overlays "^0.7.0"
-    react-prop-types "^0.4.0"
-    uncontrollable "^4.1.0"
-    warning "^3.0.0"
-
-=======
->>>>>>> Stashed changes
 react-deep-force-update@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-2.1.1.tgz#8ea4263cd6455a050b37445b3f08fd839d86e909"
@@ -3979,26 +3859,7 @@ react-dom@^15.6.1:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
-<<<<<<< Updated upstream
-react-error-overlay@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-1.0.9.tgz#988e48f6f343afa97a719c4ddae51b8fe8ccfee8"
-  dependencies:
-    anser "1.2.5"
-    babel-code-frame "6.22.0"
-    babel-runtime "6.23.0"
-    react-dev-utils "^3.0.2"
-    settle-promise "1.0.0"
-    source-map "0.5.6"
-
-react-flexgrid@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-flexgrid/-/react-flexgrid-1.0.0.tgz#1e589f4b427e94fbf5b290f26c42b0540cad8da2"
-
-react-hot-loader@^3.0.0-beta.7:
-=======
 react-hot-loader@3.0.0-beta.7:
->>>>>>> Stashed changes
   version "3.0.0-beta.7"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-3.0.0-beta.7.tgz#d5847b8165d731c4d5b30d86d5d4716227a0fa83"
   dependencies:
@@ -4009,32 +3870,6 @@ react-hot-loader@3.0.0-beta.7:
     redbox-react "^1.3.6"
     source-map "^0.4.4"
 
-<<<<<<< Updated upstream
-react-isolated-scroll@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-isolated-scroll/-/react-isolated-scroll-0.1.1.tgz#781faea948ced62d07624d7e39a12bccb584a5c5"
-  dependencies:
-    isolated-scroll "^0.1.0"
-    prop-types "^15.5.8"
-
-react-overlays@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-0.7.0.tgz#531898ff566c7e5c7226ead2863b8cf9fbb5a981"
-  dependencies:
-    classnames "^2.2.5"
-    dom-helpers "^3.2.0"
-    prop-types "^15.5.8"
-    react-prop-types "^0.4.0"
-    warning "^3.0.0"
-
-react-prop-types@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/react-prop-types/-/react-prop-types-0.4.0.tgz#f99b0bfb4006929c9af2051e7c1414a5c75b93d0"
-  dependencies:
-    warning "^3.0.0"
-
-=======
->>>>>>> Stashed changes
 react-proxy@^3.0.0-alpha.0:
   version "3.0.0-alpha.1"
   resolved "https://registry.yarnpkg.com/react-proxy/-/react-proxy-3.0.0-alpha.1.tgz#4400426bcfa80caa6724c7755695315209fa4b07"
@@ -4866,105 +4701,9 @@ uid-number@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
 
-<<<<<<< Updated upstream
-ultron@1.0.x:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.0.2.tgz#ace116ab557cd197386a4e88f4685378c8b2e4fa"
-
-ultron@~1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.0.tgz#b07a2e6a541a815fc6a34ccd4533baec307ca864"
-
-uncontrollable@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/uncontrollable/-/uncontrollable-4.1.0.tgz#e0358291252e1865222d90939b19f2f49f81c1a9"
-  dependencies:
-    invariant "^2.1.0"
-
-underscore@1.7.x:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.7.0.tgz#6bbaf0877500d36be34ecaa584e0db9fef035209"
-
-underscore@~1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.6.0.tgz#8b38b10cacdef63337b8b24e4ff86d45aea529a8"
-
-uniq@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/uniq/-/uniq-1.0.1.tgz#b31c5ae8254844a3a8281541ce2b04b865a734ff"
-
-uniqid@^4.0.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/uniqid/-/uniqid-4.1.1.tgz#89220ddf6b751ae52b5f72484863528596bb84c1"
-  dependencies:
-    macaddress "^0.2.8"
-
-uniqs@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/uniqs/-/uniqs-2.0.0.tgz#ffede4b36b25290696e6e165d4a59edb998e6b02"
-
-universal-router@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/universal-router/-/universal-router-3.2.0.tgz#4590ee42f55e2a08188c632070d90675bb2fa40f"
-  dependencies:
-    path-to-regexp "^1.7.0"
-
-universalify@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.0.tgz#9eb1c4651debcc670cc94f1a75762332bb967778"
-
-unpipe@1.0.0, unpipe@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
-
-unzip-response@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-1.0.2.tgz#b984f0877fc0a89c2c773cc1ef7b5b232b5b06fe"
-
-update-notifier@~1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/update-notifier/-/update-notifier-1.0.3.tgz#8f92c515482bd6831b7c93013e70f87552c7cf5a"
-  dependencies:
-    boxen "^0.6.0"
-    chalk "^1.0.0"
-    configstore "^2.0.0"
-    is-npm "^1.0.0"
-    latest-version "^2.0.0"
-    lazy-req "^1.1.0"
-    semver-diff "^2.0.0"
-    xdg-basedir "^2.0.0"
-
-url-loader@^0.5.9:
-  version "0.5.9"
-  resolved "https://registry.yarnpkg.com/url-loader/-/url-loader-0.5.9.tgz#cc8fea82c7b906e7777019250869e569e995c295"
-  dependencies:
-    loader-utils "^1.0.2"
-    mime "1.3.x"
-
-url-parse-lax@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/url-parse-lax/-/url-parse-lax-1.0.0.tgz#7af8f303645e9bd79a272e7a14ac68bc0609da73"
-  dependencies:
-    prepend-http "^1.0.1"
-
-url-parse@1.0.x:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.0.5.tgz#0854860422afdcfefeb6c965c662d4800169927b"
-  dependencies:
-    querystringify "0.0.x"
-    requires-port "1.0.x"
-
-url-parse@^1.1.8:
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.1.9.tgz#c67f1d775d51f0a18911dd7b3ffad27bb9e5bd19"
-  dependencies:
-    querystringify "~1.0.0"
-    requires-port "1.0.x"
-=======
 unfetch@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/unfetch/-/unfetch-3.0.0.tgz#8d1e0513a4ecd0e5ff2d41a6ba77771aae8b6482"
->>>>>>> Stashed changes
 
 url@0.11.0, url@^0.11.0:
   version "0.11.0"
