@@ -270,48 +270,46 @@ const ContainerFluid = styled.div`
 
 const Navbar = (props) => {
   return (
-    <ContainerFluid>
-      <NavbarFixed>
-        <NavbarCheckbox type="checkbox" id="Navbar-checkbox" />
-        <NavbarMenu>
-          <NavbarNavigation>
-            <NavbarHeader>
-              <NavbarBrand>
-                <LogoIconWrapper>
-                  <LogoIcon />
-                </LogoIconWrapper>
-                <ArrowDownWrapper htmlFor='Navbar-checkbox'>
-                  <span />
-                </ArrowDownWrapper>
-              </NavbarBrand>
-              <SearchBox>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <SearchInputWrapper>
-                  <SearchInput />
-                </SearchInputWrapper>
-              </SearchBox>
-            </NavbarHeader>
-            <NavbarItem>
-              <ButtonMenu>
-                <Item>Menu 1</Item>
-              </ButtonMenu>
-            </NavbarItem>
-            <NavbarItem>
-              <ButtonMenu>
-                <Item>Menu 2</Item>
-              </ButtonMenu>
-            </NavbarItem>
-            <NavbarItem>
-              <ButtonMenu>
-                <Item>Menu 3</Item>
-              </ButtonMenu>
-            </NavbarItem>
-          </NavbarNavigation>
-        </NavbarMenu>
-      </NavbarFixed>
-    </ContainerFluid>
+    <NavbarFixed>
+      <NavbarCheckbox type="checkbox" id="Navbar-checkbox" />
+      <NavbarMenu>
+        <NavbarNavigation>
+          <NavbarHeader>
+            <NavbarBrand>
+              <LogoIconWrapper>
+                <LogoIcon />
+              </LogoIconWrapper>
+              <ArrowDownWrapper htmlFor='Navbar-checkbox'>
+                <span />
+              </ArrowDownWrapper>
+            </NavbarBrand>
+            <SearchBox>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <SearchInputWrapper>
+                <SearchInput />
+              </SearchInputWrapper>
+            </SearchBox>
+          </NavbarHeader>
+          <NavbarItem>
+            <ButtonMenu>
+              <Item>Menu 1</Item>
+            </ButtonMenu>
+          </NavbarItem>
+          <NavbarItem>
+            <ButtonMenu>
+              <Item>Menu 2</Item>
+            </ButtonMenu>
+          </NavbarItem>
+          <NavbarItem>
+            <ButtonMenu>
+              <Item>Menu 3</Item>
+            </ButtonMenu>
+          </NavbarItem>
+        </NavbarNavigation>
+      </NavbarMenu>
+    </NavbarFixed>
   )
 }
 

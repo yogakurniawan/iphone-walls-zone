@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import 'isomorphic-fetch'
 import Page from '../components/HOC/Page'
 import Navbar from '../components/Navbar'
+import Categories from '../components/Categories'
 
 const Index = (props) => {
   return (
     <div>
       <Navbar />
+      <Categories />
     </div>
   )
 }
