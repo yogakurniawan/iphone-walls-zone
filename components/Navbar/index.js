@@ -6,7 +6,6 @@ import Search from './Search.svg'
 const NavbarFixed = styled.header`
   border-bottom: 1px solid #e4e4e4;
   z-index: 5;
-  position: relative;
 `
 
 const NavbarMenu = styled.div`
@@ -264,52 +263,56 @@ const SearchBox = styled.div`
 
 const ContainerFluid = styled.div`
   width: 100%;
+  top: 0;
+  left: 0;
   position: fixed;
   z-index: 10;
 `
 
 const Navbar = (props) => {
   return (
-    <NavbarFixed>
-      <NavbarCheckbox type="checkbox" id="Navbar-checkbox" />
-      <NavbarMenu>
-        <NavbarNavigation>
-          <NavbarHeader>
-            <NavbarBrand>
-              <LogoIconWrapper>
-                <LogoIcon />
-              </LogoIconWrapper>
-              <ArrowDownWrapper htmlFor='Navbar-checkbox'>
-                <span />
-              </ArrowDownWrapper>
-            </NavbarBrand>
-            <SearchBox>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <SearchInputWrapper>
-                <SearchInput />
-              </SearchInputWrapper>
-            </SearchBox>
-          </NavbarHeader>
-          <NavbarItem>
-            <ButtonMenu>
-              <Item>Menu 1</Item>
-            </ButtonMenu>
-          </NavbarItem>
-          <NavbarItem>
-            <ButtonMenu>
-              <Item>Menu 2</Item>
-            </ButtonMenu>
-          </NavbarItem>
-          <NavbarItem>
-            <ButtonMenu>
-              <Item>Menu 3</Item>
-            </ButtonMenu>
-          </NavbarItem>
-        </NavbarNavigation>
-      </NavbarMenu>
-    </NavbarFixed>
+    <ContainerFluid>
+      <NavbarFixed>
+        <NavbarCheckbox type="checkbox" id="Navbar-checkbox" />
+        <NavbarMenu>
+          <NavbarNavigation>
+            <NavbarHeader>
+              <NavbarBrand>
+                <LogoIconWrapper>
+                  <LogoIcon />
+                </LogoIconWrapper>
+                <ArrowDownWrapper htmlFor='Navbar-checkbox'>
+                  <span />
+                </ArrowDownWrapper>
+              </NavbarBrand>
+              <SearchBox>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <SearchInputWrapper>
+                  <SearchInput />
+                </SearchInputWrapper>
+              </SearchBox>
+            </NavbarHeader>
+            <NavbarItem>
+              <ButtonMenu>
+                <Item>Menu 1</Item>
+              </ButtonMenu>
+            </NavbarItem>
+            <NavbarItem>
+              <ButtonMenu>
+                <Item>Menu 2</Item>
+              </ButtonMenu>
+            </NavbarItem>
+            <NavbarItem>
+              <ButtonMenu>
+                <Item>Menu 3</Item>
+              </ButtonMenu>
+            </NavbarItem>
+          </NavbarNavigation>
+        </NavbarMenu>
+      </NavbarFixed>
+    </ContainerFluid>
   )
 }
 

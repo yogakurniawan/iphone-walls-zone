@@ -11,11 +11,6 @@ function onClickHandler(href) {
 const Link = ({ children, href }) => (
   <a href='#' onClick={onClickHandler(href)}>
     {children}
-    <style jsx>{`
-      a {
-        margin-right: 10px;
-      }
-    `}</style>
   </a>
 )
 
