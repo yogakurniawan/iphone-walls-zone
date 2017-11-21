@@ -35,6 +35,10 @@ injectGlobal`
     outline:0;
   }
   
+  a {
+    text-decoration: none;
+  }
+
   @font-face {
     font-family: Airglyphs;
     src: url("https://a0.muscache.com/airbnb/static/airbnb-o2/fonts/airglyphs-bb873ab4254c83409cf1fa6f4759fa3e.woff") format("woff"),url("https://a0.muscache.com/airbnb/static/airbnb-o2/fonts/airglyphs-d90404cb884b74a27264dda25857850d.ttf") format("truetype");

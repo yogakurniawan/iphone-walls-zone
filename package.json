@@ -18,6 +18,7 @@
     "rc-collapse": "^1.7.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-no-ssr": "^1.1.0",
     "react-redux": "^5.0.6",
     "react-slick": "^0.15.4",
     "redux": "^3.7.2",
