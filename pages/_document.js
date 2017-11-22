@@ -20,6 +20,7 @@ injectGlobal`
     font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 14px;
     line-height: 1.43;
+    padding-top: 70px;
     color: #484848;
     background-color: #fff;
     -webkit-font-smoothing: antialiased;

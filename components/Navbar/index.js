@@ -13,7 +13,7 @@ const NavbarMenu = styled.div`
     overflow: visible;
   }
   height: 81px;
-  background-color: transparent;
+  background-color: #fff;
   color: #484848;
   min-height: 81px;
   width: 100%;

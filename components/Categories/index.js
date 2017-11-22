@@ -19,10 +19,13 @@ const SliderStyled = styled(Slider) `
     height: 100%;
     min-height: 1px;
     display: block;
-    width: 120px;
+    width: 170px;
   }
 
   h3 {
+    @media screen and (max-width: 480px) {
+      background-image: url(https://images.unsplash.com/reserve/Af0sF2OS5S5gatqrKzVP_Silhoutte.jpg?dpr=1&auto=format&fit=crop&w=100&h=40&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D);
+    }
     border-radius: 5px;    
     margin: 10px;
     padding: 2%;
@@ -31,6 +34,9 @@ const SliderStyled = styled(Slider) `
     color: #fff;
     line-height: 2.5;
     text-align: center;
+    background-image: url(https://images.unsplash.com/reserve/Af0sF2OS5S5gatqrKzVP_Silhoutte.jpg?dpr=1&auto=format&fit=crop&w=170&h=50&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D);
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 `
 
@@ -43,17 +49,36 @@ export default class SwipeToSlide extends Component {
   render() {
     const settings = {
       className: 'center',
-      infinite: false,
+      infinite: true,
       arrows: false,
-      variableWidth: true,
-      centerPadding: '180px',
-      slidesToShow: 5,
+      slidesToShow: 7,
+      variableWidth: false,
       swipeToSlide: true,
+      responsive: [
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 3
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 4
+          }
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 5
+          }
+        }
+      ],
       afterChange: function (index) {
         console.log(`Slider Changed to: ${index + 1}, background: #222; color: #bada55`);
       }
     };
-    const Loading = () => (<div>Loading...</div>);
+    const Loading = () => (<Container>Loading...</Container>);
     return (
       <Container>
         <H2>Categories</H2>
@@ -68,6 +93,7 @@ export default class SwipeToSlide extends Component {
             <div><Link><h3>7</h3></Link></div>
             <div><Link><h3>8</h3></Link></div>
             <div><Link><h3>9</h3></Link></div>
+            <div><Link><h3>10</h3></Link></div>
           </SliderStyled>
         </NoSSR>
       </Container>
