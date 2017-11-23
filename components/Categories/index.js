@@ -1,11 +1,66 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Slider from 'react-slick'
 import NoSSR from 'react-no-ssr'
 import Link from '../Link'
+import NextIcon from './NextIcon.svg'
+import PrevIcon from './PrevIcon.svg'
+
 
 const Container = styled.div`
   margin: 10px;
+`
+
+const NavigationButton = css`
+  cursor: pointer;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 1;
+  position: absolute;
+  border: 2px solid transparent;
+  background: #ffffff;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.14);
+  top: 25%;
+  width: 30px;
+  height: 30px;
+  z-index: 100;
+`
+
+const Icon = css`
+  height: 16px;
+  width: 16px;
+  display: block;
+  fill: rgb(118, 118, 118);
+`
+
+const NextIconStyled = styled(NextIcon) `
+  ${Icon}
+`
+
+const PrevIconStyled = styled(PrevIcon) `
+  ${Icon}
+`
+
+const NextIconWrapper = styled.span`
+  top: 25%;
+  position: absolute;
+  left: 25%;
+`
+
+const PrevIconWrapper = styled.span`
+  top: 25%;
+  position: absolute;
+  right: 25%;
+`
+
+const Prev = styled.button`
+  ${NavigationButton}
+  left: 0;
+`
+
+const Next = styled.button`
+  ${NavigationButton}
+  right: 0;
 `
 
 const SliderStyled = styled(Slider) `
@@ -14,6 +69,7 @@ const SliderStyled = styled(Slider) `
   .slick-list {
     overflow: hidden;
   }
+
   .slick-slide {
     float: left;
     height: 100%;
@@ -45,15 +101,31 @@ const H2 = styled.h2`
   margin-bottom: 0;
 `
 
+function NextArrow(props) {
+  const {onClick} = props
+  return (
+    <Next onClick={onClick}><NextIconWrapper><NextIconStyled /></NextIconWrapper></Next>
+  );
+}
+
+function PrevArrow(props) {
+  const {onClick} = props
+  return (
+    <Prev onClick={onClick}><PrevIconWrapper><PrevIconStyled /></PrevIconWrapper></Prev>
+  );
+}
+
 export default class SwipeToSlide extends Component {
   render() {
     const settings = {
       className: 'center',
       infinite: true,
-      arrows: false,
+      arrows: true,
       slidesToShow: 7,
       variableWidth: false,
       swipeToSlide: true,
+      nextArrow: <NextArrow />,
+      prevArrow: <PrevArrow />,
       responsive: [
         {
           breakpoint: 480,
