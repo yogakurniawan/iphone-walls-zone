@@ -20,10 +20,10 @@ const NavigationButton = css`
   border: 2px solid transparent;
   background: #ffffff;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.14);
-  top: 25%;
+  top: 28%;
   width: 30px;
   height: 30px;
-  z-index: 100;
+  z-index: 1;
 `
 
 const Icon = css`
@@ -42,25 +42,25 @@ const PrevIconStyled = styled(PrevIcon) `
 `
 
 const NextIconWrapper = styled.span`
-  top: 25%;
+  top: 6px;
   position: absolute;
-  left: 25%;
+  left: 6px;
 `
 
 const PrevIconWrapper = styled.span`
-  top: 25%;
+  top: 6px;
   position: absolute;
-  right: 25%;
+  right: 6px;
 `
 
 const Prev = styled.button`
   ${NavigationButton}
-  left: 0;
+  left: -5px;
 `
 
 const Next = styled.button`
   ${NavigationButton}
-  right: 0;
+  right: -5px;
 `
 
 const SliderStyled = styled(Slider) `
@@ -104,14 +104,22 @@ const H2 = styled.h2`
 function NextArrow(props) {
   const {onClick} = props
   return (
-    <Next onClick={onClick}><NextIconWrapper><NextIconStyled /></NextIconWrapper></Next>
+    <Next onClick={onClick}>
+      <NextIconWrapper>
+        <NextIconStyled />
+      </NextIconWrapper>
+    </Next>
   );
 }
 
 function PrevArrow(props) {
   const {onClick} = props
   return (
-    <Prev onClick={onClick}><PrevIconWrapper><PrevIconStyled /></PrevIconWrapper></Prev>
+    <Prev onClick={onClick}>
+      <PrevIconWrapper>
+        <PrevIconStyled />
+      </PrevIconWrapper>
+    </Prev>
   );
 }
 
