@@ -6,7 +6,8 @@ import Link from '../Link'
 import NextIcon from './NextIcon.svg'
 import PrevIcon from './PrevIcon.svg'
 
-
+const UNSPLASH_ATTRIBUTE_100 = 'dpr=1&auto=format&fit=crop&w=100&h=40&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'
+const UNSPLASH_ATTRIBUTE_170 = 'dpr=1&auto=format&fit=crop&w=170&h=50&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'
 const Container = styled.div`
   margin: 10px;
 `
@@ -77,10 +78,15 @@ const SliderStyled = styled(Slider) `
     display: block;
     width: 170px;
   }
+`
 
-  h3 {
+const Category = styled.div`
+  {
     @media screen and (max-width: 480px) {
-      background-image: url(https://images.unsplash.com/reserve/Af0sF2OS5S5gatqrKzVP_Silhoutte.jpg?dpr=1&auto=format&fit=crop&w=100&h=40&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D);
+      h3 {
+        font-size: 1em;
+      }
+      background-image: ${props => `url(${props.backgroundImage}?${UNSPLASH_ATTRIBUTE_100})`};
     }
     border-radius: 5px;    
     margin: 10px;
@@ -88,11 +94,13 @@ const SliderStyled = styled(Slider) `
     position: relative;
     background: #00558B;
     color: #fff;
-    line-height: 2.5;
     text-align: center;
-    background-image: url(https://images.unsplash.com/reserve/Af0sF2OS5S5gatqrKzVP_Silhoutte.jpg?dpr=1&auto=format&fit=crop&w=170&h=50&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D);
+    background-image: ${props => `url(${props.backgroundImage}?${UNSPLASH_ATTRIBUTE_170})`};
     background-size: cover;
     background-repeat: no-repeat;
+    h3 {
+      line-height: 1;
+    }
   }
 `
 
@@ -102,7 +110,7 @@ const H2 = styled.h2`
 `
 
 function NextArrow(props) {
-  const {onClick} = props
+  const { onClick } = props
   return (
     <Next onClick={onClick}>
       <NextIconWrapper>
@@ -113,7 +121,7 @@ function NextArrow(props) {
 }
 
 function PrevArrow(props) {
-  const {onClick} = props
+  const { onClick } = props
   return (
     <Prev onClick={onClick}>
       <PrevIconWrapper>
@@ -125,6 +133,7 @@ function PrevArrow(props) {
 
 export default class SwipeToSlide extends Component {
   render() {
+    const { categories } = this.props;
     const settings = {
       className: 'center',
       infinite: true,
@@ -164,16 +173,16 @@ export default class SwipeToSlide extends Component {
         <H2>Categories</H2>
         <NoSSR onSSR={<Loading />}>
           <SliderStyled {...settings}>
-            <div><Link href="#"><h3>1</h3></Link></div>
-            <div><Link><h3>2</h3></Link></div>
-            <div><Link><h3>3</h3></Link></div>
-            <div><Link><h3>4</h3></Link></div>
-            <div><Link><h3>5</h3></Link></div>
-            <div><Link><h3>6</h3></Link></div>
-            <div><Link><h3>7</h3></Link></div>
-            <div><Link><h3>8</h3></Link></div>
-            <div><Link><h3>9</h3></Link></div>
-            <div><Link><h3>10</h3></Link></div>
+            {
+              categories.length && categories.map((category) =>
+                <div>
+                  <Link href="#">
+                    <Category backgroundImage={category.background_image}><h3>{category.name}</h3></Category>
+                  </Link>
+                </div>
+              )
+            }
+
           </SliderStyled>
         </NoSSR>
       </Container>

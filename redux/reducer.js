@@ -3,11 +3,11 @@ import { reducer as formReducer } from 'redux-form'
 
 import auth from './auth'
 import clients from './clients'
-import widgets from './widgets'
+import categories from './categories'
 
 export default combineReducers({
   auth,
   clients,
   form: formReducer,
-  widgets
+  categories
 })
