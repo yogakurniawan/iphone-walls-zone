@@ -174,7 +174,7 @@ export default class SwipeToSlide extends Component {
         <NoSSR onSSR={<Loading />}>
           <SliderStyled {...settings}>
             {
-              categories.length && categories.map((category) =>
+              categories && categories.map((category) =>
                 <div>
                   <Link href="#">
                     <Category backgroundImage={category.background_image}><h3>{category.name}</h3></Category>
@@ -182,7 +182,6 @@ export default class SwipeToSlide extends Component {
                 </div>
               )
             }
-
           </SliderStyled>
         </NoSSR>
       </Container>
