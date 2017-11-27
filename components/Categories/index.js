@@ -84,7 +84,8 @@ const Category = styled.div`
   {
     @media screen and (max-width: 480px) {
       h3 {
-        font-size: 1em;
+        font-size: 0.9em;
+        line-height: 1.5;
       }
       background-image: ${props => `url(${props.backgroundImage}?${UNSPLASH_ATTRIBUTE_100})`};
     }
@@ -98,9 +99,7 @@ const Category = styled.div`
     background-image: ${props => `url(${props.backgroundImage}?${UNSPLASH_ATTRIBUTE_170})`};
     background-size: cover;
     background-repeat: no-repeat;
-    h3 {
-      line-height: 1;
-    }
+    line-height: 1;
   }
 `
 
