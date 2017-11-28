@@ -10,6 +10,16 @@ const UNSPLASH_ATTRIBUTE_100 = 'dpr=1&auto=format&fit=crop&w=100&h=40&q=60&cs=ti
 const UNSPLASH_ATTRIBUTE_170 = 'dpr=1&auto=format&fit=crop&w=170&h=50&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'
 const Container = styled.div`
   margin: 10px;
+  width: 76%;
+  padding: 0px;
+  margin: 0 auto;
+  @media screen and (max-width: 480px) {
+    width: 95%;
+  }
+`
+
+const Div = styled.div`
+  margin: 10px;
 `
 
 const NavigationButton = css`
@@ -25,6 +35,9 @@ const NavigationButton = css`
   width: 30px;
   height: 30px;
   z-index: 1;
+  &:active {
+    box-shadow: 0 0 2px 2px #008489;
+  }
 `
 
 const Icon = css`
@@ -166,7 +179,7 @@ export default class SwipeToSlide extends Component {
         console.log(`Slider Changed to: ${index + 1}, background: #222; color: #bada55`);
       }
     };
-    const Loading = () => (<Container>Loading...</Container>);
+    const Loading = () => (<Div>Loading...</Div>);
     return (
       <Container>
         <H2>Categories</H2>

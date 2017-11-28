@@ -2,8 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
-  margin-bottom: 20px;
-  height: 100%;
+  margin-bottom: 20px; 
 `
 
 export const Wallpaper = styled.div`
@@ -11,6 +10,7 @@ export const Wallpaper = styled.div`
   background-position: center;
   background-image: ${props => `url('${props.backgroundImage}')`};
   height: 100%;
+  padding-top: 150%;
 `
 
 const Card = (props) => {
