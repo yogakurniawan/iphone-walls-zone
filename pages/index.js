@@ -22,7 +22,7 @@ class Index extends Component {
         <Row style={{ margin: 10 }}>
           {
             wallpapers && wallpapers.map((wallpaper) => 
-              <Col xs={6} sm={6} md={4} lg={2}>
+              <Col key={wallpaper.id} xs={6} sm={6} md={4} lg={2}>
                 <Card data={wallpaper} />
               </Col>
             )

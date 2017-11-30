@@ -71,7 +71,7 @@ export const Wallpaper = styled.div`
   }
 `
 
-const H5 = styled.h5`
+const H5 = styled.h4`
   color: white;
   font-weight: 300;
   letter-spacing: 0.2px;
@@ -88,11 +88,14 @@ const Div = styled.div`
 
 const Title = styled.div`
   text-align: left;
+  position: absolute;
+  bottom: 0;
+  margin-left: 10px;
+  margin-right: 10px;
 `
 
 const Info = styled.div`
   text-align: right;
-  margin-bottom: 110%;
 `
 
 const Card = (props) => {
@@ -108,10 +111,10 @@ const Card = (props) => {
                 {data.total_like}
               </LoveButton>
             </Info>
-            <Title>
-              <H5>{data.name}</H5>
-            </Title>
           </Div>
+          <Title>
+            <H5>{data.name}</H5>
+          </Title>
         </Overlay>
       </Wallpaper>
     </Wrapper>

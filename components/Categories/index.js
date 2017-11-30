@@ -180,7 +180,7 @@ export default class SwipeToSlide extends Component {
           <SliderStyled {...settings}>
             {
               categories && categories.map((category) =>
-                <div>
+                <div key={category.id}>
                   <Link href="#">
                     <Category backgroundImage={category.background_image}><h3>{category.name}</h3></Category>
                   </Link>
