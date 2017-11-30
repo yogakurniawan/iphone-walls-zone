@@ -10,8 +10,8 @@ const UNSPLASH_ATTRIBUTE_100 = 'dpr=1&auto=format&fit=crop&w=100&h=40&q=60&cs=ti
 const UNSPLASH_ATTRIBUTE_170 = 'dpr=1&auto=format&fit=crop&w=170&h=50&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'
 const Container = styled.div`
   margin: 10px;
-  width: 76%;
-  padding: 0px;
+  width: 100%;
+  padding: 15px;
   margin: 0 auto;
   @media screen and (max-width: 480px) {
     width: 95%;
@@ -182,7 +182,6 @@ export default class SwipeToSlide extends Component {
     const Loading = () => (<Div>Loading...</Div>);
     return (
       <Container>
-        <H2>Categories</H2>
         <NoSSR onSSR={<Loading />}>
           <SliderStyled {...settings}>
             {

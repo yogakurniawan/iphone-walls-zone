@@ -296,17 +296,22 @@ const Navbar = (props) => {
             </NavbarHeader>
             <NavbarItem>
               <ButtonMenu>
-                <Item>Menu 1</Item>
+                <Item>Home</Item>
               </ButtonMenu>
             </NavbarItem>
             <NavbarItem>
               <ButtonMenu>
-                <Item>Menu 2</Item>
+                <Item>Top Liked</Item>
               </ButtonMenu>
             </NavbarItem>
             <NavbarItem>
               <ButtonMenu>
-                <Item>Menu 3</Item>
+                <Item>Top Viewed</Item>
+              </ButtonMenu>
+            </NavbarItem>
+            <NavbarItem>
+              <ButtonMenu>
+                <Item>Top Downloaded</Item>
               </ButtonMenu>
             </NavbarItem>
           </NavbarNavigation>
