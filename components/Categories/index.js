@@ -23,7 +23,6 @@ const Div = styled.div`
 `
 
 const NavigationButton = css`
-  cursor: pointer;
   border-radius: 50%;
   text-align: center;
   line-height: 1;
@@ -114,11 +113,6 @@ const Category = styled.div`
     background-repeat: no-repeat;
     line-height: 1;
   }
-`
-
-const H2 = styled.h2`
-  margin-left: 10px;
-  margin-bottom: 0;
 `
 
 function NextArrow(props) {

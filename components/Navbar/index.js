@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components'
+import Icon from '../Icon'
 import Logo from './Logo.svg'
 import Search from './Search.svg'
 
@@ -48,15 +49,6 @@ const BaseAStyle = css`
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-`
-
-const Icon = css`
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 `
 
 const ArrowDown = css`
