@@ -2,31 +2,49 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import 'isomorphic-fetch'
+import Dimensions from 'react-sizer';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
 import Page from '../components/HOC/Page'
 import { queryParams, parseJSON } from '../utils/request'
 import { BASE_API_URL } from '../constants/index'
 import Card from '../components/Card'
+import Pagination from '../components/Pagination';
 
-const H2 = styled.h2`
+const H1 = styled.h1`
   margin-left: 15px;
   margin-bottom: 0;
 `
 
 class Index extends Component {
+
+  goToPage() {
+
+  }
+
   render() {
-    const { wallpapers } = this.props;
+    const { wallpapers, width } = this.props;
     return (
       <Grid>
-        <H2>Wallpapers</H2>
+        <H1>Wallpapers</H1>
         <Row style={{ margin: 10 }}>
           {
-            wallpapers && wallpapers.map((wallpaper) => 
-              <Col key={wallpaper.id} xs={6} sm={6} md={4} lg={2}>
+            wallpapers && wallpapers.map((wallpaper) =>
+              <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
                 <Card data={wallpaper} />
               </Col>
             )
           }
+        </Row>
+        <Row center="xs">
+          <Col xs={12}>
+            <Pagination
+              screenWidth={width}
+              page={1}
+              perPage={12}
+              total={100}
+              setPage={this.goToPage}
+            />
+          </Col>
         </Row>
       </Grid>
     )
@@ -52,4 +70,5 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
 }
 
-export default Page(connect(mapStateToProps, mapDispatchToProps)(Index))
+const enhancedIndex = Dimensions()(Index);
+export default Page(connect(mapStateToProps, mapDispatchToProps)(enhancedIndex))

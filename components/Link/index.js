@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Router from 'next/router'
 
 function onClickHandler(href) {
@@ -13,5 +14,13 @@ const Link = ({ children, href }) => (
     {children}
   </a>
 )
+
+Link.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
+}
 
 export default Link

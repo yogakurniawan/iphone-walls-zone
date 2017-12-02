@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import Slider from 'react-slick'
 import NoSSR from 'react-no-ssr'
 import Link from '../Link'
-import NextIcon from './NextIcon.svg'
-import PrevIcon from './PrevIcon.svg'
+import PrevIconStyled from '../Icon/PrevIcon'
+import NextIconStyled from '../Icon/NextIcon'
+import { NavigationButton } from '../Button'
 
 const UNSPLASH_ATTRIBUTE_100 = 'dpr=1&auto=format&fit=crop&w=100&h=40&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'
 const UNSPLASH_ATTRIBUTE_170 = 'dpr=1&auto=format&fit=crop&w=170&h=50&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'
@@ -20,38 +21,6 @@ const Container = styled.div`
 
 const Div = styled.div`
   margin: 10px;
-`
-
-const NavigationButton = css`
-  border-radius: 50%;
-  text-align: center;
-  line-height: 1;
-  position: absolute;
-  border: 2px solid transparent;
-  background: #ffffff;
-  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.14);
-  top: 28%;
-  width: 30px;
-  height: 30px;
-  z-index: 1;
-  &:active {
-    box-shadow: 0 0 2px 2px #008489;
-  }
-`
-
-const Icon = css`
-  height: 16px;
-  width: 16px;
-  display: block;
-  fill: rgb(118, 118, 118);
-`
-
-const NextIconStyled = styled(NextIcon) `
-  ${Icon}
-`
-
-const PrevIconStyled = styled(PrevIcon) `
-  ${Icon}
 `
 
 const NextIconWrapper = styled.span`

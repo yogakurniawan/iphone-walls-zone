@@ -1,51 +1,70 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import Link from '../Link'
+import PrevIconStyled from '../Icon/PrevIcon'
+import NextIconStyled from '../Icon/NextIcon'
+import { PaginationButton } from '../Button'
+
+const Button = styled.button`
+  ${PaginationButton}
+  background: ${props => props.active ? '#0fc1c7' : '#ffffff'};
+  color: ${props => props.active ? '#ffffff' : '#484848'};
+  svg {
+    display: inline-block;
+  }
+`
+
+const Container= styled.div`
+  a, button {
+    margin-right: 5px;
+  }
+`
 
 class Pagination extends Component {
 
   getNbPages() {
-    return Math.ceil(this.props.total / this.props.perPage) || 1;
+    return Math.ceil(this.props.total / this.props.perPage) || 1
   }
 
   range() {
-    const input = [];
-    const { page, perPage, total } = this.props;
-    if (isNaN(page)) return input;
-    const nbPages = Math.ceil(total / perPage) || 1;
+    const input = []
+    const { page, perPage, total } = this.props
+    if (isNaN(page)) return input
+    const nbPages = Math.ceil(total / perPage) || 1
 
     // display page links around the current page
     if (page > 2) {
-      input.push('1');
+      input.push('1')
     }
     if (page === 4) {
-      input.push('2');
+      input.push('2')
     }
     if (page > 4) {
-      input.push('.');
+      input.push('.')
     }
     if (page > 1) {
-      input.push(page - 1);
+      input.push(page - 1)
     }
-    input.push(page);
+    input.push(page)
     if (page < nbPages) {
-      input.push(page + 1);
+      input.push(page + 1)
     }
     if (page === (nbPages - 3)) {
-      input.push(nbPages - 1);
+      input.push(nbPages - 1)
     }
     if (page < (nbPages - 3)) {
       input.push('.');
     }
     if (page < (nbPages - 1)) {
-      input.push(nbPages);
+      input.push(nbPages)
     }
 
     return input;
   }
 
   prevPage = (event) => {
-    event.stopPropagation();
+    event.stopPropagation()
     if (this.props.page === 1) {
       throw new Error('navigation.page_out_from_begin');
     }
@@ -75,18 +94,13 @@ class Pagination extends Component {
     return this.range().map(pageNum =>
       (
         (pageNum === '.') ?
-          <div key={`hyphen_${Math.random()}`} disabled>...</div> :
-          <Link
-            to={`${pageRoute}/${pageNum}`}
-            key={pageNum}
-            onClick={this.gotoPage}
-            data-page={pageNum}
-            active={pageNum === this.props.page}
-            component={Menu.Item}
-          >
-            {pageNum}
+          <Button key={`hyphen_${Math.random()}`} disabled>...</Button> :
+          <Link href="#">
+            <Button active={pageNum === this.props.page}>
+              {pageNum}
+            </Button>
           </Link>
-      ),
+      )
     );
   }
 
@@ -102,33 +116,23 @@ class Pagination extends Component {
     }
 
     return (
-      <Menu size="mini" pagination>
+      <Container>
         {page > 1 &&
-          <Link
-            to={`${pageRoutePrev}`}
-            name="angle left"
-            key="prev"
-            onClick={this.prevPage}
-            component={Menu.Item}
-          >
-            <Icon name="angle left" />
-            Previous
+          <Link href="#">
+            <Button>
+              <PrevIconStyled />
+            </Button>
           </Link>
         }
-        { screenWidth >= 600 && this.renderPageNums()}
+        {screenWidth >= 600 && this.renderPageNums()}
         {page !== nbPages &&
-          <Link
-            to={`${pageRouteNext}`}
-            name="angle right"
-            key="next"
-            onClick={this.nextPage}
-            component={Menu.Item}
-          >
-            Next
-            <Icon name="angle right" />
+          <Link href="#">
+            <Button>
+              <NextIconStyled />
+            </Button>
           </Link>
         }
-      </Menu>
+      </Container>
     );
   }
 }

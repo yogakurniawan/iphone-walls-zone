@@ -21,6 +21,7 @@ injectGlobal`
     font-size: 14px;
     line-height: 1.43;
     padding-top: 70px;
+    padding-bottom: 10px;
     color: #484848;
     background-color: #fff;
     -webkit-font-smoothing: antialiased;

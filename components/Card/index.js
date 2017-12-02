@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import Icon from '../Icon'
 
 const Overlay = styled.div`
-  background: rgba(0, 0, 0, 0.60);
+  background-image: linear-gradient(180deg,rgba(0,0,0,.6) 0,transparent 40%,transparent 60%,rgba(0,0,0,.7));
   text-align: center;
   position: absolute;
   top: 0;
@@ -11,7 +11,7 @@ const Overlay = styled.div`
   padding-top: 150%;
   width: 100%;
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: all 0.25s ease-in-out;
 `
 
 const Wrapper = styled.div`
@@ -29,9 +29,6 @@ const LoveButton = styled.button`
   box-shadow: 0 1px 1px rgba(0,0,0,.04);
   transition: all .2s ease-in-out;
   text-align: center;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   display: inline-block;
   height: 32px;
@@ -39,7 +36,7 @@ const LoveButton = styled.button`
   font-size: 14px;
   line-height: 29px;
   fill: currentColor;
-  background-color: #fff;
+  background-color: #ffffffb8;
   border-color: #ddd;
   span {
     color: red;
@@ -50,6 +47,7 @@ const LoveButton = styled.button`
   }
   &:hover {
     fill: currentColor;
+    background-color: #fff;
     border-color: #999!important;
     box-shadow: 0 2px 2px rgba(158, 149, 149, 0.18);
   }
@@ -71,9 +69,8 @@ export const Wallpaper = styled.div`
   }
 `
 
-const H5 = styled.h4`
+const H4 = styled.h4`
   color: white;
-  font-weight: 300;
   letter-spacing: 0.2px;
   padding-top: 0px;
   padding-bottom: 0px;
@@ -113,7 +110,7 @@ const Card = (props) => {
             </Info>
           </Div>
           <Title>
-            <H5>{data.name}</H5>
+            <H4>{data.name}</H4>
           </Title>
         </Overlay>
       </Wallpaper>
