@@ -22,10 +22,9 @@ export const PaginationButton = css`
   text-align: center;
   line-height: 1;
   border: 2px solid transparent;
-  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.20);
   width: 40px;
   height: 40px;
-  z-index: 1;
   &:active {
     box-shadow: 0 0 2px 2px #008489;
   }

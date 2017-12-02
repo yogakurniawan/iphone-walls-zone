@@ -15,7 +15,7 @@ const Button = styled.button`
   }
 `
 
-const Container= styled.div`
+const Container = styled.div`
   a, button {
     margin-right: 5px;
   }
@@ -116,7 +116,7 @@ class Pagination extends Component {
     }
 
     return (
-      <Container>
+      <div>
         {page > 1 &&
           <Link href="#">
             <Button>
@@ -124,15 +124,19 @@ class Pagination extends Component {
             </Button>
           </Link>
         }
-        {screenWidth >= 600 && this.renderPageNums()}
-        {page !== nbPages &&
-          <Link href="#">
-            <Button>
-              <NextIconStyled />
-            </Button>
-          </Link>
-        }
-      </Container>
+        <Container>
+          {screenWidth >= 600 && this.renderPageNums()}
+          {page !== nbPages &&
+
+            <Link href="#">
+              <Button>
+                <NextIconStyled />
+              </Button>
+            </Link>
+
+          }
+        </Container>
+      </div>
     );
   }
 }

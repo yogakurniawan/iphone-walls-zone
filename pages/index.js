@@ -35,7 +35,7 @@ class Index extends Component {
             )
           }
         </Row>
-        <Row center="xs">
+        <Row center="xs" style={{ margin: 'auto' }}>
           <Col xs={12}>
             <Pagination
               screenWidth={width}
