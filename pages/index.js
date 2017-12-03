@@ -6,7 +6,7 @@ import Dimensions from 'react-sizer';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
 import Page from '../components/HOC/Page'
 import { queryParams, parseJSON } from '../utils/request'
-import { BASE_API_URL } from '../constants/index'
+import { BASE_API_URL, PER_PAGE } from '../constants/index'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination';
 
@@ -22,7 +22,7 @@ class Index extends Component {
   }
 
   render() {
-    const { wallpapers, width } = this.props;
+    const { wallpapers, width, page } = this.props;
     return (
       <Grid>
         <H1>Wallpapers</H1>
@@ -39,7 +39,7 @@ class Index extends Component {
           <Col xs={12}>
             <Pagination
               screenWidth={width}
-              page={1}
+              page={page}
               perPage={12}
               total={100}
               setPage={this.goToPage}
@@ -51,17 +51,18 @@ class Index extends Component {
   }
 }
 
-Index.getInitialProps = async ({ req, store }) => {
-  const query = {
-    'filter[limit]': 10,
-    'filter[skip]': 0,
-  }
+Index.getInitialProps = async ({ req, store, query }) => {
+  const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1;
+  const queryParam = {
+    'filter[limit]': PER_PAGE,
+    'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0,
+  };
   let url = `${BASE_API_URL}/Wallpapers`
-  url = url + (url.indexOf('?') === -1 ? '?' : '&') + queryParams(query);
+  url = url + (url.indexOf('?') === -1 ? '?' : '&') + queryParams(queryParam);
   const response = await fetch(url)
   const result = await parseJSON(response)
-  console.log(result)
-  return { wallpapers: result }
+  console.log(query)
+  return { wallpapers: result, page }
 }
 
 const mapStateToProps = state => ({

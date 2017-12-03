@@ -10,6 +10,7 @@ const Button = styled.button`
   ${PaginationButton}
   background: ${props => props.active ? '#0fc1c7' : '#ffffff'};
   color: ${props => props.active ? '#ffffff' : '#484848'};
+  font-weight: ${props => props.active ? 'bold' : 'normal'};
   svg {
     display: inline-block;
   }
@@ -89,13 +90,13 @@ class Pagination extends Component {
   }
 
   renderPageNums() {
-    const { route } = this.props;
-    const pageRoute = route ? `/${route}/page` : '/page';
+    const { route } = this.props
+    const pageRoute = route ? `/${route}?page=` : '?page='
     return this.range().map(pageNum =>
       (
         (pageNum === '.') ?
           <Button key={`hyphen_${Math.random()}`} disabled>...</Button> :
-          <Link href="#">
+          <Link key={`hyphen_${Math.random()}`} href={`${pageRoute}${pageNum}`}>
             <Button active={pageNum === this.props.page}>
               {pageNum}
             </Button>
@@ -106,37 +107,33 @@ class Pagination extends Component {
 
   render() {
     const { page, total, route, screenWidth } = this.props;
-    const pageRoutePrev = route ? `/${route}/page/${page - 1}` : `/page/${page - 1}`;
-    const pageRouteNext = route ? `/${route}/page/${page + 1}` : `/page/${page + 1}`;
-    if (total === 0) return null;
-    const nbPages = this.getNbPages();
+    const pageRoutePrev = route ? `/${route}?page=${page - 1}` : `?page=${page - 1}`;
+    const pageRouteNext = route ? `/${route}?page=${page + 1}` : `?page=${page + 1}`;
+    if (total === 0) return null
+    const nbPages = this.getNbPages()
 
     if (nbPages <= 1) {
-      return <div />;
+      return <div />
     }
 
     return (
-      <div>
+      <Container>
         {page > 1 &&
-          <Link href="#">
+          <Link href={pageRoutePrev}>
             <Button>
               <PrevIconStyled />
             </Button>
           </Link>
         }
-        <Container>
-          {screenWidth >= 600 && this.renderPageNums()}
-          {page !== nbPages &&
-
-            <Link href="#">
-              <Button>
-                <NextIconStyled />
-              </Button>
-            </Link>
-
-          }
-        </Container>
-      </div>
+        {screenWidth >= 600 && this.renderPageNums()}
+        {page !== nbPages &&
+          <Link href={pageRouteNext}>
+            <Button>
+              <NextIconStyled />
+            </Button>
+          </Link>
+        }
+      </Container>
     );
   }
 }
@@ -159,4 +156,4 @@ Pagination.defaultProps = {
   route: null,
 };
 
-export default Pagination;
+export default Pagination

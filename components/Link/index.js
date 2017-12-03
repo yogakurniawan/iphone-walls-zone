@@ -1,21 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Router from 'next/router'
+import { withRouter } from 'next/router'
+import Link from 'next/link'
 
-function onClickHandler(href) {
-  return (e) => {
-    e.preventDefault()
-    Router.push(href)
-  }
+const LinkComponent = ({ children, router, href }) => {
+  return (
+    <Link prefetch href={href}>
+      <a>
+        {children}
+      </a>
+    </Link>
+  )
 }
 
-const Link = ({ children, href }) => (
-  <a href='#' onClick={onClickHandler(href)}>
-    {children}
-  </a>
-)
-
-Link.propTypes = {
+LinkComponent.propTypes = {
   href: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -23,4 +21,4 @@ Link.propTypes = {
   ]).isRequired
 }
 
-export default Link
+export default withRouter(LinkComponent)
