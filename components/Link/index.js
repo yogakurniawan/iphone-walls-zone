@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'next/router'
 import Link from 'next/link'
 
-const LinkComponent = ({ children, router, href }) => {
+const LinkComponent = ({ children, router, href, as }) => {
   return (
-    <Link prefetch href={href}>
+    <Link prefetch href={href} as={as}>
       <a>
         {children}
       </a>
@@ -21,4 +20,4 @@ LinkComponent.propTypes = {
   ]).isRequired
 }
 
-export default withRouter(LinkComponent)
+export default LinkComponent

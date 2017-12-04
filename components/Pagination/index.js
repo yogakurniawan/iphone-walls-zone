@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Link from '../Link'
+import Link from 'next/link'
 import PrevIconStyled from '../Icon/PrevIcon'
 import NextIconStyled from '../Icon/NextIcon'
 import { PaginationButton } from '../Button'
@@ -92,11 +92,12 @@ class Pagination extends Component {
   renderPageNums() {
     const { route } = this.props
     const pageRoute = route ? `/${route}?page=` : '?page='
+    const as = route ? `/${route}/page/` : '/page/'
     return this.range().map(pageNum =>
       (
         (pageNum === '.') ?
           <Button key={`hyphen_${Math.random()}`} disabled>...</Button> :
-          <Link key={`hyphen_${Math.random()}`} href={`${pageRoute}${pageNum}`}>
+          <Link key={`hyphen_${Math.random()}`} as={`${as}${pageNum}`} href={`${pageRoute}${pageNum}`}>
             <Button active={pageNum === this.props.page}>
               {pageNum}
             </Button>
@@ -108,7 +109,9 @@ class Pagination extends Component {
   render() {
     const { page, total, route, screenWidth } = this.props;
     const pageRoutePrev = route ? `/${route}?page=${page - 1}` : `?page=${page - 1}`;
+    const asPrev = route ? `/${route}/page/${page - 1}` : `/page/${page - 1}`;
     const pageRouteNext = route ? `/${route}?page=${page + 1}` : `?page=${page + 1}`;
+    const asNext = route ? `/${route}/page/${page + 1}` : `/page/${page + 1}`;
     if (total === 0) return null
     const nbPages = this.getNbPages()
 
@@ -119,7 +122,7 @@ class Pagination extends Component {
     return (
       <Container>
         {page > 1 &&
-          <Link href={pageRoutePrev}>
+          <Link href={pageRoutePrev} as={asPrev}>
             <Button>
               <PrevIconStyled />
             </Button>
@@ -127,7 +130,7 @@ class Pagination extends Component {
         }
         {screenWidth >= 600 && this.renderPageNums()}
         {page !== nbPages &&
-          <Link href={pageRouteNext}>
+          <Link href={pageRouteNext} as={asNext}>
             <Button>
               <NextIconStyled />
             </Button>
