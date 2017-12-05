@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import 'isomorphic-fetch'
 import Dimensions from 'react-sizer';
@@ -23,17 +22,9 @@ class Page extends Component {
   }
 
   render() {
-    const { total, wallpapers, width, page, title, description } = this.props;
+    const { wallpapers, width, page } = this.props;
     return (
       <Grid>
-        <Helmet
-          htmlAttributes={{ lang: 'en' }}
-          title={title}
-          meta={[
-            { name: 'description', content: description },
-            { property: 'og:title', content: title }
-          ]}
-        />
         <H1>Wallpapers</H1>
         <Row style={{ margin: 10 }}>
           {
@@ -50,7 +41,7 @@ class Page extends Component {
               screenWidth={width}
               page={page}
               perPage={12}
-              total={total}
+              total={100}
               setPage={this.goToPage}
             />
           </Col>
@@ -61,24 +52,17 @@ class Page extends Component {
 }
 
 Page.getInitialProps = async ({ req, store, query }) => {
-  const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
-  const title = 'Best iPhone Wallpapers - Free wallpapers for iPhone X, 8, and 7'
-  const description = 'Best iPhone wallpapers for iPhone 6, iPhone 5, iPhone 4, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPod Touch backgrounds.'
+  const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1;
   const queryParam = {
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0,
   };
-  if (req) {
-    Helmet.renderStatic()
-  }
-  let api = `${BASE_API_URL}/Wallpapers`
-  const countApi = `${api}/count`
-  api = api + (api.indexOf('?') === -1 ? '?' : '&') + queryParams(queryParam)
-  const response = await fetch(api)
-  const totalResponse = await fetch(countApi)
+  let url = `${BASE_API_URL}/Wallpapers`
+  url = url + (url.indexOf('?') === -1 ? '?' : '&') + queryParams(queryParam);
+  const response = await fetch(url)
   const result = await parseJSON(response)
-  const totalResult = await parseJSON(totalResponse)
-  return { total: totalResult.count, wallpapers: result, page, title, description }
+  console.log(query)
+  return { wallpapers: result, page }
 }
 
 const mapStateToProps = state => ({

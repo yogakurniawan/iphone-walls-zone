@@ -1,25 +1,21 @@
-# React Airbnb Navbar
+## iPhone Walls Zone
 
-A Navbar built with React and mimicking Airbnb navbar style.
+<img src="public/apple-touch-icon.png" alt="iPhone Walls Zone - Logo" align="center" />
 
-## How to use
+Best iPhone wallpapers for iPhone 6, iPhone 5, iPhone 4, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPod Touch backgrounds.
 
-Download the example [or clone the repo](https://github.com/yogakurniawan/react-airbnb-navbar):
+## Open Source Used
 
-Install it and run:
+This project is using [React Starter Kit](https://www.reactstarterkit.com).
 
-```bash
-npm install
-npm run start
-```
+[React Starter Kit](https://www.reactstarterkit.com) is an opinionated boilerplate for web development built on top of [Node.js](https://nodejs.org/),
+[Express](http://expressjs.com/), [GraphQL](http://graphql.org/) and
+[React](https://facebook.github.io/react/), containing modern web development
+tools such as [Webpack](http://webpack.github.io/), [Babel](http://babeljs.io/)
+and [Browsersync](http://www.browsersync.io/). Helping you to stay productive
+following the best practices. A solid starting point for both professionals
+and newcomers to the industry.
 
-or
+## Live Playground
 
-```bash
-yarn install
-yarn start
-```
-
-## License
-
-MIT License [@yogkurniawan](https://twitter.com/yogkurniawan)
+http://iphonewallszone.com

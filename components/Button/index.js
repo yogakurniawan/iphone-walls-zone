@@ -21,6 +21,7 @@ export const PaginationButton = css`
   border-radius: 50%;
   text-align: center;
   line-height: 1;
+  font-size: 0.85em;
   border: 2px solid transparent;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.20);
   width: 40px;

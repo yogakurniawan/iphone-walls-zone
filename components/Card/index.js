@@ -59,7 +59,7 @@ const LoveButton = styled.button`
 export const Wallpaper = styled.div`
   background-size: contain;
   background-position: center;
-  background-image: ${props => `url('${props.backgroundImage}')`};
+  background-image: ${props => `url('${props.backgroundImage.replace(/'/g, "\\'")}')`};
   height: 100%;
   padding-top: 150%;
   position: relative;
@@ -97,6 +97,7 @@ const Info = styled.div`
 
 const Card = (props) => {
   const { data } = props;
+  debugger
   return (
     <Wrapper>
       <Wallpaper backgroundImage={data.thumbnail}>

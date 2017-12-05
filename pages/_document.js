@@ -145,7 +145,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <title>React Next JS Boilerplate</title>
+          <title>Best iPhone Wallpapers - Free wallpapers for iPhone X, 8, and 7</title>
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
