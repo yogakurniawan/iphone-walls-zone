@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import 'isomorphic-fetch'
 import Dimensions from 'react-sizer';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
-import Page from '../components/HOC/Page'
+import PageHOC from '../components/HOC/Page'
 import { queryParams, parseJSON } from '../utils/request'
 import { BASE_API_URL, PER_PAGE } from '../constants/index'
 import Card from '../components/Card'
@@ -15,7 +15,7 @@ const H1 = styled.h1`
   margin-bottom: 0;
 `
 
-class Index extends Component {
+class Page extends Component {
 
   goToPage() {
 
@@ -51,7 +51,7 @@ class Index extends Component {
   }
 }
 
-Index.getInitialProps = async ({ req, store, query }) => {
+Page.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1;
   const queryParam = {
     'filter[limit]': PER_PAGE,
@@ -71,5 +71,5 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
 }
 
-const enhancedIndex = Dimensions()(Index);
-export default Page(connect(mapStateToProps, mapDispatchToProps)(enhancedIndex))
+const enhancedPage = Dimensions()(Page);
+export default PageHOC(connect(mapStateToProps, mapDispatchToProps)(enhancedPage))
