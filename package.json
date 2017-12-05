@@ -1,7 +1,7 @@
 {
-  "name": "react-airbnb-navbar",
+  "name": "iphone-walls-zone",
   "version": "1.0.0",
-  "description": "React Airbnb Navbar",
+  "description": "iPhone Wallpaper",
   "scripts": {
     "lint": "eslint .",
     "start": "next",
@@ -10,15 +10,11 @@
   "author": "Yoga Kurniawan",
   "license": "MIT",
   "dependencies": {
-    "classnames": "2.x",
-    "css-animation": "1.x",
     "express": "^4.16.2",
     "next": "^4.1.4",
     "next-routes": "^1.1.0",
     "node-uuid": "^1.4.8",
     "prop-types": "^15.5.6",
-    "rc-animate": "2.x",
-    "rc-collapse": "^1.7.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
