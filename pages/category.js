@@ -55,9 +55,9 @@ class Category extends Component {
 
 Category.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
-  const category = query && query.category
+  const category = query && decodeURI(query.category)
   const queryParam = {
-    'filter[where][category]': category,
+    'filter[where][category]': decodeURI(category),
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
   };

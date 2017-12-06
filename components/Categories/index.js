@@ -27,12 +27,20 @@ const NextIconWrapper = styled.span`
   top: 6px;
   position: absolute;
   left: 6px;
+  @media screen and (min-width: 768px) {
+    top: 10px;
+    left: 10px;
+  }
 `
 
 const PrevIconWrapper = styled.span`
   top: 6px;
   position: absolute;
   right: 6px;
+  @media screen and (min-width: 768px) {
+    top: 10px;
+    right: 10px;
+  }
 `
 
 const Prev = styled.button`
@@ -66,13 +74,12 @@ const Category = styled.div`
     @media screen and (max-width: 480px) {
       h3 {
         font-size: 0.9em;
-        line-height: 1.5;
       }
       background-image: ${props => `url(${props.backgroundImage}?${UNSPLASH_ATTRIBUTE_100})`};
     }
     border-radius: 5px;    
     margin: 10px;
-    padding: 2%;
+    padding: 5px;
     position: relative;
     background: #00558B;
     color: #fff;
@@ -120,25 +127,25 @@ export default class SwipeToSlide extends Component {
       prevArrow: <PrevArrow />,
       responsive: [
         {
-          breakpoint: 320,
+          breakpoint: 385,
           settings: {
             slidesToShow: 2
           }
         },
         {
-          breakpoint: 480,
+          breakpoint: 601,
           settings: {
             slidesToShow: 3
           }
         },
         {
-          breakpoint: 768,
+          breakpoint: 769,
           settings: {
             slidesToShow: 4
           }
         },
         {
-          breakpoint: 1024,
+          breakpoint: 1025,
           settings: {
             slidesToShow: 5
           }
@@ -157,9 +164,7 @@ export default class SwipeToSlide extends Component {
               categories && categories.map((category) =>
                 <div key={category.id}>
                   <Link href={`/category?category=${category.name}`} as={`/category/${category.name}`}>
-                    <a>
-                      <Category backgroundImage={category.background_image}><h3>{category.name}</h3></Category>
-                    </a>
+                    <Category backgroundImage={category.background_image}><h3>{category.name}</h3></Category>
                   </Link>
                 </div>
               )
