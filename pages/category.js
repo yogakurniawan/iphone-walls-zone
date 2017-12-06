@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import 'isomorphic-fetch'
-import Dimensions from 'react-sizer';
-import { Grid, Row, Col } from 'react-styled-flexboxgrid';
+import Dimensions from 'react-sizer'
+import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import PageHOC from '../components/HOC/Page'
 import { queryParams, parseJSON } from '../utils/request'
 import { BASE_API_URL, PER_PAGE } from '../constants/index'
 import Card from '../components/Card'
-import Pagination from '../components/Pagination';
+import Pagination from '../components/Pagination'
 
 const H1 = styled.h1`
   margin-left: 15px;
@@ -54,8 +54,8 @@ class Category extends Component {
 }
 
 Category.getInitialProps = async ({ req, store, query }) => {
-  const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1;
-  const category = query && query.category;
+  const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
+  const category = query && query.category
   const queryParam = {
     'filter[where][category]': category,
     'filter[limit]': PER_PAGE,
@@ -71,9 +71,6 @@ Category.getInitialProps = async ({ req, store, query }) => {
   const totalResponse = await fetch(countApi)
   const totalResult = await parseJSON(totalResponse)
   const result = await parseJSON(response)
-  console.log(query)
-  console.log(category)
-  console.log(totalResult)
   return { total: totalResult.count, wallpapers: result, page, category }
 }
 

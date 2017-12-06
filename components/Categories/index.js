@@ -108,7 +108,7 @@ function PrevArrow(props) {
 
 export default class SwipeToSlide extends Component {
   render() {
-    const { categories } = this.props;
+    const { categories } = this.props
     const settings = {
       className: 'center',
       infinite: true,
@@ -148,7 +148,7 @@ export default class SwipeToSlide extends Component {
         console.log(`Slider Changed to: ${index + 1}, background: #222; color: #bada55`);
       }
     };
-    const Loading = () => (<Div>Loading...</Div>);
+    const Loading = () => (<Div>Loading...</Div>)
     return (
       <Container>
         <NoSSR onSSR={<Loading />}>

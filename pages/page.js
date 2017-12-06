@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import 'isomorphic-fetch'
-import Dimensions from 'react-sizer';
-import { Grid, Row, Col } from 'react-styled-flexboxgrid';
+import Dimensions from 'react-sizer'
+import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import PageHOC from '../components/HOC/Page'
 import { queryParams, parseJSON } from '../utils/request'
 import { BASE_API_URL, PER_PAGE } from '../constants/index'
 import Card from '../components/Card'
-import Pagination from '../components/Pagination';
+import Pagination from '../components/Pagination'
 
 const H1 = styled.h1`
   margin-left: 15px;
@@ -23,7 +23,7 @@ class Page extends Component {
   }
 
   render() {
-    const { total, wallpapers, width, page, title, description } = this.props;
+    const { total, wallpapers, width, page, title, description } = this.props
     return (
       <Grid>
         <Helmet
@@ -66,7 +66,7 @@ Page.getInitialProps = async ({ req, store, query }) => {
   const description = 'Best iPhone wallpapers for iPhone 6, iPhone 5, iPhone 4, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPod Touch backgrounds.'
   const queryParam = {
     'filter[limit]': PER_PAGE,
-    'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0,
+    'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
   };
   if (req) {
     Helmet.renderStatic()

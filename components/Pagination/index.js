@@ -67,15 +67,15 @@ class Pagination extends Component {
   prevPage = (event) => {
     event.stopPropagation()
     if (this.props.page === 1) {
-      throw new Error('navigation.page_out_from_begin');
+      throw new Error('navigation.page_out_from_begin')
     }
-    this.props.setPage(this.props.page - 1);
+    this.props.setPage(this.props.page - 1)
   }
 
   nextPage = (event) => {
     event.stopPropagation();
     if (this.props.page > this.getNbPages()) {
-      throw new Error('navigation.page_out_from_end');
+      throw new Error('navigation.page_out_from_end')
     }
     this.props.setPage(this.props.page + 1);
   }
@@ -84,7 +84,7 @@ class Pagination extends Component {
     event.stopPropagation();
     const page = event.currentTarget.dataset.page;
     if (page < 1 || page > this.getNbPages()) {
-      throw new Error('navigation.page_out_of_boundaries');
+      throw new Error('navigation.page_out_of_boundaries')
     }
     this.props.setPage(page);
   }
@@ -107,11 +107,11 @@ class Pagination extends Component {
   }
 
   render() {
-    const { page, total, routeHref, routeAs, screenWidth } = this.props;
-    const hrefPrev = routeHref ? `/${routeHref}&page=${page - 1}` : `/page?page=${page - 1}`;
-    const asPrev = routeAs ? `/${routeAs}/page/${page - 1}` : `/page/${page - 1}`;
-    const hrefNext = routeHref ? `/${routeHref}&page=${page + 1}` : `/page?page=${page + 1}`;
-    const asNext = routeAs ? `/${routeAs}/page/${page + 1}` : `/page/${page + 1}`;
+    const { page, total, routeHref, routeAs, screenWidth } = this.props
+    const hrefPrev = routeHref ? `/${routeHref}&page=${page - 1}` : `/page?page=${page - 1}`
+    const asPrev = routeAs ? `/${routeAs}/page/${page - 1}` : `/page/${page - 1}`
+    const hrefNext = routeHref ? `/${routeHref}&page=${page + 1}` : `/page?page=${page + 1}`
+    const asNext = routeAs ? `/${routeAs}/page/${page + 1}` : `/page/${page + 1}`
     if (total === 0) return null
     const nbPages = this.getNbPages()
 
