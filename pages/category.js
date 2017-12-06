@@ -22,7 +22,7 @@ class Category extends Component {
   }
 
   render() {
-    const { wallpapers, width, page, category } = this.props;
+    const { wallpapers, width, page, category, total } = this.props;
     return (
       <Grid>
         <H1>{category} wallpapers</H1>
@@ -38,10 +38,12 @@ class Category extends Component {
         <Row center="xs" style={{ margin: 'auto' }}>
           <Col xs={12}>
             <Pagination
+              routeHref={`category?category=${category}`}
+              routeAs={`category/${category}`}
               screenWidth={width}
               page={page}
               perPage={12}
-              total={100}
+              total={total}
               setPage={this.goToPage}
             />
           </Col>
@@ -63,8 +65,8 @@ Category.getInitialProps = async ({ req, store, query }) => {
     delete queryParam['filter[where][category]']
   }
   let api = `${BASE_API_URL}/Wallpapers`
+  const countApi = `${api}/count?where[category]=${category}`
   api = api + (api.indexOf('?') === -1 ? '?' : '&') + queryParams(queryParam);
-  const countApi = `${api}/count`
   const response = await fetch(api)
   const totalResponse = await fetch(countApi)
   const totalResult = await parseJSON(totalResponse)

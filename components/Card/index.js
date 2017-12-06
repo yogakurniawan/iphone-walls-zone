@@ -97,7 +97,6 @@ const Info = styled.div`
 
 const Card = (props) => {
   const { data } = props;
-  debugger
   return (
     <Wrapper>
       <Wallpaper backgroundImage={data.thumbnail}>
