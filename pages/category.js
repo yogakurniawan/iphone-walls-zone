@@ -15,17 +15,17 @@ const H1 = styled.h1`
   margin-bottom: 0;
 `
 
-class Page extends Component {
+class Category extends Component {
 
   goToPage() {
 
   }
 
   render() {
-    const { wallpapers, width, page } = this.props;
+    const { wallpapers, width, page, category } = this.props;
     return (
       <Grid>
-        <H1>Wallpapers</H1>
+        <H1>{category} wallpapers</H1>
         <Row style={{ margin: 10 }}>
           {
             wallpapers && wallpapers.map((wallpaper) =>
@@ -51,18 +51,28 @@ class Page extends Component {
   }
 }
 
-Page.getInitialProps = async ({ req, store, query }) => {
+Category.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1;
+  const category = query && query.category;
   const queryParam = {
+    'filter[where][category]': category,
     'filter[limit]': PER_PAGE,
-    'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0,
+    'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
   };
-  let url = `${BASE_API_URL}/Wallpapers`
-  url = url + (url.indexOf('?') === -1 ? '?' : '&') + queryParams(queryParam);
-  const response = await fetch(url)
+  if (!category) {
+    delete queryParam['filter[where][category]']
+  }
+  let api = `${BASE_API_URL}/Wallpapers`
+  api = api + (api.indexOf('?') === -1 ? '?' : '&') + queryParams(queryParam);
+  const countApi = `${api}/count`
+  const response = await fetch(api)
+  const totalResponse = await fetch(countApi)
+  const totalResult = await parseJSON(totalResponse)
   const result = await parseJSON(response)
   console.log(query)
-  return { wallpapers: result, page }
+  console.log(category)
+  console.log(totalResult)
+  return { total: totalResult.count, wallpapers: result, page, category }
 }
 
 const mapStateToProps = state => ({
@@ -71,5 +81,5 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
 }
 
-const enhancedPage = Dimensions()(Page);
-export default PageHOC(connect(mapStateToProps, mapDispatchToProps)(enhancedPage))
+const enhancedCategory = Dimensions()(Category);
+export default PageHOC(connect(mapStateToProps, mapDispatchToProps)(enhancedCategory))

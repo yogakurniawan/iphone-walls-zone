@@ -13,7 +13,6 @@ const page = WrappedComponent => {
       const otherProps = WrappedComponent.getInitialProps
         ? await WrappedComponent.getInitialProps({ ...context, store })
         : {}
-      console.log(otherProps)
       const res = await fetch(`${BASE_API_URL}/Categories`)
       const json = await res.json()
       store.dispatch(loadCategories(json))
