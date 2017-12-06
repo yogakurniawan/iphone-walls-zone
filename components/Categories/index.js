@@ -27,20 +27,12 @@ const NextIconWrapper = styled.span`
   top: 6px;
   position: absolute;
   left: 6px;
-  @media screen and (min-width: 768px) {
-    top: 10px;
-    left: 10px;
-  }
 `
 
 const PrevIconWrapper = styled.span`
   top: 6px;
   position: absolute;
   right: 6px;
-  @media screen and (min-width: 768px) {
-    top: 10px;
-    right: 10px;
-  }
 `
 
 const Prev = styled.button`
@@ -72,22 +64,32 @@ const SliderStyled = styled(Slider) `
 const Category = styled.div`
   {
     @media screen and (max-width: 480px) {
-      h3 {
-        font-size: 0.9em;
-      }
       background-image: ${props => `url(${props.backgroundImage}?${UNSPLASH_ATTRIBUTE_100})`};
     }
     border-radius: 5px;    
-    margin: 10px;
-    padding: 5px;
+    margin: 5px;
     position: relative;
-    background: #00558B;
-    color: #fff;
     text-align: center;
     background-image: ${props => `url(${props.backgroundImage}?${UNSPLASH_ATTRIBUTE_170})`};
     background-size: cover;
     background-repeat: no-repeat;
-    line-height: 1;
+    a {
+      @media screen and (max-width: 768px) {
+        padding: 18px 0;
+      }
+      &:hover {
+        background-color: rgba(55,35,35,.45);
+      }
+      border-radius: 5px;
+      font-size: 1em;
+      color: #fff;
+      font-weight: bold;
+      padding: 13px;
+      text-shadow: 0 0 8px rgba(0,0,0,.3);
+      display: block;
+      background-color: rgba(55,35,35,.3);
+      transition: background-color .15s ease-in-out;
+    }
   }
 `
 
@@ -163,9 +165,11 @@ export default class SwipeToSlide extends Component {
             {
               categories && categories.map((category) =>
                 <div key={category.id}>
-                  <Link href={`/category?category=${category.name}`} as={`/category/${category.name}`}>
-                    <Category backgroundImage={category.background_image}><h3>{category.name}</h3></Category>
-                  </Link>
+                  <Category backgroundImage={category.background_image}>
+                    <Link href={`/category?category=${category.name}`} as={`/category/${category.name}`}>
+                      {category.name}
+                    </Link>
+                  </Category>
                 </div>
               )
             }

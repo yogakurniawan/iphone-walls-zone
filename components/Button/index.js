@@ -14,10 +14,6 @@ export const NavigationButton = css`
   &:active {
     box-shadow: 0 0 2px 2px #008489;
   }
-  @media screen and (min-width: 768px) {
-    width: 40px;
-    height: 40px;
-  }
 `
 
 export const PaginationButton = css`
