@@ -1,6 +1,8 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
-import Icon from '../Icon'
+import styled from 'styled-components'
+import Link from '../Link'
+import { LoveButton } from '../Button'
+import { replaceSpaceWithDash } from '../../utils/common'
 
 const Overlay = styled.div`
   background-image: linear-gradient(180deg,rgba(0,0,0,.6) 0,transparent 40%,transparent 60%,rgba(0,0,0,.7));
@@ -16,44 +18,6 @@ const Overlay = styled.div`
 
 const Wrapper = styled.div`
   margin-bottom: 20px;
-`
-
-const Heart = css`
-  ${Icon}
-  content: '\f004';
-`
-
-const LoveButton = styled.button`
-  border: 1px solid transparent;
-  border-radius: 5px;
-  box-shadow: 0 1px 1px rgba(0,0,0,.04);
-  transition: all .2s ease-in-out;
-  text-align: center;
-  user-select: none;
-  display: inline-block;
-  height: 32px;
-  padding: 0 11px;
-  font-size: 14px;
-  line-height: 29px;
-  fill: currentColor;
-  background-color: #ffffffb8;
-  border-color: #ddd;
-  span {
-    color: red;
-    margin-right: 10px;
-    &:before {
-      ${Heart}
-    }
-  }
-  &:hover {
-    fill: currentColor;
-    background-color: #fff;
-    border-color: #999!important;
-    box-shadow: 0 2px 2px rgba(158, 149, 149, 0.18);
-  }
-  &:active {
-    box-shadow: 0 0 2px 2px #008489;
-  }
 `
 
 export const Wallpaper = styled.div`
@@ -76,6 +40,13 @@ const H4 = styled.h4`
   padding-bottom: 0px;
 `
 
+const Name = styled.div`
+  color: white;
+  font-size: 10px;
+  padding-bottom: 12px;
+  font-weight: 700;
+`
+
 const Div = styled.div`
   position: absolute;
   top: 0;
@@ -96,24 +67,30 @@ const Info = styled.div`
 `
 
 const Card = (props) => {
-  const { data } = props;
+  const { data, detailMode } = props;
+  const href=`/wallpaper?name=${replaceSpaceWithDash(data.name)}`
+  const as=`/wallpaper/${replaceSpaceWithDash(data.name)}`
+  const nameReplaced = data.name.replace(/(iPhone 4s|iPhone 5s|iPhone 6s|iPhone 6|Plus|iPhone 5|iPhone 3|iPhone 4|Wallpaper)/ig, "")
   return (
     <Wrapper>
-      <Wallpaper backgroundImage={data.thumbnail}>
-        <Overlay>
-          <Div>
-            <Info>
-              <LoveButton>
-                <span />
-                {data.total_like}
-              </LoveButton>
-            </Info>
-          </Div>
-          <Title>
-            <H4>{data.name}</H4>
-          </Title>
-        </Overlay>
-      </Wallpaper>
+      <Link href={href} as={as}>
+        <Wallpaper backgroundImage={data.thumbnail}>
+          <Overlay>
+            <Div>
+              { !detailMode && <Info>
+                <LoveButton>
+                  <span />
+                  {data.total_like}
+                </LoveButton>
+              </Info> }
+            </Div>
+            <Title>
+              { !detailMode && <H4>{data.name}</H4> }
+              { detailMode && <Name>{nameReplaced}</Name> }
+            </Title>
+          </Overlay>
+        </Wallpaper>
+      </Link>
     </Wrapper>
   )
 }

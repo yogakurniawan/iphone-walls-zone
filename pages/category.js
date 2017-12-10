@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import Helmet from 'react-helmet'
 import 'isomorphic-fetch'
 import Dimensions from 'react-sizer'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import PageHOC from '../components/HOC/Page'
-import { queryParams, parseJSON } from '../utils/request'
+import { grab, parseJSON } from '../utils/request'
 import { BASE_API_URL, PER_PAGE } from '../constants/index'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination'
@@ -16,15 +17,18 @@ const H1 = styled.h1`
 `
 
 class Category extends Component {
-
-  goToPage() {
-
-  }
-
   render() {
-    const { wallpapers, width, page, category, total } = this.props;
+    const { title, description, wallpapers, width, page, category, total } = this.props;
     return (
       <Grid>
+        <Helmet
+          htmlAttributes={{ lang: 'en' }}
+          title={title}
+          meta={[
+            { name: 'description', content: description },
+            { property: 'og:title', content: title }
+          ]}
+        />
         <H1>{category} wallpapers</H1>
         <Row style={{ margin: 10 }}>
           {
@@ -56,6 +60,8 @@ class Category extends Component {
 Category.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
   const category = query && decodeURI(query.category)
+  const title = `Free ${category} iPhone Wallpapers and iPod Touch Wallpapers HD`
+  const description = `Download free ${category} iPhone Wallpapers and iPod Touch Wallpapers HD`
   const queryParam = {
     'filter[where][category]': decodeURI(category),
     'filter[limit]': PER_PAGE,
@@ -66,12 +72,16 @@ Category.getInitialProps = async ({ req, store, query }) => {
   }
   let api = `${BASE_API_URL}/Wallpapers`
   const countApi = `${api}/count?where[category]=${category}`
-  api = api + (api.indexOf('?') === -1 ? '?' : '&') + queryParams(queryParam);
-  const response = await fetch(api)
-  const totalResponse = await fetch(countApi)
+  const response = await grab(api, { qs: queryParam })
+  const totalResponse = await grab(countApi)
   const totalResult = await parseJSON(totalResponse)
   const result = await parseJSON(response)
-  return { total: totalResult.count, wallpapers: result, page, category }
+  return {
+    total: totalResult.count,
+    wallpapers: result, page, category,
+    title,
+    description
+  }
 }
 
 const mapStateToProps = state => ({

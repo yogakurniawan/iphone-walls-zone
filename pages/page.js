@@ -17,11 +17,6 @@ const H1 = styled.h1`
 `
 
 class Page extends Component {
-
-  goToPage() {
-
-  }
-
   render() {
     const { total, wallpapers, width, page, title, description } = this.props
     return (
@@ -78,7 +73,13 @@ Page.getInitialProps = async ({ req, store, query }) => {
   const totalResponse = await fetch(countApi)
   const result = await parseJSON(response)
   const totalResult = await parseJSON(totalResponse)
-  return { total: totalResult.count, wallpapers: result, page, title, description }
+  return {
+    total: totalResult.count,
+    wallpapers: result,
+    page,
+    title,
+    description
+  }
 }
 
 const mapStateToProps = state => ({

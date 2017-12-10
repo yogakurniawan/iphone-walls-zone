@@ -1,4 +1,5 @@
-import { css } from 'styled-components'
+import styled, { css } from 'styled-components'
+import Icon from '../Icon'
 
 export const NavigationButton = css`
   border-radius: 50%;
@@ -27,5 +28,64 @@ export const PaginationButton = css`
   height: 40px;
   &:active {
     box-shadow: 0 0 2px 2px #008489;
+  }
+`
+
+const Heart = css`
+  ${Icon}
+  content: '\f004';
+`
+
+const Eye = css`
+  ${Icon}
+  content: '\f06e';
+`
+
+const ButtonStyle = css`
+  user-select: none;
+  display: inline-block;
+  height: 32px;
+  padding: 0 11px;
+  font-size: 14px;
+  line-height: 29px;
+  fill: currentColor;
+  transition: all .2s ease-in-out;
+  text-align: center;
+  border-radius: 5px;
+  &:active {
+    border-style: solid;
+  }
+`
+
+export const LoveButton = styled.button`
+  ${ButtonStyle}
+  border: 1px solid transparent;
+  background-color: #ffffffb8;
+  border-color: #ddd;
+  color: #484848;
+  span {
+    color: red;
+    margin-right: 10px;
+    &:before {
+      ${Heart}
+    }
+  }
+  &:hover {
+    fill: currentColor;
+    background-color: #fff;
+    border-color: #999!important;
+    box-shadow: 0 2px 2px rgba(158, 149, 149, 0.18);
+  }
+  &:active {
+    box-shadow: 0 0 2px 2px #008489;
+  }
+`
+
+export const DownloadButton = styled.button`
+  ${ButtonStyle}
+  background-color: #3cb46e;
+  color: #fff;
+  &:hover {
+    background-color: #37a866;
   }
 `

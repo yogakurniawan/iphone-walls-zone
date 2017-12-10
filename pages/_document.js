@@ -146,6 +146,8 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <title>Best iPhone Wallpapers - Free wallpapers for iPhone X, 8, and 7</title>
+          <meta name="apple-mobile-web-app-title" content="iPhoneWallsZone" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"

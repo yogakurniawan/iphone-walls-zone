@@ -8,7 +8,7 @@ import { PaginationButton } from '../Button'
 
 const Button = styled.button`
   ${PaginationButton}
-  background: ${props => props.active ? '#0fc1c7' : '#ffffff'};
+  background: ${props => props.active ? 'rgb(60, 180, 110)' : '#ffffff'};
   color: ${props => props.active ? '#ffffff' : '#484848'};
   font-weight: ${props => props.active ? 'bold' : 'normal'};
   svg {
