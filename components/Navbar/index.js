@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components'
 import Icon from '../Icon'
+import Link from '../Link'
 import Logo from './Logo.svg'
 import Search from './Search.svg'
 
@@ -162,7 +163,10 @@ const Item = styled.div`
   font-weight: 300;
   line-height: 1;
   vertical-align: middle;
-  &:hover {
+  a {
+    border-bottom: 2px solid #fff;
+  }
+  a:hover {
     border-bottom: 2px solid #484848;
   }
 `
@@ -288,22 +292,22 @@ const Navbar = (props) => {
             </NavbarHeader>
             <NavbarItem>
               <ButtonMenu>
-                <Item>Home</Item>
+                <Item><Link href="/page" as="/">Home</Link></Item>
               </ButtonMenu>
             </NavbarItem>
             <NavbarItem>
               <ButtonMenu>
-                <Item>Top Liked</Item>
+                <Item><Link href="/page" as="/">Top Liked</Link></Item>
               </ButtonMenu>
             </NavbarItem>
             <NavbarItem>
               <ButtonMenu>
-                <Item>Top Viewed</Item>
+                <Item><Link href="/page" as="/">Top Viewed</Link></Item>
               </ButtonMenu>
             </NavbarItem>
             <NavbarItem>
               <ButtonMenu>
-                <Item>Top Downloaded</Item>
+                <Item><Link href="/page" as="/">Top Downloaded</Link></Item>
               </ButtonMenu>
             </NavbarItem>
           </NavbarNavigation>

@@ -2,12 +2,12 @@ import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
 import auth from './auth'
-import clients from './clients'
-import categories from './categories'
+import wallpaper from './wallpaper'
+import category from './category'
 
 export default combineReducers({
   auth,
-  clients,
+  wallpaper,
   form: formReducer,
-  categories
+  category
 })

@@ -10,7 +10,9 @@
   "author": "Yoga Kurniawan",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.17.1",
     "express": "^4.16.2",
+    "isomorphic-fetch": "^2.2.1",
     "next": "^4.1.4",
     "next-routes": "^1.1.0",
     "node-uuid": "^1.4.8",

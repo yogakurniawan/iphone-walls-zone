@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import Helmet from 'react-helmet'
 import 'isomorphic-fetch'
+import axios from 'axios'
 import Dimensions from 'react-sizer'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import PageHOC from '../components/HOC/Page'
@@ -10,6 +11,7 @@ import { grab, parseJSON } from '../utils/request'
 import { BASE_API_URL, PER_PAGE } from '../constants/index'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination'
+import { likeWallpaper, loadWallpapers } from '../actions/wallpaper'
 
 const H1 = styled.h1`
   margin-left: 15px;
@@ -17,6 +19,15 @@ const H1 = styled.h1`
 `
 
 class Category extends Component {
+
+  async like(e, wallpaper) {
+    const url = `${BASE_API_URL}/Wallpapers`
+    const { like } = this.props
+    wallpaper.total_like += 1
+    like(wallpaper)
+    await axios.put(url, wallpaper)
+  }
+
   render() {
     const { title, description, wallpapers, width, page, category, total } = this.props;
     return (
@@ -34,7 +45,7 @@ class Category extends Component {
           {
             wallpapers && wallpapers.map((wallpaper) =>
               <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
-                <Card data={wallpaper} />
+                <Card like={(e) => this.like(e, wallpaper)} data={wallpaper} />
               </Col>
             )
           }
@@ -70,24 +81,30 @@ Category.getInitialProps = async ({ req, store, query }) => {
   if (!category) {
     delete queryParam['filter[where][category]']
   }
+  if (req) {
+    Helmet.renderStatic()
+  }
   let api = `${BASE_API_URL}/Wallpapers`
   const countApi = `${api}/count?where[category]=${category}`
   const response = await grab(api, { qs: queryParam })
   const totalResponse = await grab(countApi)
   const totalResult = await parseJSON(totalResponse)
   const result = await parseJSON(response)
+  store.dispatch(loadWallpapers(result))
   return {
     total: totalResult.count,
-    wallpapers: result, page, category,
+    page,
+    category,
     title,
     description
   }
 }
 
 const mapStateToProps = state => ({
-  // fullName: state.auth.fullName
+  wallpapers: state.wallpaper.wallpapers
 })
 const mapDispatchToProps = {
+  like: likeWallpaper 
 }
 
 const enhancedCategory = Dimensions()(Category);

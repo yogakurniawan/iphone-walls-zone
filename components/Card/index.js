@@ -28,22 +28,14 @@ export const Wallpaper = styled.div`
   padding-top: 150%;
   position: relative;
   &:hover ${Overlay} {
-    cursor: pointer;
     opacity: 1;
   }
 `
 
-const H4 = styled.h4`
-  color: white;
-  letter-spacing: 0.2px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-`
-
 const Name = styled.div`
   color: white;
-  font-size: 10px;
-  padding-bottom: 12px;
+  font-size: 1em;
+  padding-bottom: 10px;
   font-weight: 700;
 `
 
@@ -67,30 +59,29 @@ const Info = styled.div`
 `
 
 const Card = (props) => {
-  const { data, detailMode } = props;
-  const href=`/wallpaper?name=${replaceSpaceWithDash(data.name)}`
-  const as=`/wallpaper/${replaceSpaceWithDash(data.name)}`
+  const { data, detailMode, like } = props;
+  const href = `/wallpaper?name=${replaceSpaceWithDash(data.name)}`
+  const as = `/wallpaper/${replaceSpaceWithDash(data.name)}`
   const nameReplaced = data.name.replace(/(iPhone 4s|iPhone 5s|iPhone 6s|iPhone 6|Plus|iPhone 5|iPhone 3|iPhone 4|Wallpaper)/ig, "")
   return (
     <Wrapper>
-      <Link href={href} as={as}>
-        <Wallpaper backgroundImage={data.thumbnail}>
-          <Overlay>
-            <Div>
-              { !detailMode && <Info>
-                <LoveButton>
-                  <span />
-                  {data.total_like}
-                </LoveButton>
-              </Info> }
-            </Div>
+      <Wallpaper backgroundImage={data.thumbnail}>
+        <Overlay>
+          <Div>
+            {!detailMode && <Info>
+              <LoveButton onClick={like}>
+                <span />
+                {data.total_like}
+              </LoveButton>
+            </Info>}
+          </Div>
+          <Link href={href} as={as}>
             <Title>
-              { !detailMode && <H4>{data.name}</H4> }
-              { detailMode && <Name>{nameReplaced}</Name> }
+              <Name>{nameReplaced}</Name>
             </Title>
-          </Overlay>
-        </Wallpaper>
-      </Link>
+          </Link>
+        </Overlay>
+      </Wallpaper>
     </Wrapper>
   )
 }
