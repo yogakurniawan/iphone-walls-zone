@@ -43,6 +43,7 @@ const Eye = css`
 
 const ButtonStyle = css`
   user-select: none;
+  border: 1px solid transparent;
   display: inline-block;
   height: 32px;
   padding: 0 11px;
@@ -59,7 +60,6 @@ const ButtonStyle = css`
 
 export const LoveButton = styled.button`
   ${ButtonStyle}
-  border: 1px solid transparent;
   background-color: #ffffffb8;
   border-color: #ddd;
   color: #484848;

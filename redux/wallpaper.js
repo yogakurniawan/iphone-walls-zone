@@ -1,4 +1,4 @@
-import { LOAD_WALLPAPERS, LOAD_WALLPAPER, LIKE_WALLPAPER } from '../constants/actionTypes'
+import { LOAD_WALLPAPERS, LOAD_WALLPAPER, LIKE_WALLPAPER, LIKE_WALLPAPER_FROM_DETAIL } from '../constants/actionTypes'
 
 function wallpaper(state = {}, action) {
   const { payload, type } = action;
@@ -14,29 +14,27 @@ function wallpaper(state = {}, action) {
         wallpaper: payload
       }
     case LIKE_WALLPAPER: {
-      if (state.wallpapers) {
-        let wallpapers = state.wallpapers.slice(0)
-        wallpapers = wallpapers.map((wallpaper) => {
-          let result = wallpaper;
-          if (result.id === payload.id) {
-            result = payload
-          }
-          return result
-        });
-        return {
-          ...state,
-          wallpapers
+      let wallpapers = state.wallpapers.slice(0)
+      wallpapers = wallpapers.map((wallpaper) => {
+        let result = wallpaper;
+        if (result.id === payload.id) {
+          result = payload
         }
-      } else {
-        return {
-          ...state,
-          wallpaper: {
-            ...state.wallpaper,
-            ...payload
-          }
-        }
+        return result
+      });
+      return {
+        ...state,
+        wallpapers
       }
     }
+    case LIKE_WALLPAPER_FROM_DETAIL: 
+      return {
+        ...state,
+        wallpaper: {
+          ...state.wallpaper,
+          ...payload
+        }
+      }
     default:
       return state;
   }
