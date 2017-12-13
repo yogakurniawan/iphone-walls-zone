@@ -167,7 +167,7 @@ const Item = styled.div`
   font-weight: 300;
   line-height: 1;
   a {
-    border-bottom: 2px solid #fff;
+    border-bottom: ${props => props.active ? '2px solid #484848;' : '2px solid #fff;'}
   }
 `
 
@@ -268,6 +268,7 @@ const ContainerFluid = styled.div`
 `
 
 const Navbar = (props) => {
+  console.log(props)
   return (
     <ContainerFluid>
       <NavbarFixed>
@@ -295,23 +296,23 @@ const Navbar = (props) => {
               </SearchBox>
             </NavbarHeader>
             <NavbarItem>
-              <ButtonMenu>
-                <Item><Link href="/page" as="/">Home</Link></Item>
+              <ButtonMenu onClick={() => props.onClickMenu('home')}>
+                <Item active={props.menu === 'home'}><Link href="/page" as="/">Home</Link></Item>
               </ButtonMenu>
             </NavbarItem>
             <NavbarItem>
-              <ButtonMenu>
-                <Item><Link href="/page" as="/">Top Liked</Link></Item>
+              <ButtonMenu onClick={() => props.onClickMenu('top_liked')}>
+                <Item active={props.menu === 'top_liked'}><Link href="/page" as="/">Top Liked</Link></Item>
               </ButtonMenu>
             </NavbarItem>
             <NavbarItem>
-              <ButtonMenu>
-                <Item><Link href="/page" as="/">Top Viewed</Link></Item>
+              <ButtonMenu onClick={() => props.onClickMenu('top_viewed')}>
+                <Item active={props.menu === 'top_viewed'}><Link href="/page" as="/">Top Viewed</Link></Item>
               </ButtonMenu>
             </NavbarItem>
             <NavbarItem>
-              <ButtonMenu>
-                <Item><Link href="/page" as="/">Top Downloaded</Link></Item>
+              <ButtonMenu onClick={() => props.onClickMenu('top_downloaded')}>
+                <Item active={props.menu === 'top_downloaded'}><Link href="/page" as="/">Top Downloaded</Link></Item>
               </ButtonMenu>
             </NavbarItem>
           </NavbarNavigation>

@@ -53,19 +53,45 @@ const Eye = css`
   content: '\f06e';
 `
 
+const Download = css`
+  ${Icon}
+  content: '\f063';
+`
+
+const IconInfoWrapper = styled.div`
+  float: right;
+  > div {
+    margin-right: 10px;
+  }
+`
+
+const IconInfo = css`
+  color: #999;
+  line-height: 32px;
+  display: inline-block;
+  span {
+    margin-right: 5px;
+  }
+`
+
 const Img = styled.img`
   max-width: 80%;
 `
 
 const Views = styled.div`
-  color: #999;
-  float: right;
-  line-height: 32px;
-  display: inline-block;
+  ${IconInfo}
   span {
-    margin-right: 10px;
     &:before {
       ${Eye}
+    }
+  }
+`
+
+const Downloads = styled.div`
+  ${IconInfo}
+  span {
+    &:before {
+      ${Download}
     }
   }
 `
@@ -75,10 +101,10 @@ const Action = styled.div`
   border-top: 1px solid #DBDBDB;
   padding: 10px 5px;
   margin-top: 10px;
-  ${Views} {
     @media screen and (max-width: 480px) {
-      float: none;
-    }
+      ${IconInfoWrapper} {
+        float: none;
+      }
   }
   button {
     display: inline-block;
@@ -142,10 +168,16 @@ class Wallpaper extends Component {
                   <DownloadButton onClick={() => this.download(wallpaper.original)}>
                     Download free
                   </DownloadButton>
-                  <Views>
-                    <span />
-                    {wallpaper.total_view}
-                  </Views>
+                  <IconInfoWrapper>
+                    <Downloads>
+                      <span />
+                      {wallpaper.total_download}
+                    </Downloads>
+                    <Views>
+                      <span />
+                      {wallpaper.total_view}
+                    </Views>
+                  </IconInfoWrapper>
                 </Action>
               </Description>
             </div>

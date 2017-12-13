@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
-import auth from './auth'
+import global from './global'
 import wallpaper from './wallpaper'
 import category from './category'
 
 export default combineReducers({
-  auth,
+  global,
   wallpaper,
   form: formReducer,
   category
