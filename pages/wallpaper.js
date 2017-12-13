@@ -16,7 +16,7 @@ import { likeWallpaperFromDetail, loadWallpaper } from '../actions/wallpaper'
 
 const Title = styled.span`
   font-weight: normal;
-  font-size: 19px;
+  font-size: 1.3em;
 `
 
 const RelatedWPCol = styled(Col) `
@@ -34,8 +34,10 @@ const Related = styled.div`
 `
 
 const Div = css`
-  float: left;
-  width: 50%;
+  @media screen and (min-width: 768px) {
+    float: left;
+    width: 50%;
+  }
 `
 
 const WallpaperSection = styled.div`
@@ -44,7 +46,12 @@ const WallpaperSection = styled.div`
 
 const Description = styled.div`
   ${Div}
-  text-align: left;
+  @media screen and (min-width: 768px) {
+    text-align: left;
+    margin-top: auto;
+  }
+  margin-top: 10px;
+  text-align: center;
   padding-right: 10px;
 `
 
