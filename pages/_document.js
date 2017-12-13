@@ -152,6 +152,7 @@ export default class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
           />
+          <link rel='icon' href='/static/assets/favicon.ico' />
           <link
             rel="stylesheet"
             href="/static/font-awesome-4.7.0/css/font-awesome.min.css"

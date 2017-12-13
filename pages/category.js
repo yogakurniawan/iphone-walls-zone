@@ -12,6 +12,7 @@ import { BASE_API_URL, PER_PAGE } from '../constants/index'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination'
 import { likeWallpaper, loadWallpapers } from '../actions/wallpaper'
+import { setCurrentMenu } from '../actions/global'
 
 const H1 = styled.h1`
   margin-left: 15px;
@@ -91,6 +92,7 @@ Category.getInitialProps = async ({ req, store, query }) => {
   const totalResult = await parseJSON(totalResponse)
   const result = await parseJSON(response)
   store.dispatch(loadWallpapers(result))
+  store.dispatch(setCurrentMenu('category'))
   return {
     total: totalResult.count,
     page,
@@ -104,7 +106,7 @@ const mapStateToProps = state => ({
   wallpapers: state.wallpaper.wallpapers
 })
 const mapDispatchToProps = {
-  like: likeWallpaper 
+  like: likeWallpaper
 }
 
 const enhancedCategory = Dimensions()(Category);

@@ -13,6 +13,7 @@ import { grab, parseJSON } from '../utils/request'
 import { replaceDashWithSpace } from '../utils/common'
 import { BASE_API_URL } from '../constants/index'
 import { likeWallpaperFromDetail, loadWallpaper } from '../actions/wallpaper'
+import { setCurrentMenu } from '../actions/global'
 
 const Title = styled.span`
   font-weight: normal;
@@ -230,6 +231,7 @@ Wallpaper.getInitialProps = async ({ req, store, query }) => {
   const relatedWPResponse = await grab(API, { qs: qsRelatedWP })
   const relatedWallpapers = await parseJSON(relatedWPResponse)
   store.dispatch(loadWallpaper(wallpaper[0]))
+  store.dispatch(setCurrentMenu('wallpaper'))
   return { relatedWallpapers, title, description }
 }
 
