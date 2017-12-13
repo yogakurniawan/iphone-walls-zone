@@ -50,6 +50,8 @@ const Title = styled.div`
   text-align: left;
   position: absolute;
   bottom: 0;
+  height: 80%;
+  padding-top: 90%;
   margin-left: 10px;
   margin-right: 10px;
 `
