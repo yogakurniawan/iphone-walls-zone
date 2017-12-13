@@ -12,7 +12,7 @@ import Card from '../components/Card'
 import { grab, parseJSON } from '../utils/request'
 import { replaceDashWithSpace } from '../utils/common'
 import { BASE_API_URL } from '../constants/index'
-import { likeWallpaper, loadWallpaper } from '../actions/wallpaper'
+import { likeWallpaperFromDetail, loadWallpaper } from '../actions/wallpaper'
 
 const Title = styled.span`
   font-weight: normal;
@@ -200,7 +200,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  like: likeWallpaper,
+  like: likeWallpaperFromDetail,
   loadWallpaper
 }
 

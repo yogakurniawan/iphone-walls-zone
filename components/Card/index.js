@@ -35,7 +35,6 @@ export const Wallpaper = styled.div`
 const Name = styled.div`
   color: white;
   font-size: 1em;
-  padding-bottom: 10px;
   font-weight: 700;
 `
 
@@ -49,9 +48,9 @@ const Div = styled.div`
 const Title = styled.div`
   text-align: left;
   position: absolute;
-  bottom: 0;
+  bottom: 15px;
   height: 80%;
-  padding-top: 90%;
+  padding-top: 95%;
   margin-left: 10px;
   margin-right: 10px;
 `
@@ -64,7 +63,7 @@ const Card = (props) => {
   const { data, detailMode, like } = props;
   const href = `/wallpaper?name=${replaceSpaceWithDash(data.name)}`
   const as = `/wallpaper/${replaceSpaceWithDash(data.name)}`
-  const nameReplaced = data.name.replace(/(iPhone 4s|iPhone 5s|iPhone 6s|iPhone 6|Plus|iPhone 5|iPhone 3|iPhone 4|Wallpaper)/ig, "")
+  const nameReplaced = data.name.replace(/(iPhone SE|HD|iPhone 4s|iPhone 5s|iPhone 6s|iPhone 6|Plus|iPhone 5|iPhone 3|iPhone 4|Wallpaper)/ig, "")
   return (
     <Wrapper>
       <Wallpaper backgroundImage={data.thumbnail}>
