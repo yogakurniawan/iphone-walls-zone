@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "next",
+    "clean": "rimraf node_modules/.cache/babel-loader",
     "dev": "node server.js"
   },
   "author": "Yoga Kurniawan",

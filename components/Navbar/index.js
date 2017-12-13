@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components'
 import Icon from '../Icon'
 import Link from '../Link'
-import Logo from './NavLogo.svg'
+import Logo from './Logo.svg'
 import Search from './Search.svg'
 
 const NavbarFixed = styled.header`
@@ -43,7 +43,7 @@ const NavbarHeader = styled.li`
   justify-content: space-between;
   align-items: center;
   height: 81px;
-  padding-right: 5px;
+  padding-right: 10px;
   width: 100%;
 `
 
@@ -84,7 +84,7 @@ const NavbarBrand = styled.div`
   ${ArrowDownWrapper} {
     cursor: pointer;
   }
-  margin-right: 5px;
+  margin-right: 10px;
   padding: 6px 10px 6px 10px;
   display: table;
 `
@@ -236,6 +236,7 @@ const SearchInput = styled.input`
 `
 
 const SearchBox = styled.div`
+  width: 100%;
   line-height: 24px;
   color: #484848;
   background-color: #ffffff;
