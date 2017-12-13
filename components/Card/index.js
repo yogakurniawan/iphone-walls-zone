@@ -64,17 +64,26 @@ const Card = (props) => {
   const href = `/wallpaper?name=${replaceSpaceWithDash(data.name)}`
   const as = `/wallpaper/${replaceSpaceWithDash(data.name)}`
   const nameReplaced = data.name.replace(/(iPhone SE|HD|iPhone 4s|iPhone 5s|iPhone 6s|iPhone 6|Plus|iPhone 5|iPhone 3|iPhone 4|Wallpaper)/ig, "")
+  if (detailMode) {
+    return <Wrapper>
+      <Link href={href} as={as}>
+        <Wallpaper backgroundImage={data.thumbnail}>
+        </Wallpaper>
+      </Link>
+    </Wrapper>
+  }
+  
   return (
     <Wrapper>
       <Wallpaper backgroundImage={data.thumbnail}>
         <Overlay>
           <Div>
-            {!detailMode && <Info>
+            <Info>
               <LoveButton onClick={like}>
                 <span />
                 {data.total_like}
               </LoveButton>
-            </Info>}
+            </Info>
           </Div>
           <Link href={href} as={as}>
             <Title>

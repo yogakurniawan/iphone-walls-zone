@@ -17,8 +17,6 @@ app.prepare()
     // This tells it to parse the query portion of the URL.
     const parsedUrl = parse(req.url, true)
     const { pathname, query } = parsedUrl
-    const categoryMatch = route('/category/:category')
-    const category = categoryMatch(pathname)
 
     if (pathname === '/') {
       app.render(req, res, '/page', query)

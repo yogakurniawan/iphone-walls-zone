@@ -45,7 +45,7 @@ const WallpaperSection = styled.div`
 const Description = styled.div`
   ${Div}
   text-align: left;
-  padding-right: 20px;
+  padding-right: 10px;
 `
 
 const Eye = css`
@@ -60,7 +60,7 @@ const Img = styled.img`
 const Views = styled.div`
   color: #999;
   float: right;
-  line-height: 2;
+  line-height: 32px;
   display: inline-block;
   span {
     margin-right: 10px;
@@ -73,10 +73,9 @@ const Views = styled.div`
 const Action = styled.div`
   border-bottom: 1px solid #DBDBDB;
   border-top: 1px solid #DBDBDB;
-  padding: 20px 5px;
+  padding: 10px 5px;
   margin-top: 10px;
   ${Views} {
-    margin-bottom: 5px;
     @media screen and (max-width: 480px) {
       float: none;
     }
@@ -129,7 +128,7 @@ class Wallpaper extends Component {
             { property: 'og:title', content: title }
           ]}
         />
-        <Row center="xs" style={{ marginBottom: 20 }}>
+        <Row center="xs" style={{ margin: 'auto' }}>
           <Col xs={12} sm={12} md={12} lg={8}>
             <div>
               <WallpaperSection><Img src={wallpaper.original} alt={wallpaper.name} /></WallpaperSection>
@@ -158,7 +157,7 @@ class Wallpaper extends Component {
             <Row>
               {
                 relatedWallpapers && relatedWallpapers.map((wallpaper) =>
-                  <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
+                  <Col key={wallpaper.id} xs={4} sm={3} md={3} lg={2}>
                     <Card detailMode data={wallpaper} />
                   </Col>
                 )

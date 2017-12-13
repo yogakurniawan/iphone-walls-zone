@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components'
 import Icon from '../Icon'
 import Link from '../Link'
-import Logo from './Logo.svg'
+import Logo from './NavLogo.svg'
 import Search from './Search.svg'
 
 const NavbarFixed = styled.header`
@@ -43,6 +43,7 @@ const NavbarHeader = styled.li`
   justify-content: space-between;
   align-items: center;
   height: 81px;
+  padding-right: 5px;
   width: 100%;
 `
 
@@ -77,13 +78,14 @@ const ArrowDownWrapper = styled.label`
 
 const NavbarBrand = styled.div`
   @media screen and (max-width: 320px) {
-    padding: 14px;
+    padding: 10px;
   }
   cursor: pointer;
   ${ArrowDownWrapper} {
     cursor: pointer;
   }
-  padding: 18px 24px 18px 24px;
+  margin-right: 5px;
+  padding: 6px 10px 6px 10px;
   display: table;
 `
 
@@ -96,7 +98,7 @@ const NavbarItem = styled.li`
   font-size: 19px;
   a {
     ${BaseAStyle}
-    padding: 18px 24px 18px 24px;
+    padding: 18px 15px 18px 15px;
     display: block;
   }
 `
@@ -151,23 +153,21 @@ const ButtonMenu = styled.button`
   text-decoration: none;
   margin: 0px;
   position: relative;
-  padding: 0 16px;
   white-space: nowrap;
 `
 
 const Item = styled.div`
   @media (min-width: 768px) {
     font-weight: normal;
+    a:hover {
+      border-bottom: 2px solid #484848;
+    }
   }
   padding: 8px 0;
   font-weight: 300;
   line-height: 1;
-  vertical-align: middle;
   a {
     border-bottom: 2px solid #fff;
-  }
-  a:hover {
-    border-bottom: 2px solid #484848;
   }
 `
 
@@ -183,9 +183,11 @@ const LogoIcon = styled(Logo) `
 `
 
 const LogoIconWrapper = styled.div`
-  color: #FF5A5F;
   vertical-align: middle;
-  font-size: 34px;
+  font-size: 40px;
+  @media screen and (min-width: 768px) {
+    font-size: 55px;
+  }
   display: inline-block;
 `
 
@@ -242,7 +244,6 @@ const SearchBox = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 0 8px;
   height: 50px;
-  width: 70%;
   margin-right: auto;
   white-space: nowrap;
   position: relative;
@@ -275,7 +276,9 @@ const Navbar = (props) => {
             <NavbarHeader>
               <NavbarBrand>
                 <LogoIconWrapper>
-                  <LogoIcon />
+                  <Link href="/page" as="/">
+                    <LogoIcon />
+                  </Link>
                 </LogoIconWrapper>
                 <ArrowDownWrapper htmlFor='Navbar-checkbox'>
                   <span />
