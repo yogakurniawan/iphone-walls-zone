@@ -43,6 +43,9 @@ const Div = styled.div`
   top: 0;
   width: 100%;
   padding: 10px;
+  ${LoveButton} {
+    float: right;
+  }
 `
 
 const Title = styled.div`
@@ -53,10 +56,6 @@ const Title = styled.div`
   padding-top: 95%;
   margin-left: 10px;
   margin-right: 10px;
-`
-
-const Info = styled.div`
-  text-align: right;
 `
 
 const Card = (props) => {
@@ -78,12 +77,10 @@ const Card = (props) => {
       <Wallpaper backgroundImage={data.thumbnail}>
         <Overlay>
           <Div>
-            <Info>
-              <LoveButton onClick={like}>
-                <span />
-                {data.total_like}
-              </LoveButton>
-            </Info>
+            <LoveButton onClick={like}>
+              <span />
+              {data.total_like}
+            </LoveButton>
           </Div>
           <Link href={href} as={as}>
             <Title>

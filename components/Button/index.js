@@ -36,19 +36,14 @@ const Heart = css`
   content: '\f004';
 `
 
-const Eye = css`
-  ${Icon}
-  content: '\f06e';
-`
-
 const ButtonStyle = css`
   user-select: none;
   border: 1px solid transparent;
   display: inline-block;
-  height: 32px;
-  padding: 0 11px;
+  height: 28px;
+  padding: 0 8px;
   font-size: 14px;
-  line-height: 29px;
+  line-height: 1;
   fill: currentColor;
   transition: all .2s ease-in-out;
   text-align: center;
@@ -58,18 +53,11 @@ const ButtonStyle = css`
   }
 `
 
-export const LoveButton = styled.button`
+const CommonButton = css`
   ${ButtonStyle}
   background-color: #ffffffb8;
   border-color: #ddd;
   color: #484848;
-  span {
-    color: red;
-    margin-right: 10px;
-    &:before {
-      ${Heart}
-    }
-  }
   &:hover {
     fill: currentColor;
     background-color: #fff;
@@ -78,6 +66,26 @@ export const LoveButton = styled.button`
   }
   &:active {
     box-shadow: 0 0 2px 2px #008489;
+  }
+`
+
+export const LoveButton = styled.button`
+  ${ButtonStyle}
+  ${CommonButton}
+  span {
+    color: red;
+    margin-right: 10px;
+    &:before {
+      ${Heart}
+    }
+  }
+`
+
+export const ModelButton = styled.button`
+  ${CommonButton}
+  background-color: #f1f1f1;
+  &:hover {
+    background-color: #e1e1e1;
   }
 `
 
