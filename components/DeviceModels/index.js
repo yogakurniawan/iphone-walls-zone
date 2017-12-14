@@ -12,7 +12,7 @@ export default class DeviceModels extends Component {
         <Col xs={12}>
           {
             models && models.map(model =>
-              <Link href={`model?model=${model.meta_route}`} as={`model/${model.meta_route}`}>
+              <Link href={`/model?model=${model.meta_route}`} as={`/model/${model.meta_route}`}>
                 <ModelButton>
                   {model.name}
                 </ModelButton>
