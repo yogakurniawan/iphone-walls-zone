@@ -8,10 +8,16 @@ export default class DeviceModels extends Component {
   render() {
     const { models } = this.props
     return (
-      <Row center="xs">
+      <Row style={{ margin: 10 }}>
         <Col xs={12}>
           {
-            models && models.map(model => <ModelButton><Link>{model.name}</Link></ModelButton>)
+            models && models.map(model =>
+              <Link href={`model?model=${model.meta_route}`} as={`model/${model.meta_route}`}>
+                <ModelButton>
+                  {model.name}
+                </ModelButton>
+              </Link>
+            )
           }
         </Col>
       </Row>

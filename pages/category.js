@@ -7,6 +7,7 @@ import axios from 'axios'
 import Dimensions from 'react-sizer'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import PageHOC from '../components/HOC/Page'
+import DeviceModels from '../components/DeviceModels'
 import { grab, parseJSON } from '../utils/request'
 import { BASE_API_URL, PER_PAGE } from '../constants/index'
 import Card from '../components/Card'
@@ -30,7 +31,7 @@ class Category extends Component {
   }
 
   render() {
-    const { title, description, wallpapers, width, page, category, total } = this.props;
+    const { title, models, description, wallpapers, width, page, category, total } = this.props;
     return (
       <Grid>
         <Helmet
@@ -41,6 +42,8 @@ class Category extends Component {
             { property: 'og:title', content: title }
           ]}
         />
+        <H1>Models</H1>        
+        <DeviceModels models={models} />        
         <H1>{category} wallpapers</H1>
         <Row style={{ margin: 10 }}>
           {
@@ -103,7 +106,8 @@ Category.getInitialProps = async ({ req, store, query }) => {
 }
 
 const mapStateToProps = state => ({
-  wallpapers: state.wallpaper.wallpapers
+  wallpapers: state.wallpaper.wallpapers,
+  models: state.model.models  
 })
 const mapDispatchToProps = {
   like: likeWallpaper

@@ -82,7 +82,9 @@ export const LoveButton = styled.button`
 `
 
 export const ModelButton = styled.button`
-  ${CommonButton}
+  ${ButtonStyle}
+  color: #484848;
+  margin-right: 5px;
   background-color: #f1f1f1;
   &:hover {
     background-color: #e1e1e1;
