@@ -114,10 +114,8 @@ const NavbarCheckbox = styled.input`
         overflow: visible;
       }
     }
-    &:checked {
-      ${NavbarMenu} {
-        height: 81px;
-      }
+    &:checked ~ ${NavbarMenu} {
+      height: 81px !important;
     }
   }
   display: none;
