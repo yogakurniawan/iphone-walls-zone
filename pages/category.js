@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 import Helmet from 'react-helmet'
 import 'isomorphic-fetch'
 import axios from 'axios'
@@ -14,11 +13,7 @@ import Card from '../components/Card'
 import Pagination from '../components/Pagination'
 import { likeWallpaper, loadWallpapers } from '../actions/wallpaper'
 import { setCurrentMenu } from '../actions/global'
-
-const H1 = styled.h1`
-  margin-left: 15px;
-  margin-bottom: 0;
-`
+import { H1 } from '../components/CommonStyled'
 
 class Category extends Component {
 
@@ -42,7 +37,6 @@ class Category extends Component {
             { property: 'og:title', content: title }
           ]}
         />
-        <H1>Models</H1>        
         <DeviceModels models={models} />        
         <H1>{category} wallpapers</H1>
         <Row style={{ margin: 10 }}>

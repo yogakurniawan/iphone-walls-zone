@@ -1,13 +1,11 @@
 const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
-const pathMatch = require('path-match')
 const routes = require('./routes')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
-const route = pathMatch()
 const handle = routes.getRequestHandler(app)
 
 app.prepare()

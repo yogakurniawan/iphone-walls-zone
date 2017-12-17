@@ -146,17 +146,15 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <title>Best iPhone Wallpapers - Free wallpapers for iPhone X, 8, and 7</title>
+          <meta charSet="utf-8" />
+          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+          <meta name="google-site-verification" content="FTBhgLUyRcmYTRn7Z1hv9g9VlnYHY4U9XFhxhWJ5084" />
           <meta name="apple-mobile-web-app-title" content="iPhoneWallsZone" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-          />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <meta name="keywords" content="HD, apple, iphone, iphone 4, iphone 5, iphone 6, iphone 4s, iphone 5s, iphone 6s, iphone 6 plus, iphone 6s plus, wallpapers, free, downloads" />
           <link rel='icon' href='/static/assets/favicon.ico' />
-          <link
-            rel="stylesheet"
-            href="/static/font-awesome-4.7.0/css/font-awesome.min.css"
-          />
+          <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css" />
           {this.props.styleTags}
         </Head>
         <body>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
+import ReactGA from 'react-ga';
+import Router from 'next/router';
 import initStore from '../../redux/initStore'
 import Navbar from '../Navbar'
 import Categories from '../Categories'
@@ -7,6 +9,8 @@ import { BASE_API_URL } from '../../constants/index'
 import { loadCategories } from '../../actions/category'
 import { setCurrentMenu } from '../../actions/global'
 import { loadModels } from '../../actions/model'
+
+const debug = process.env.NODE_ENV !== 'production';
 
 const page = WrappedComponent => {
   class Page extends Component {
@@ -34,6 +38,31 @@ const page = WrappedComponent => {
     constructor(props) {
       super(props)
       this.store = initStore(props.initialState)
+      this.trackPageview = this.trackPageview.bind(this)
+    }
+
+    componentDidMount() {
+      this.initGa();
+      this.trackPageview();
+      Router.router.events.on('routeChangeComplete', this.trackPageview);
+    }
+
+    componentWillUnmount() {
+      Router.router.events.off('routeChangeComplete', this.trackPageview);
+    }
+
+    initGa () {
+      if (!window.GA_INITIALIZED) {
+        ReactGA.initialize('UA-97981820-3', { debug });
+        window.GA_INITIALIZED = true;
+      }
+    }
+
+    trackPageview (path = document.location.pathname) {
+      if (path !== this.lastTrackedPath) {
+        ReactGA.pageview(path);
+        this.lastTrackedPath = path;
+      }
     }
 
     onClickMenu (menu) {

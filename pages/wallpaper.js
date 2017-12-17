@@ -228,6 +228,8 @@ Wallpaper.getInitialProps = async ({ req, store, query }) => {
     'filter[where][name][neq]': replaceDashWithSpace(name),
     'filter[limit]': 6
   }
+  wallpaper[0].total_view += 1;
+  await axios.put(API, wallpaper[0])
   const relatedWPResponse = await grab(API, { qs: qsRelatedWP })
   const relatedWallpapers = await parseJSON(relatedWPResponse)
   store.dispatch(loadWallpaper(wallpaper[0]))

@@ -4,9 +4,11 @@
   "description": "iPhone Wallpaper",
   "scripts": {
     "lint": "eslint .",
-    "start": "next",
+    "start": "next start",
+    "build": "next build",
     "clean": "rimraf node_modules/.cache/babel-loader",
-    "dev": "node server.js"
+    "start:dev": "NODE_ENV=dev node server.js",
+    "start:prod": "NODE_ENV=production node server.js"
   },
   "author": "Yoga Kurniawan",
   "license": "MIT",
@@ -20,6 +22,7 @@
     "prop-types": "^15.5.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-ga": "^2.3.5",
     "react-helmet": "^5.2.0",
     "react-no-ssr": "^1.1.0",
     "react-redux": "^5.0.6",

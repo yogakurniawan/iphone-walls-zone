@@ -85,6 +85,7 @@ export const ModelButton = styled.button`
   ${ButtonStyle}
   color: #484848;
   margin-right: 5px;
+  margin-top: 5px;
   background-color: #f1f1f1;
   &:hover {
     background-color: #e1e1e1;

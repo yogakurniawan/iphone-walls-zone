@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled, { css } from 'styled-components'
+import { connect } from 'react-redux'
+import Router from 'next/router'
+import { setSearchKeyword } from '../../actions/global'
 import Icon from '../Icon'
 import Link from '../Link'
 import Logo from './Logo.svg'
@@ -267,59 +270,89 @@ const ContainerFluid = styled.div`
   z-index: 10;
 `
 
-const Navbar = (props) => {
-  console.log(props)
-  return (
-    <ContainerFluid>
-      <NavbarFixed>
-        <NavbarCheckbox type="checkbox" id="Navbar-checkbox" />
-        <NavbarMenu>
-          <NavbarNavigation>
-            <NavbarHeader>
-              <NavbarBrand>
-                <LogoIconWrapper>
-                  <Link href="/page" as="/">
-                    <LogoIcon />
-                  </Link>
-                </LogoIconWrapper>
-                <ArrowDownWrapper htmlFor='Navbar-checkbox'>
-                  <span />
-                </ArrowDownWrapper>
-              </NavbarBrand>
-              <SearchBox>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <SearchInputWrapper>
-                  <SearchInput />
-                </SearchInputWrapper>
-              </SearchBox>
-            </NavbarHeader>
-            <NavbarItem>
-              <ButtonMenu onClick={() => props.onClickMenu('home')}>
-                <Item active={props.menu === 'home'}><Link href="/page" as="/">Home</Link></Item>
-              </ButtonMenu>
-            </NavbarItem>
-            <NavbarItem>
-              <ButtonMenu onClick={() => props.onClickMenu('top_liked')}>
-                <Item active={props.menu === 'top_liked'}><Link href="/page" as="/">Top Liked</Link></Item>
-              </ButtonMenu>
-            </NavbarItem>
-            <NavbarItem>
-              <ButtonMenu onClick={() => props.onClickMenu('top_viewed')}>
-                <Item active={props.menu === 'top_viewed'}><Link href="/page" as="/">Top Viewed</Link></Item>
-              </ButtonMenu>
-            </NavbarItem>
-            <NavbarItem>
-              <ButtonMenu onClick={() => props.onClickMenu('top_downloaded')}>
-                <Item active={props.menu === 'top_downloaded'}><Link href="/page" as="/">Top Downloaded</Link></Item>
-              </ButtonMenu>
-            </NavbarItem>
-          </NavbarNavigation>
-        </NavbarMenu>
-      </NavbarFixed>
-    </ContainerFluid>
-  )
+class Navbar extends Component {
+  constructor(props) {
+    super(props)
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleChange(event) {
+    this.props.setSearchKeyword(event.target.value)
+  }
+
+  handleSubmit(event) {
+    const { keyword } = this.props
+    event.preventDefault()
+    Router.push(`/search?search=${keyword}`, `/search/${keyword}`)
+  }
+
+  render() {
+    const { onClickMenu, menu, keyword } = this.props
+    return (
+      <ContainerFluid>
+        <NavbarFixed>
+          <NavbarCheckbox type="checkbox" id="Navbar-checkbox" />
+          <NavbarMenu>
+            <NavbarNavigation>
+              <NavbarHeader>
+                <NavbarBrand>
+                  <LogoIconWrapper>
+                    <Link href="/page" as="/">
+                      <LogoIcon />
+                    </Link>
+                  </LogoIconWrapper>
+                  <ArrowDownWrapper htmlFor='Navbar-checkbox'>
+                    <span />
+                  </ArrowDownWrapper>
+                </NavbarBrand>
+                <SearchBox>
+                  <form onSubmit={this.handleSubmit}>
+                    <SearchIconWrapper>
+                      <SearchIcon />
+                    </SearchIconWrapper>
+                    <SearchInputWrapper>
+                      <SearchInput type="text" value={keyword} onChange={this.handleChange} />
+                    </SearchInputWrapper>
+                  </form>
+                </SearchBox>
+              </NavbarHeader>
+              <NavbarItem>
+                <ButtonMenu onClick={() => onClickMenu('home')}>
+                  <Item active={menu === 'home'}><Link href="/page" as="/">Home</Link></Item>
+                </ButtonMenu>
+              </NavbarItem>
+              <NavbarItem>
+                <ButtonMenu onClick={() => onClickMenu('top_liked')}>
+                  <Item active={menu === 'top_liked'}><Link href="/page?page=top-liked" as="/top-liked">Top Liked</Link></Item>
+                </ButtonMenu>
+              </NavbarItem>
+              <NavbarItem>
+                <ButtonMenu onClick={() => onClickMenu('top_viewed')}>
+                  <Item active={menu === 'top_viewed'}><Link href="/page?page=top-viewed" as="/top-viewed">Top Viewed</Link></Item>
+                </ButtonMenu>
+              </NavbarItem>
+              <NavbarItem>
+                <ButtonMenu onClick={() => onClickMenu('top_downloaded')}>
+                  <Item active={menu === 'top_downloaded'}><Link href="/page?page=top-downloaded" as="/top-downloaded">Top Downloaded</Link></Item>
+                </ButtonMenu>
+              </NavbarItem>
+            </NavbarNavigation>
+          </NavbarMenu>
+        </NavbarFixed>
+      </ContainerFluid>
+    )
+  }
 }
 
-export default Navbar;
+const mapStateToProps = state => ({
+  keyword: state.global.keyword
+})
+
+const mapDispatchToProps = {
+  setSearchKeyword
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+

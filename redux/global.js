@@ -1,4 +1,4 @@
-import { SET_CURRENT_MENU } from '../constants/actionTypes'
+import { SET_CURRENT_MENU, SET_SEARCH_KEYWORD } from '../constants/actionTypes'
 
 function global(state = {
   menu: 'home'
@@ -9,6 +9,11 @@ function global(state = {
       return {
         ...state,
         menu: payload
+      }
+    case SET_SEARCH_KEYWORD:
+      return {
+        ...state,
+        keyword: payload
       }
     default:
       return state;
