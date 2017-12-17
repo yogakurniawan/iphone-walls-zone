@@ -152,6 +152,8 @@ export default class MyDocument extends Document {
           <meta name="apple-mobile-web-app-title" content="iPhoneWallsZone" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <meta property="og:url" content="http://www.iphonewallszone.com/" />
+          <meta property="og:image" content="https://storage.googleapis.com/iphonewallszone/featured-image.png" />
           <meta name="keywords" content="HD, apple, iphone, iphone 4, iphone 5, iphone 6, iphone 4s, iphone 5s, iphone 6s, iphone 6 plus, iphone 6s plus, wallpapers, free, downloads" />
           <link rel='icon' href='/static/assets/favicon.ico' />
           <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css" />
