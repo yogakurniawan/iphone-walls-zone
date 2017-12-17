@@ -34,6 +34,7 @@ const NavbarNavigation = styled.ul`
   flex-direction: column;
   list-style: none;
   padding-left: 0;
+  padding-right: 20px;
   margin: 0;
 `
 
