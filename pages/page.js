@@ -25,7 +25,7 @@ class Page extends Component {
   }
 
   render() {
-    const { total, models, wallpapers, width, page, title, description } = this.props
+    const { anotherTitle, total, models, wallpapers, width, page, title, description } = this.props
     return (
       <Grid>
         <Helmet
@@ -37,7 +37,7 @@ class Page extends Component {
           ]}
         />
         <DeviceModels models={models} />
-        <H1>Wallpapers</H1>
+        <H1>{anotherTitle} Wallpapers</H1>
         <Row style={{ margin: 10 }}>
           {
             wallpapers && wallpapers.map((wallpaper) =>
@@ -68,6 +68,7 @@ Page.getInitialProps = async ({ req, store, query }) => {
   const title = 'Best iPhone Wallpapers - Free wallpapers for iPhone X, 8, and 7'
   const description = 'Best iPhone wallpapers for iPhone 6, iPhone 5, iPhone 4, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPod Touch backgrounds.'
   let isHomePage = true
+  let anotherTitle;
   const queryParam = {
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
@@ -76,16 +77,19 @@ Page.getInitialProps = async ({ req, store, query }) => {
   if (query.page === 'top-liked') {
     queryParam['filter[order]'] = 'total_like DESC'
     isHomePage = false
+    anotherTitle = 'Top Liked'
   }
 
   if (query.page === 'top-viewed') {
     queryParam['filter[order]'] = 'total_view DESC'
     isHomePage = false
+    anotherTitle = 'Top Viewed'
   }
 
   if (query.page === 'top-downloaded') {
     queryParam['filter[order]'] = 'total_download DESC'
     isHomePage = false
+    anotherTitle = 'Top Downloaded'
   }
 
   if (req) {
@@ -106,7 +110,8 @@ Page.getInitialProps = async ({ req, store, query }) => {
     total: totalResult ? totalResult.count : 0,
     page,
     title,
-    description
+    description,
+    anotherTitle
   }
 }
 

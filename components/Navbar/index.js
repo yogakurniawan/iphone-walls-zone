@@ -163,15 +163,18 @@ const ButtonMenu = styled.button`
 const Item = styled.div`
   @media (min-width: 768px) {
     font-weight: normal;
-    a:hover {
-      border-bottom: 2px solid #484848;
+    a {
+      border-bottom: ${props => props.active ? '2px solid #484848 !important;' : '2px solid #fff !important;'}
+      &:hover {
+        border-bottom: 2px solid #484848 !important;
+      }
     }
   }
   padding: 8px 0;
   font-weight: 300;
   line-height: 1;
   a {
-    border-bottom: ${props => props.active ? '2px solid #484848;' : '2px solid #fff;'}
+    border-bottom: 2px solid #fff;
   }
 `
 
@@ -274,13 +277,27 @@ const ContainerFluid = styled.div`
 class Navbar extends Component {
   constructor(props) {
     super(props)
+    this.state = { toggleMenu: false }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleToggleMenu = this.handleToggleMenu.bind(this)
   }
 
   handleChange(event) {
     this.props.setSearchKeyword(event.target.value)
+  }
+
+  handleToggleMenu() {
+    this.setState({
+      toggleMenu: !this.state.toggleMenu
+    })
+  }
+
+  handleClickMenu(menu) {
+    const { onClickMenu } = this.props
+    onClickMenu(menu)
+    this.handleToggleMenu()
   }
 
   handleSubmit(event) {
@@ -290,11 +307,11 @@ class Navbar extends Component {
   }
 
   render() {
-    const { onClickMenu, menu, keyword } = this.props
+    const { menu, keyword } = this.props
     return (
       <ContainerFluid>
         <NavbarFixed>
-          <NavbarCheckbox type="checkbox" id="Navbar-checkbox" />
+          <NavbarCheckbox checked={this.state.toggleMenu} type="checkbox" id="Navbar-checkbox" />
           <NavbarMenu>
             <NavbarNavigation>
               <NavbarHeader>
@@ -304,7 +321,7 @@ class Navbar extends Component {
                       <LogoIcon />
                     </Link>
                   </LogoIconWrapper>
-                  <ArrowDownWrapper htmlFor='Navbar-checkbox'>
+                  <ArrowDownWrapper onClick={this.handleToggleMenu} htmlFor='Navbar-checkbox'>
                     <span />
                   </ArrowDownWrapper>
                 </NavbarBrand>
@@ -320,22 +337,22 @@ class Navbar extends Component {
                 </SearchBox>
               </NavbarHeader>
               <NavbarItem>
-                <ButtonMenu onClick={() => onClickMenu('home')}>
+                <ButtonMenu onClick={() => this.handleClickMenu('home')}>
                   <Item active={menu === 'home'}><Link href="/page" as="/">Home</Link></Item>
                 </ButtonMenu>
               </NavbarItem>
               <NavbarItem>
-                <ButtonMenu onClick={() => onClickMenu('top_liked')}>
+                <ButtonMenu onClick={() => this.handleClickMenu('top_liked')}>
                   <Item active={menu === 'top_liked'}><Link href="/page?page=top-liked" as="/top-liked">Top Liked</Link></Item>
                 </ButtonMenu>
               </NavbarItem>
               <NavbarItem>
-                <ButtonMenu onClick={() => onClickMenu('top_viewed')}>
+                <ButtonMenu onClick={() => this.handleClickMenu('top_viewed')}>
                   <Item active={menu === 'top_viewed'}><Link href="/page?page=top-viewed" as="/top-viewed">Top Viewed</Link></Item>
                 </ButtonMenu>
               </NavbarItem>
               <NavbarItem>
-                <ButtonMenu onClick={() => onClickMenu('top_downloaded')}>
+                <ButtonMenu onClick={() => this.handleClickMenu('top_downloaded')}>
                   <Item active={menu === 'top_downloaded'}><Link href="/page?page=top-downloaded" as="/top-downloaded">Top Downloaded</Link></Item>
                 </ButtonMenu>
               </NavbarItem>

@@ -20,7 +20,8 @@ const page = WrappedComponent => {
       const otherProps = WrappedComponent.getInitialProps
         ? await WrappedComponent.getInitialProps({ ...context, store })
         : {}
-      const resCategories = await fetch(`${BASE_API_URL}/Categories`)
+        
+      const resCategories = await fetch(`${BASE_API_URL}/Categories?filter[order]=name ASC`)
       let resModels;
       let models;
       if (!state.model.models || !state.model.models.length) {
