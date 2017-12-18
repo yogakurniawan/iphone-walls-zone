@@ -28,42 +28,44 @@ class Search extends Component {
   render() {
     const { total, search, models, wallpapers, width, page, title, description, keywords } = this.props
     return (
-      <Grid>
-        <Helmet
-          htmlAttributes={{ lang: 'en' }}
-          title={title}
-          meta={[
-            { name: 'description', content: description },
-            { name: 'keywords', content: keywords },
-            { property: 'og:title', content: title }
-          ]}
-        />
-        <DeviceModels models={models} />        
-        <H1>{search} wallpapers</H1>
-        <H3>{total} free {search} wallpapers</H3>
-        <Row style={{ margin: 10 }}>
-          {
-            wallpapers && wallpapers.map((wallpaper) =>
-              <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
-                <Card like={(e) => this.like(e, wallpaper)} data={wallpaper} />
-              </Col>
-            )
-          }
-        </Row>
-        <Row center="xs" style={{ margin: 'auto' }}>
-          <Col xs={12}>
-            <Pagination
-              routeHref={`search?search=${search}`}
-              routeAs={`search/${search}`}
-              screenWidth={width}
-              page={page}
-              perPage={12}
-              total={total}
-              setPage={this.goToPage}
-            />
-          </Col>
-        </Row>
-      </Grid>
+      <div>
+        <DeviceModels models={models} />              
+        <Grid>
+          <Helmet
+            htmlAttributes={{ lang: 'en' }}
+            title={title}
+            meta={[
+              { name: 'description', content: description },
+              { name: 'keywords', content: keywords },
+              { property: 'og:title', content: title }
+            ]}
+          />
+          <H1>{search} wallpapers</H1>
+          <H3>{total} free {search} wallpapers</H3>
+          <Row style={{ margin: 10 }}>
+            {
+              wallpapers && wallpapers.map((wallpaper) =>
+                <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
+                  <Card like={(e) => this.like(e, wallpaper)} data={wallpaper} />
+                </Col>
+              )
+            }
+          </Row>
+          <Row center="xs" style={{ margin: 'auto' }}>
+            <Col xs={12}>
+              <Pagination
+                routeHref={`search?search=${search}`}
+                routeAs={`search/${search}`}
+                screenWidth={width}
+                page={page}
+                perPage={12}
+                total={total}
+                setPage={this.goToPage}
+              />
+            </Col>
+          </Row>
+        </Grid>
+      </div>
     )
   }
 }

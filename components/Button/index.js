@@ -85,10 +85,14 @@ export const ModelButton = styled.button`
   ${ButtonStyle}
   color: #484848;
   margin-right: 5px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   margin-top: 5px;
-  background-color: #f1f1f1;
+  border: 1px solid #dce0e0;
+  background-color: none;
   &:hover {
-    background-color: #e1e1e1;
+    background: #F2F2F2;
+    border-color: #F2F2F2;
   }
 `
 

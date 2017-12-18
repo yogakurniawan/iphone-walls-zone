@@ -28,40 +28,42 @@ class Category extends Component {
   render() {
     const { title, models, description, wallpapers, width, page, category, total } = this.props;
     return (
-      <Grid>
-        <Helmet
-          htmlAttributes={{ lang: 'en' }}
-          title={title}
-          meta={[
-            { name: 'description', content: description },
-            { property: 'og:title', content: title }
-          ]}
-        />
-        <DeviceModels models={models} />        
-        <H1>{category} wallpapers</H1>
-        <Row style={{ margin: 10 }}>
-          {
-            wallpapers && wallpapers.map((wallpaper) =>
-              <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
-                <Card like={(e) => this.like(e, wallpaper)} data={wallpaper} />
-              </Col>
-            )
-          }
-        </Row>
-        <Row center="xs" style={{ margin: 'auto' }}>
-          <Col xs={12}>
-            <Pagination
-              routeHref={`category?category=${category}`}
-              routeAs={`category/${category}`}
-              screenWidth={width}
-              page={page}
-              perPage={12}
-              total={total}
-              setPage={this.goToPage}
-            />
-          </Col>
-        </Row>
-      </Grid>
+      <div>
+        <DeviceModels models={models} />      
+        <Grid>
+          <Helmet
+            htmlAttributes={{ lang: 'en' }}
+            title={title}
+            meta={[
+              { name: 'description', content: description },
+              { property: 'og:title', content: title }
+            ]}
+          />
+          <H1>{category} wallpapers</H1>
+          <Row style={{ margin: 10 }}>
+            {
+              wallpapers && wallpapers.map((wallpaper) =>
+                <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
+                  <Card like={(e) => this.like(e, wallpaper)} data={wallpaper} />
+                </Col>
+              )
+            }
+          </Row>
+          <Row center="xs" style={{ margin: 'auto' }}>
+            <Col xs={12}>
+              <Pagination
+                routeHref={`category?category=${category}`}
+                routeAs={`category/${category}`}
+                screenWidth={width}
+                page={page}
+                perPage={12}
+                total={total}
+                setPage={this.goToPage}
+              />
+            </Col>
+          </Row>
+        </Grid>
+      </div>
     )
   }
 }

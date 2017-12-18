@@ -14,10 +14,10 @@ app.prepare()
     // Be sure to pass `true` as the second argument to `url.parse`.
     // This tells it to parse the query portion of the URL.
     const parsedUrl = parse(req.url, true)
-    const { pathname, query } = parsedUrl
+    const { pathname } = parsedUrl
 
     if (pathname === '/') {
-      app.render(req, res, '/page', query)
+      app.render(req, res, '/model', { model: 'iphone6' })
     } else {
       handle(req, res, parsedUrl)
     }

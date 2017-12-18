@@ -11,6 +11,7 @@ routes.add({name: 'modelPaging', pattern: '/model/:model/page/:page', page: 'mod
 routes.add({name: 'modelNoPaging', pattern: '/model/:model', page: 'model'})
 routes.add({name: 'category', pattern: '/category', page: 'page'})
 routes.add({name: 'search', pattern: '/search', page: 'page'})
+routes.add({name: 'model', pattern: '/model', page: 'page'})
 routes.add({name: 'top-liked', pattern: '/top-liked', page: 'page'})
 routes.add({name: 'top-viewed', pattern: '/top-viewed', page: 'page'})
 routes.add({name: 'top-downloaded', pattern: '/top-downloaded', page: 'page'})

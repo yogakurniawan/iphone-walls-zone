@@ -7,7 +7,7 @@
     "start": "next start",
     "build": "next build",
     "clean": "rimraf node_modules/.cache/babel-loader",
-    "start:dev": "NODE_ENV=dev node server.js",
+    "start:dev": "node server.js",
     "start:prod": "NODE_ENV=production node server.js"
   },
   "author": "Yoga Kurniawan",

@@ -315,7 +315,7 @@ class Navbar extends Component {
               <NavbarHeader>
                 <NavbarBrand>
                   <LogoIconWrapper>
-                    <Link href="/page" as="/">
+                    <Link href="/model?model=iphone6" as="/">
                       <LogoIcon />
                     </Link>
                   </LogoIconWrapper>
@@ -336,7 +336,7 @@ class Navbar extends Component {
               </NavbarHeader>
               <NavbarItem>
                 <ButtonMenu onClick={() => this.handleClickMenu('home')}>
-                  <Item active={menu === 'home'}><Link href="/page" as="/">Home</Link></Item>
+                  <Item active={menu === 'home'}><Link href="/model?model=iphone6" as="/">Home</Link></Item>
                 </ButtonMenu>
               </NavbarItem>
               <NavbarItem>

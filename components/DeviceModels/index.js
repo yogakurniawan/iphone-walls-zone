@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Col } from 'react-styled-flexboxgrid'
 import Link from '../Link'
-import { StandardRow } from '../CommonStyled'
+import { DeviceModelsRow } from '../CommonStyled'
 import { ModelButton } from '../Button'
 
 export default class DeviceModels extends Component {
   render() {
     const { models } = this.props
     return (
-      <StandardRow center="xs">
+      <DeviceModelsRow>
         <Col xs={12}>
           {
             models && models.map(model =>
@@ -20,7 +20,7 @@ export default class DeviceModels extends Component {
             )
           }
         </Col>
-      </StandardRow>
+      </DeviceModelsRow>
     )
   }
 }
