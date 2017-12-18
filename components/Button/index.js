@@ -81,6 +81,11 @@ export const LoveButton = styled.button`
   }
 `
 
+export const ModelButtonOnCard = styled.button`
+  ${ButtonStyle}
+  ${CommonButton}
+`
+
 export const ModelButton = styled.button`
   ${ButtonStyle}
   color: #484848;

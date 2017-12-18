@@ -46,7 +46,7 @@ class Search extends Component {
             {
               wallpapers && wallpapers.map((wallpaper) =>
                 <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
-                  <Card like={(e) => this.like(e, wallpaper)} data={wallpaper} />
+                  <Card like={(e) => this.like(e, wallpaper)} data={wallpaper} models={models} />
                 </Col>
               )
             }

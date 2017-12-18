@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from '../Link'
-import { LoveButton } from '../Button'
+import { LoveButton, ModelButtonOnCard } from '../Button'
 import { replaceSpaceWithDash } from '../../utils/common'
 
 const Overlay = styled.div`
@@ -36,6 +36,9 @@ const Name = styled.div`
   color: white;
   font-size: 1em;
   font-weight: 700;
+  @media screen and (max-width: 320px) {
+    font-size: 0.85em;
+  }
 `
 
 const Div = styled.div`
@@ -43,8 +46,11 @@ const Div = styled.div`
   top: 0;
   width: 100%;
   padding: 10px;
-  ${LoveButton} {
-    float: right;
+  text-align: right;
+  button {
+    margin-right: 5px;
+    margin-bottom: 2px;
+    display: inline-block;
   }
 `
 
@@ -59,9 +65,10 @@ const Title = styled.div`
 `
 
 const Card = (props) => {
-  const { data, detailMode, like } = props;
+  const { data, detailMode, like, models } = props;
   const href = `/wallpaper?name=${replaceSpaceWithDash(data.name)}`
   const as = `/wallpaper/${replaceSpaceWithDash(data.name)}`
+  const model = models.find(model => model.id === data.iphoneModelId)
   const nameReplaced = data.name.replace(/(iPhone SE|HD|iPhone 4s|iPhone 5s|iPhone 6s|iPhone 6|Plus|iPhone 5|iPhone 3|iPhone 4|Wallpaper)/ig, "")
   if (detailMode) {
     return <Wrapper>
@@ -77,6 +84,9 @@ const Card = (props) => {
       <Wallpaper backgroundImage={data.thumbnail}>
         <Overlay>
           <Div>
+            <ModelButtonOnCard>
+              {model.name}
+            </ModelButtonOnCard>
             <LoveButton onClick={like}>
               <span />
               {data.total_like}
