@@ -29,7 +29,7 @@ class Category extends Component {
     const { title, models, description, wallpapers, width, page, category, total } = this.props;
     return (
       <div>
-        <DeviceModels models={models} />      
+        <DeviceModels models={models} />
         <Grid>
           <Helmet
             htmlAttributes={{ lang: 'en' }}
@@ -70,27 +70,35 @@ class Category extends Component {
 
 Category.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
-  const category = query && query.category
-  const extractedCategory = category && category.split("|")
-  const categoryId = extractedCategory && extractedCategory[0]
-  const categoryName = extractedCategory && decodeURI(extractedCategory[1])
-  const title = `Free ${categoryName} iPhone Wallpapers and iPod Touch Wallpapers HD`
-  const description = `Download free ${categoryName} iPhone Wallpapers and iPod Touch Wallpapers HD`
+  const state = store.getState()
+  const model = state.global.model
+  const category = query && decodeURI(query.category)
+  const title = `Free ${category} iPhone Wallpapers and iPod Touch Wallpapers HD`
+  const description = `Download free ${category} iPhone Wallpapers and iPod Touch Wallpapers HD`
   const queryParam = {
-    'filter[where][categoryId]': categoryId,
+    'filter[where][and][0][category]': category,
+    'filter[where][and][1][model]': model,
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
   };
+
   if (!category) {
-    delete queryParam['filter[where][categoryId]']
+    delete queryParam['filter[where][and][0][category]']
+    delete queryParam['filter[where][and][1][model]']
   }
+
   if (req) {
     Helmet.renderStatic()
   }
-  let api = `${BASE_API_URL}/Wallpapers`
-  const countApi = `${api}/count?where[categoryId]=${categoryId}`
+
+  const api = `${BASE_API_URL}/Wallpapers`
+  const countQueryParam = {
+    'where[and][0][category]': category,
+    'where[and][1][model]': model
+  }
+  const countApi = `${api}/count`
   const response = await grab(api, { qs: queryParam })
-  const totalResponse = await grab(countApi)
+  const totalResponse = await grab(countApi, { qs: countQueryParam })
   const totalResult = await parseJSON(totalResponse)
   const result = await parseJSON(response)
   store.dispatch(loadWallpapers(result))
@@ -98,7 +106,7 @@ Category.getInitialProps = async ({ req, store, query }) => {
   return {
     total: totalResult.count,
     page,
-    category: categoryName,
+    category,
     title,
     description
   }

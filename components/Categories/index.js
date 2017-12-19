@@ -154,10 +154,7 @@ export default class SwipeToSlide extends Component {
             slidesToShow: 5
           }
         }
-      ],
-      afterChange: function (index) {
-        console.log(`Slider Changed to: ${index + 1}, background: #222; color: #bada55`);
-      }
+      ]
     };
     const Loading = () => (<Div>Loading...</Div>)
     return (
@@ -168,7 +165,7 @@ export default class SwipeToSlide extends Component {
               categories && categories.map((category) =>
                 <div key={category.id}>
                   <Category backgroundImage={category.background_image}>
-                    <Link href={`/category?category=${category.id}|${category.name}`} as={`/category/${category.name}`}>
+                    <Link href={`/category?category=${category.name}`} as={`/category/${category.name}`}>
                       {category.name}
                     </Link>
                   </Category>

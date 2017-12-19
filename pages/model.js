@@ -12,7 +12,7 @@ import { BASE_API_URL, PER_PAGE } from '../constants/index'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination'
 import { likeWallpaper, loadWallpapers } from '../actions/wallpaper'
-import { setCurrentMenu } from '../actions/global'
+import { setCurrentMenu, setModel } from '../actions/global'
 import { H1 } from '../components/CommonStyled'
 
 class Model extends Component {
@@ -27,6 +27,7 @@ class Model extends Component {
 
   render() {
     const { title, models, description, wallpapers, width, page, model, total } = this.props;
+    const getNewTitle = models.find(m => model === m.meta_route)    
     return (
       <div>
         <DeviceModels models={models} />
@@ -39,7 +40,7 @@ class Model extends Component {
               { property: 'og:title', content: title }
             ]}
           />
-          <H1>{model} wallpapers</H1>
+          <H1>{getNewTitle.name} wallpapers</H1>
           <Row style={{ margin: 10 }}>
             {
               wallpapers && wallpapers.map((wallpaper) =>
@@ -69,36 +70,34 @@ class Model extends Component {
 }
 
 Model.getInitialProps = async ({ req, store, query }) => {
-  const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
-  const model = query && query.model
-  const extractedModel = model && model.split("|")
-  const modelId = extractedModel && extractedModel[0]
-  const modelName = extractedModel && decodeURI(extractedModel[1])
-  const title = `Free ${modelName} iPhone Wallpapers and iPod Touch Wallpapers HD`
-  const description = `Download free ${modelName} iPhone Wallpapers and iPod Touch Wallpapers HD`
+  const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1  
+  const model = query && decodeURI(query.model)
+  const title = `Free ${model} iPhone Wallpapers and iPod Touch Wallpapers HD`
+  const description = `Download free ${model} iPhone Wallpapers and iPod Touch Wallpapers HD`
   const queryParam = {
-    'filter[where][iphoneModelId]': modelId,
+    'filter[where][model]': decodeURI(model),    
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
   };
   if (!model) {
-    delete queryParam['filter[where][iphoneModelId]']
+    delete queryParam['filter[where][model]']
   }
   if (req) {
     Helmet.renderStatic()
   }
   let api = `${BASE_API_URL}/Wallpapers`
-  const countApi = `${api}/count?where[iphoneModelId]=${modelId}`
+  const countApi = `${api}/count?where[model]=${model}`
   const response = await grab(api, { qs: queryParam })
   const totalResponse = await grab(countApi)
   const totalResult = await parseJSON(totalResponse)
   const result = await parseJSON(response)
   store.dispatch(loadWallpapers(result))
   store.dispatch(setCurrentMenu('model'))
+  store.dispatch(setModel(model))
   return {
     total: totalResult.count,
     page,
-    model: modelName,
+    model,
     title,
     description
   }

@@ -19,7 +19,7 @@ class DeviceModels extends Component {
         <Col xs={12}>
           {
             models && models.map(model =>
-              <Link key={model.name} href={`/model?model=${model.id}|${model.name}`} as={`/model/${model.meta_route}`}>
+              <Link key={model.name} href={`/model?model=${model.meta_route}`} as={`/model/${model.meta_route}`}>
                 <ModelButton onClick={() => this.handleClick(model.meta_route)} active={model.meta_route === currentModel}>
                   {model.name}
                 </ModelButton>

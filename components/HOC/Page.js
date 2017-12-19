@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import ReactGA from 'react-ga';
-import Router from 'next/router';
+import ReactGA from 'react-ga'
+import Router from 'next/router'
 import initStore from '../../redux/initStore'
 import Navbar from '../Navbar'
 import Categories from '../Categories'
 import { BASE_API_URL } from '../../constants/index'
 import { loadCategories } from '../../actions/category'
-import { setCurrentMenu, setModel } from '../../actions/global'
+import { setCurrentMenu } from '../../actions/global'
 import { loadModels } from '../../actions/model'
 
 const debug = process.env.NODE_ENV !== 'production';
@@ -17,7 +17,6 @@ const page = WrappedComponent => {
     static async getInitialProps(context) {
       const store = initStore()
       const state = store.getState()
-      const model = context.query && context.query.model
       const otherProps = WrappedComponent.getInitialProps
         ? await WrappedComponent.getInitialProps({ ...context, store })
         : {}
@@ -33,9 +32,6 @@ const page = WrappedComponent => {
       }
       const categories = await resCategories.json()
       store.dispatch(loadCategories(categories))
-      if (model) {
-        store.dispatch(setModel(model))
-      }
       return { ...otherProps, categories, models, initialState: store.getState() }
     }
 
