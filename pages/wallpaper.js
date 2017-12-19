@@ -9,6 +9,7 @@ import PageHOC from '../components/HOC/Page'
 import { LoveButton, DownloadButton } from '../components/Button'
 import Icon from '../components/Icon'
 import Card from '../components/Card'
+import Link from '../components/Link'
 import { grab, parseJSON } from '../utils/request'
 import { replaceDashWithSpace } from '../utils/common'
 import { BASE_API_URL } from '../constants/index'
@@ -32,6 +33,19 @@ const Related = styled.div`
   font-weight: normal;
   font-size: 1.2em;
   margin-bottom: 10px;
+  &:after {
+    content: ' ';
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+  div:first-child {
+    float: left;
+  }
+  div:last-child {
+    float: right;
+  }
 `
 
 const Div = css`
@@ -193,7 +207,10 @@ class Wallpaper extends Component {
         </Row>
         <RowStyled>
           <RelatedWPCol xs={12}>
-            <Related>Related Wallpapers</Related>
+            <Related>
+              <div>Related Wallpapers</div>
+              <div><Link href={`/category?category=${wallpaper.category}`} as={`/category/${wallpaper.category}`}>See All</Link></div>              
+            </Related>
             <Row>
               {
                 relatedWallpapers && relatedWallpapers.map((wallpaper) =>
