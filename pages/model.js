@@ -27,7 +27,6 @@ class Model extends Component {
 
   render() {
     const { title, models, description, wallpapers, width, page, model, total } = this.props;
-    const getNewTitle = models.find(m => model === m.meta_route)
     return (
       <div>
         <DeviceModels models={models} />
@@ -40,7 +39,7 @@ class Model extends Component {
               { property: 'og:title', content: title }
             ]}
           />
-          <H1>{getNewTitle.name} wallpapers</H1>
+          <H1>{model} wallpapers</H1>
           <Row style={{ margin: 10 }}>
             {
               wallpapers && wallpapers.map((wallpaper) =>
@@ -71,22 +70,25 @@ class Model extends Component {
 
 Model.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
-  const model = query && decodeURI(query.model)
-  const title = `Free ${model} iPhone Wallpapers and iPod Touch Wallpapers HD`
-  const description = `Download free ${model} iPhone Wallpapers and iPod Touch Wallpapers HD`
+  const model = query && query.model
+  const extractedModel = model && model.split("|")
+  const modelId = extractedModel && extractedModel[0]
+  const modelName = extractedModel && decodeURI(extractedModel[1])
+  const title = `Free ${modelName} iPhone Wallpapers and iPod Touch Wallpapers HD`
+  const description = `Download free ${modelName} iPhone Wallpapers and iPod Touch Wallpapers HD`
   const queryParam = {
-    'filter[where][model]': decodeURI(model),
+    'filter[where][iphoneModelId]': modelId,
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
   };
   if (!model) {
-    delete queryParam['filter[where][model]']
+    delete queryParam['filter[where][iphoneModelId]']
   }
   if (req) {
     Helmet.renderStatic()
   }
   let api = `${BASE_API_URL}/Wallpapers`
-  const countApi = `${api}/count?where[model]=${model}`
+  const countApi = `${api}/count?where[iphoneModelId]=${modelId}`
   const response = await grab(api, { qs: queryParam })
   const totalResponse = await grab(countApi)
   const totalResult = await parseJSON(totalResponse)
@@ -96,7 +98,7 @@ Model.getInitialProps = async ({ req, store, query }) => {
   return {
     total: totalResult.count,
     page,
-    model,
+    model: modelName,
     title,
     description
   }
@@ -104,7 +106,7 @@ Model.getInitialProps = async ({ req, store, query }) => {
 
 const mapStateToProps = state => ({
   wallpapers: state.wallpaper.wallpapers,
-  models: state.model.models  
+  models: state.model.models
 })
 const mapDispatchToProps = {
   like: likeWallpaper

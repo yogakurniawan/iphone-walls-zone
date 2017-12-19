@@ -109,7 +109,7 @@ Search.getInitialProps = async ({ req, store, query }) => {
 
 const mapStateToProps = state => ({
   wallpapers: state.wallpaper.wallpapers,
-  models: state.model.models  
+  models: state.model.models
 })
 const mapDispatchToProps = {
   like: likeWallpaper

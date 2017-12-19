@@ -7,7 +7,7 @@ import Helmet from 'react-helmet'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import PageHOC from '../components/HOC/Page'
 import { LoveButton, DownloadButton } from '../components/Button'
-import Icon from '../components/Icon'
+import Icon, { AngleRight } from '../components/Icon'
 import Card from '../components/Card'
 import Link from '../components/Link'
 import { grab, parseJSON } from '../utils/request'
@@ -45,6 +45,16 @@ const Related = styled.div`
   }
   div:last-child {
     float: right;
+    > a {
+      color: #3cb46e;
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: #3cb46e;
+      }
+      > span:before {
+        ${AngleRight}
+      }
+    }
   }
 `
 
@@ -209,7 +219,9 @@ class Wallpaper extends Component {
           <RelatedWPCol xs={12}>
             <Related>
               <div>Related Wallpapers</div>
-              <div><Link href={`/category?category=${wallpaper.category}`} as={`/category/${wallpaper.category}`}>See All</Link></div>              
+              <div>
+                <Link href={`/category?category=${wallpaper.category}`} as={`/category/${wallpaper.category}`}>See all <span /></Link>
+              </div>              
             </Related>
             <Row>
               {

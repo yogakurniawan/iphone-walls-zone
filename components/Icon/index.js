@@ -9,4 +9,9 @@ const Icon = css`
   -moz-osx-font-smoothing: grayscale;
 `
 
+export const AngleRight = css`
+  ${Icon}
+  content: '\f105';
+`
+
 export default Icon

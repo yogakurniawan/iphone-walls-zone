@@ -69,7 +69,11 @@ const Card = (props) => {
   const href = `/wallpaper?name=${replaceSpaceWithDash(data.name)}`
   const as = `/wallpaper/${replaceSpaceWithDash(data.name)}`
   const model = models && models.find(model => model.id === data.iphoneModelId)
-  const nameReplaced = data.name.replace(/(iPhone SE|HD|iPhone 7|iPhone 4s|iPhone 5s|iPhone 6s|iPhone 6|Plus|iPhone 5|iPhone 3|iPhone 4|Wallpaper)/ig, "")
+  let nameReplaced = data.name.replace(/(iPhone)/ig, "")
+  nameReplaced = nameReplaced.replace(/(3|4|4s|5|5s|6|6s|SE|7)/ig, "")
+  nameReplaced = nameReplaced.replace(/(Wallpaper)/ig, "")
+  nameReplaced = nameReplaced.replace(/(Plus)/ig, "")
+  nameReplaced = nameReplaced.replace(/(HD)/ig, "")
   if (detailMode) {
     return <Wrapper>
       <Link href={href} as={as}>

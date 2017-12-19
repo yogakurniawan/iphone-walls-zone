@@ -1,7 +1,8 @@
-import { SET_CURRENT_MENU, SET_SEARCH_KEYWORD } from '../constants/actionTypes'
+import { SET_CURRENT_MENU, SET_SEARCH_KEYWORD, SET_MODEL } from '../constants/actionTypes'
 
 function global(state = {
-  menu: 'home'
+  menu: 'home',
+  model: 'iphone6'
 }, action) {
   const { payload, type } = action;
   switch (type) {
@@ -14,6 +15,11 @@ function global(state = {
       return {
         ...state,
         keyword: payload
+      }
+    case SET_MODEL:
+      return {
+        ...state,
+        model: payload
       }
     default:
       return state;

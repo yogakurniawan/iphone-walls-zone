@@ -70,22 +70,25 @@ class Category extends Component {
 
 Category.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
-  const category = query && decodeURI(query.category)
-  const title = `Free ${category} iPhone Wallpapers and iPod Touch Wallpapers HD`
-  const description = `Download free ${category} iPhone Wallpapers and iPod Touch Wallpapers HD`
+  const category = query && query.category
+  const extractedCategory = category && category.split("|")
+  const categoryId = extractedCategory && extractedCategory[0]
+  const categoryName = extractedCategory && decodeURI(extractedCategory[1])
+  const title = `Free ${categoryName} iPhone Wallpapers and iPod Touch Wallpapers HD`
+  const description = `Download free ${categoryName} iPhone Wallpapers and iPod Touch Wallpapers HD`
   const queryParam = {
-    'filter[where][category]': decodeURI(category),
+    'filter[where][categoryId]': categoryId,
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
   };
   if (!category) {
-    delete queryParam['filter[where][category]']
+    delete queryParam['filter[where][categoryId]']
   }
   if (req) {
     Helmet.renderStatic()
   }
   let api = `${BASE_API_URL}/Wallpapers`
-  const countApi = `${api}/count?where[category]=${category}`
+  const countApi = `${api}/count?where[categoryId]=${categoryId}`
   const response = await grab(api, { qs: queryParam })
   const totalResponse = await grab(countApi)
   const totalResult = await parseJSON(totalResponse)
@@ -95,7 +98,7 @@ Category.getInitialProps = async ({ req, store, query }) => {
   return {
     total: totalResult.count,
     page,
-    category,
+    category: categoryName,
     title,
     description
   }
@@ -103,7 +106,7 @@ Category.getInitialProps = async ({ req, store, query }) => {
 
 const mapStateToProps = state => ({
   wallpapers: state.wallpaper.wallpapers,
-  models: state.model.models  
+  models: state.model.models
 })
 const mapDispatchToProps = {
   like: likeWallpaper

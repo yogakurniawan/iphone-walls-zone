@@ -94,10 +94,10 @@ export const ModelButton = styled.button`
   padding-bottom: 6px;
   margin-top: 5px;
   border: 1px solid #dce0e0;
-  background-color: none;
+  background-color: ${props => props.active ? '#dedede' : 'none'};
   &:hover {
-    background: #F2F2F2;
-    border-color: #F2F2F2;
+    background: #dedede;
+    border-color: #dedede;
   }
 `
 

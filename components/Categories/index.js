@@ -168,7 +168,7 @@ export default class SwipeToSlide extends Component {
               categories && categories.map((category) =>
                 <div key={category.id}>
                   <Category backgroundImage={category.background_image}>
-                    <Link href={`/category?category=${category.name}`} as={`/category/${category.name}`}>
+                    <Link href={`/category?category=${category.id}|${category.name}`} as={`/category/${category.name}`}>
                       {category.name}
                     </Link>
                   </Category>

@@ -305,7 +305,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { menu, keyword } = this.props
+    const { menu, keyword, currentModel } = this.props
     return (
       <ContainerFluid>
         <NavbarFixed>
@@ -315,7 +315,7 @@ class Navbar extends Component {
               <NavbarHeader>
                 <NavbarBrand>
                   <LogoIconWrapper>
-                    <Link href="/model?model=iphone6" as="/">
+                    <Link href={`/model?model=${currentModel}`} as="/">
                       <LogoIcon />
                     </Link>
                   </LogoIconWrapper>
@@ -336,7 +336,7 @@ class Navbar extends Component {
               </NavbarHeader>
               <NavbarItem>
                 <ButtonMenu onClick={() => this.handleClickMenu('home')}>
-                  <Item active={menu === 'home'}><Link href="/model?model=iphone6" as="/">Home</Link></Item>
+                  <Item active={menu === 'home'}><Link href={`/model?model=${currentModel}`} as="/">Home</Link></Item>
                 </ButtonMenu>
               </NavbarItem>
               <NavbarItem>

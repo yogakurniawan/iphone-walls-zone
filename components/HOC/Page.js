@@ -7,7 +7,7 @@ import Navbar from '../Navbar'
 import Categories from '../Categories'
 import { BASE_API_URL } from '../../constants/index'
 import { loadCategories } from '../../actions/category'
-import { setCurrentMenu } from '../../actions/global'
+import { setCurrentMenu, setModel } from '../../actions/global'
 import { loadModels } from '../../actions/model'
 
 const debug = process.env.NODE_ENV !== 'production';
@@ -17,10 +17,10 @@ const page = WrappedComponent => {
     static async getInitialProps(context) {
       const store = initStore()
       const state = store.getState()
+      const model = context.query && context.query.model
       const otherProps = WrappedComponent.getInitialProps
         ? await WrappedComponent.getInitialProps({ ...context, store })
         : {}
-        
       const resCategories = await fetch(`${BASE_API_URL}/Categories?filter[order]=name ASC`)
       let resModels;
       let models;
@@ -33,6 +33,9 @@ const page = WrappedComponent => {
       }
       const categories = await resCategories.json()
       store.dispatch(loadCategories(categories))
+      if (model) {
+        store.dispatch(setModel(model))
+      }
       return { ...otherProps, categories, models, initialState: store.getState() }
     }
 
@@ -78,7 +81,7 @@ const page = WrappedComponent => {
       return (
         <Provider store={store}>
           <div>
-            <Navbar menu={state.global.menu} onClickMenu={this.onClickMenu} />
+            <Navbar menu={state.global.menu} onClickMenu={this.onClickMenu} currentModel={state.global.model} />
             <Categories categories={categories || initialState.categories} />
             <WrappedComponent {...rest} />
           </div>
