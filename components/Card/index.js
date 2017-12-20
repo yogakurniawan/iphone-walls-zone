@@ -32,7 +32,7 @@ export const Wallpaper = styled.div`
   }
 `
 
-const Name = styled.div`
+const Name = styled.span`
   color: white;
   font-size: 1em;
   font-weight: 700;
@@ -61,9 +61,9 @@ const Title = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   width: 100%;
-  &:hover {
+  &:hover span {
     text-decoration: underline;
-    text-decoration-color: #FFFFFF;
+    color: #FFFFFF;
   }
 `
 
