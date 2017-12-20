@@ -60,8 +60,9 @@ const Title = styled.div`
   bottom: 15px;
   height: 80%;
   padding-top: 95%;
-  margin-left: 10px;
-  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
 `
 
 const Card = (props) => {
@@ -70,10 +71,10 @@ const Card = (props) => {
   const as = `/wallpaper/${replaceSpaceWithDash(data.name)}`
   const model = models && models.find(model => model.id === data.iphoneModelId)
   let nameReplaced = data.name.replace(/(iPhone)/ig, "")
-  nameReplaced = nameReplaced.replace(/(3|4|4s|5|5s|6|6s|SE|7)/ig, "")
+  nameReplaced = nameReplaced.replace(/(3|4|4s|5|5s|6|6s|SE|7)/g, "")
   nameReplaced = nameReplaced.replace(/(Wallpaper)/ig, "")
   nameReplaced = nameReplaced.replace(/(Plus)/ig, "")
-  nameReplaced = nameReplaced.replace(/(HD)/ig, "")
+  nameReplaced = nameReplaced.replace(/(HD)/g, "")
   if (detailMode) {
     return <Wrapper>
       <Link href={href} as={as}>
@@ -89,7 +90,7 @@ const Card = (props) => {
         <Overlay>
           <Div>
             <ModelButtonOnCard>
-              {model.name}
+              {model.name.replace(/(Plus)/g, '+')}
             </ModelButtonOnCard>
             <LoveButton onClick={like}>
               <span />

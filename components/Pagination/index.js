@@ -129,6 +129,7 @@ class Pagination extends Component {
           </Link>
         }
         {screenWidth >= 600 && this.renderPageNums()}
+        {screenWidth <= 600 && <Button active>{page}</Button>}
         {page !== nbPages &&
           <Link href={hrefNext} as={asNext}>
             <Button>
