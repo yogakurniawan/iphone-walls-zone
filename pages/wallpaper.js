@@ -14,7 +14,7 @@ import { grab, parseJSON } from '../utils/request'
 import { replaceDashWithSpace } from '../utils/common'
 import { BASE_API_URL } from '../constants/index'
 import { likeWallpaperFromDetail, loadWallpaper } from '../actions/wallpaper'
-import { setCurrentMenu } from '../actions/global'
+import { setCurrentMenu, setModel } from '../actions/global'
 
 const Title = styled.span`
   font-weight: normal;
@@ -252,9 +252,12 @@ Wallpaper.getInitialProps = async ({ req, store, query }) => {
   const API = `${BASE_API_URL}/Wallpapers`
   const currrentWPResponse = await grab(API, { qs: qsCurrentWP })
   const wallpaper = await parseJSON(currrentWPResponse)
+  const category = wallpaper[0].category
+  const model = wallpaper[0].model
   const qsRelatedWP = {
-    'filter[where][category]': wallpaper[0].category,
-    'filter[where][name][neq]': replaceDashWithSpace(name),
+    'filter[where][and][0][category]': category,
+    'filter[where][and][1][model]': model,
+    'filter[where][and][2][name][neq]': replaceDashWithSpace(name),
     'filter[limit]': 6
   }
   wallpaper[0].total_view += 1;
@@ -263,6 +266,7 @@ Wallpaper.getInitialProps = async ({ req, store, query }) => {
   const relatedWallpapers = await parseJSON(relatedWPResponse)
   store.dispatch(loadWallpaper(wallpaper[0]))
   store.dispatch(setCurrentMenu('wallpaper'))
+  store.dispatch(setModel(model))
   return { relatedWallpapers, title, description }
 }
 

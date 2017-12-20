@@ -58,11 +58,13 @@ const Title = styled.div`
   text-align: left;
   position: absolute;
   bottom: 15px;
-  height: 80%;
-  padding-top: 95%;
   padding-left: 10px;
   padding-right: 10px;
   width: 100%;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: #FFFFFF;
+  }
 `
 
 const Card = (props) => {
@@ -70,11 +72,14 @@ const Card = (props) => {
   const href = `/wallpaper?name=${replaceSpaceWithDash(data.name)}`
   const as = `/wallpaper/${replaceSpaceWithDash(data.name)}`
   const model = models && models.find(model => model.id === data.iphoneModelId)
-  let nameReplaced = data.name.replace(/(iPhone)/ig, "")
-  nameReplaced = nameReplaced.replace(/(3|4|4s|5|5s|6|6s|SE|7)/g, "")
+  let nameReplaced = data.name.replace(/(iPhone|iPad)/ig, "")
+  nameReplaced = nameReplaced.replace(/(3|4|4s|5|5s|6|6s|SE|7|Pro)/g, "")
   nameReplaced = nameReplaced.replace(/(Wallpaper)/ig, "")
+  nameReplaced = nameReplaced.replace(/(10."|12.9")/g, "")
   nameReplaced = nameReplaced.replace(/(Plus)/ig, "")
   nameReplaced = nameReplaced.replace(/(HD)/g, "")
+  let modelReplaced = model && model.name.replace(/(Plus)/g, '+')
+  modelReplaced = modelReplaced && modelReplaced.replace(/(.5"|.9")/g, '')
   if (detailMode) {
     return <Wrapper>
       <Link href={href} as={as}>
@@ -90,7 +95,7 @@ const Card = (props) => {
         <Overlay>
           <Div>
             <ModelButtonOnCard>
-              {model.name.replace(/(Plus)/g, '+')}
+              {modelReplaced}
             </ModelButtonOnCard>
             <LoveButton onClick={like}>
               <span />
