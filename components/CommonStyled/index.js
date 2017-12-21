@@ -16,12 +16,22 @@ export const DeviceModelsRow = styled(Row)`
 
 export const H1 = styled.h1`
   margin-left: 15px;
+  margin-right: 15px;
   margin-bottom: 0;
+  > span {
+    color: rgb(60,180,110);
+  }
+  @media screen and (max-width: 440px) {
+    font-size: 1.55em;
+  }
 `
 
 export const H3 = styled.h3`
   margin-left: 15px;
   color: #6f6f6f;
+  > span {
+    color: rgb(60,180,110);
+  }
 `
 
 export const BottomBordered = styled.div`

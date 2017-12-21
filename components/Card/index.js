@@ -94,9 +94,11 @@ const Card = (props) => {
       <Wallpaper backgroundImage={data.thumbnail}>
         <Overlay>
           <Div>
-            <ModelButtonOnCard>
-              {modelReplaced}
-            </ModelButtonOnCard>
+            <Link href={`/model?model=${data.model}`} as={`/model/${data.model}`}>
+              <ModelButtonOnCard>
+                {modelReplaced}
+              </ModelButtonOnCard>
+            </Link>
             <LoveButton onClick={like}>
               <span />
               {data.total_like}

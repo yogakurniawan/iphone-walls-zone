@@ -26,7 +26,8 @@ class Category extends Component {
   }
 
   render() {
-    const { title, models, description, wallpapers, width, page, category, total } = this.props;
+    const { title, models, model, description, wallpapers, width, page, category, total } = this.props;
+    const getModelTitle = models.find(m => model === m.meta_route)
     return (
       <div>
         <DeviceModels models={models} />
@@ -39,7 +40,7 @@ class Category extends Component {
               { property: 'og:title', content: title }
             ]}
           />
-          <H1>{category} wallpapers</H1>
+          <H1>{`${category} wallpapers for `}<span>{getModelTitle.name}</span></H1>
           <Row style={{ margin: 10 }}>
             {
               wallpapers && wallpapers.map((wallpaper) =>
@@ -114,7 +115,8 @@ Category.getInitialProps = async ({ req, store, query }) => {
 
 const mapStateToProps = state => ({
   wallpapers: state.wallpaper.wallpapers,
-  models: state.model.models
+  models: state.model.models,
+  model: state.global.model
 })
 const mapDispatchToProps = {
   like: likeWallpaper

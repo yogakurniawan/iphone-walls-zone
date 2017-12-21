@@ -40,8 +40,8 @@ class Search extends Component {
               { property: 'og:title', content: title }
             ]}
           />
-          <H1>{search} wallpapers</H1>
-          <H3>{total} free {search} wallpapers</H3>
+          <H1><span>{search}</span> wallpapers</H1>
+          <H3>{total} free <span>{search}</span> wallpapers</H3>
           <Row style={{ margin: 10 }}>
             {
               wallpapers && wallpapers.map((wallpaper) =>

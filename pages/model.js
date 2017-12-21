@@ -27,7 +27,7 @@ class Model extends Component {
 
   render() {
     const { title, models, description, wallpapers, width, page, model, total } = this.props;
-    const getNewTitle = models.find(m => model === m.meta_route)    
+    const getModelTitle = models.find(m => model === m.meta_route)
     return (
       <div>
         <DeviceModels models={models} />
@@ -40,7 +40,7 @@ class Model extends Component {
               { property: 'og:title', content: title }
             ]}
           />
-          <H1>{getNewTitle.name} wallpapers</H1>
+          <H1><span>{getModelTitle.name}</span> wallpapers</H1>
           <Row style={{ margin: 10 }}>
             {
               wallpapers && wallpapers.map((wallpaper) =>
