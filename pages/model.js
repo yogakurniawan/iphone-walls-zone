@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Helmet from 'react-helmet'
 import 'isomorphic-fetch'
 import axios from 'axios'
 import Dimensions from 'react-sizer'
@@ -26,20 +25,12 @@ class Model extends Component {
   }
 
   render() {
-    const { title, models, description, wallpapers, width, page, model, total } = this.props;
+    const { models, wallpapers, width, page, model, total } = this.props;
     const getModelTitle = models.find(m => model === m.meta_route)
     return (
       <div>
         <DeviceModels models={models} />
         <Grid>
-          <Helmet
-            htmlAttributes={{ lang: 'en' }}
-            title={title}
-            meta={[
-              { name: 'description', content: description },
-              { property: 'og:title', content: title }
-            ]}
-          />
           <H1><span>{getModelTitle.name}</span> wallpapers</H1>
           <Row style={{ margin: 10 }}>
             {
@@ -72,18 +63,13 @@ class Model extends Component {
 Model.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1  
   const model = query && decodeURI(query.model)
-  const title = `Free ${model} iPhone Wallpapers and iPod Touch Wallpapers HD`
-  const description = `Download free ${model} iPhone Wallpapers and iPod Touch Wallpapers HD`
   const queryParam = {
-    'filter[where][model]': decodeURI(model),    
+    'filter[where][model]': decodeURI(model),
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
   };
   if (!model) {
     delete queryParam['filter[where][model]']
-  }
-  if (req) {
-    Helmet.renderStatic()
   }
   let api = `${BASE_API_URL}/Wallpapers`
   const countApi = `${api}/count?where[model]=${model}`
@@ -97,9 +83,7 @@ Model.getInitialProps = async ({ req, store, query }) => {
   return {
     total: totalResult.count,
     page,
-    model,
-    title,
-    description
+    model
   }
 }
 

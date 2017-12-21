@@ -74,8 +74,8 @@ Category.getInitialProps = async ({ req, store, query }) => {
   const state = store.getState()
   const model = state.global.model
   const category = query && decodeURI(query.category)
-  const title = `Free ${category} iPhone Wallpapers and iPod Touch Wallpapers HD`
-  const description = `Download free ${category} iPhone Wallpapers and iPod Touch Wallpapers HD`
+  const title = `Free ${category} iPhone Wallpapers and iPad Wallpapers HD`
+  const description = `Download free ${category} iPhone Wallpapers and iPad Wallpapers HD`
   const queryParam = {
     'filter[where][and][0][category]': category,
     'filter[where][and][1][model]': model,

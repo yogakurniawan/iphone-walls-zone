@@ -36,7 +36,6 @@ class Search extends Component {
             title={title}
             meta={[
               { name: 'description', content: description },
-              { name: 'keywords', content: keywords },
               { property: 'og:title', content: title }
             ]}
           />
@@ -73,9 +72,8 @@ class Search extends Component {
 Search.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
   const search = query && decodeURI(query.search)
-  const title = `Download free Apple iPhone and iPod Touch ${search} Wallpapers - by relevance | iPhoneWallsZone`
-  const description = `${search} iPhone Wallpapers and iPod Touch Wallpapers - by relevance - Free download on iPhoneWallsZone`
-  const keywords = `${search}, apple, iphone, iphone 4, iphone 5, iphone 6, iphone 4s, iphone 5s, iphone 6s, iphone 6 plus, iphone 6s plus, wallpapers, free, downloads`
+  const title = `Download free Apple iPhone and iPad ${search} Wallpapers - by relevance | iPhoneWallsZone`
+  const description = `${search} iPhone Wallpapers and iPad Wallpapers - by relevance - Free download on iPhoneWallsZone`
   const queryParam = {
     'filter[where][name][like]': `.*${decodeURI(search)}.*`,
     'filter[where][name][options]': 'i',
@@ -102,8 +100,7 @@ Search.getInitialProps = async ({ req, store, query }) => {
     page,
     search,
     title,
-    description,
-    keywords
+    description
   }
 }
 

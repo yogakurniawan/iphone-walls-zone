@@ -9,6 +9,7 @@ import { BASE_API_URL } from '../../constants/index'
 import { loadCategories } from '../../actions/category'
 import { setCurrentMenu } from '../../actions/global'
 import { loadModels } from '../../actions/model'
+import { grab, parseJSON } from '../../utils/request'
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -20,17 +21,21 @@ const page = WrappedComponent => {
       const otherProps = WrappedComponent.getInitialProps
         ? await WrappedComponent.getInitialProps({ ...context, store })
         : {}
-      const resCategories = await fetch(`${BASE_API_URL}/Categories?filter[order]=name ASC`)
+      const resCategories = await grab(`${BASE_API_URL}/Categories`, { qs: {
+        'filter[order]': 'name ASC'
+      }})
       let resModels;
       let models;
       if (!state.model.models || !state.model.models.length) {
-        resModels = await fetch(`${BASE_API_URL}/IphoneModels`)
-        models = await resModels.json()
+        resModels = await grab(`${BASE_API_URL}/IphoneModels`, { qs: {
+          'filter[order]': 'orderId ASC'
+        }})
+        models = await parseJSON(resModels)
         store.dispatch(loadModels(models))
       } else {
         models = state.model.models
       }
-      const categories = await resCategories.json()
+      const categories = await parseJSON(resCategories)
       store.dispatch(loadCategories(categories))
       return { ...otherProps, categories, models, initialState: store.getState() }
     }
