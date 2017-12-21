@@ -122,7 +122,7 @@ export default class SwipeToSlide extends Component {
       className: 'center',
       infinite: true,
       arrows: true,
-      speed: 200,
+      speed: 50,
       slidesToShow: 8,
       variableWidth: false,
       touchThreshold: 16,
@@ -153,7 +153,8 @@ export default class SwipeToSlide extends Component {
           settings: {
             slidesToShow: 5
           }
-        }
+        },
+
       ]
     };
     const Loading = () => (<Div>Loading...</Div>)
@@ -162,7 +163,7 @@ export default class SwipeToSlide extends Component {
         <NoSSR onSSR={<Loading />}>
           <SliderStyled {...settings}>
             {
-              categories && categories.map((category) =>
+              categories && categories.map((category, index) =>
                 <div key={category.id}>
                   <Category backgroundImage={category.background_image}>
                     <Link href={`/category?category=${category.name}`} as={`/category/${category.name}`}>

@@ -21,22 +21,33 @@ const page = WrappedComponent => {
       const otherProps = WrappedComponent.getInitialProps
         ? await WrappedComponent.getInitialProps({ ...context, store })
         : {}
-      const resCategories = await grab(`${BASE_API_URL}/Categories`, { qs: {
-        'filter[order]': 'name ASC'
-      }})
+      let resCategories;
+      let categories;
+      if (!state.category.categories || !state.category.categories.length) {
+        resCategories = await grab(`${BASE_API_URL}/Categories`, {
+          qs: {
+            'filter[order]': 'name ASC'
+          }
+        })
+        categories = await parseJSON(resCategories)
+        store.dispatch(loadCategories(categories))
+      } else {
+        categories = state.category.categories
+      }
+
       let resModels;
       let models;
       if (!state.model.models || !state.model.models.length) {
-        resModels = await grab(`${BASE_API_URL}/IphoneModels`, { qs: {
-          'filter[order]': 'orderId ASC'
-        }})
+        resModels = await grab(`${BASE_API_URL}/IphoneModels`, {
+          qs: {
+            'filter[order]': 'orderId ASC'
+          }
+        })
         models = await parseJSON(resModels)
         store.dispatch(loadModels(models))
       } else {
         models = state.model.models
       }
-      const categories = await parseJSON(resCategories)
-      store.dispatch(loadCategories(categories))
       return { ...otherProps, categories, models, initialState: store.getState() }
     }
 
@@ -56,21 +67,21 @@ const page = WrappedComponent => {
       Router.router.events.off('routeChangeComplete', this.trackPageview);
     }
 
-    initGa () {
+    initGa() {
       if (!window.GA_INITIALIZED) {
         ReactGA.initialize('UA-97981820-3', { debug });
         window.GA_INITIALIZED = true;
       }
     }
 
-    trackPageview (path = document.location.pathname) {
+    trackPageview(path = document.location.pathname) {
       if (path !== this.lastTrackedPath) {
         ReactGA.pageview(path);
         this.lastTrackedPath = path;
       }
     }
 
-    onClickMenu (menu) {
+    onClickMenu(menu) {
       const store = initStore()
       store.dispatch(setCurrentMenu(menu))
     }
