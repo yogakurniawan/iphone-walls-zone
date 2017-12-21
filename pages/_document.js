@@ -145,7 +145,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <title>Best iPhone and iPad Wallpapers - Free wallpapers for iPad Mini, iPad Pro, iPhone X, iPhone 8, iPhone 8, iPhone 6s, iPhone 6, iPhone SE, iPhone 5s, iPhone 5, iPhone 4s, iPhone 4, iPhone 3 and iPhone 3G</title>
+          <title>Best Free Download iPhone and iPad Wallpapers - iPhoneWallsZone</title>
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta name="google-site-verification" content="FTBhgLUyRcmYTRn7Z1hv9g9VlnYHY4U9XFhxhWJ5084" />
