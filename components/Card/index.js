@@ -72,8 +72,8 @@ const Card = (props) => {
   const href = `/wallpaper?name=${replaceSpaceWithDash(data.name)}`
   const as = `/wallpaper/${replaceSpaceWithDash(data.name)}`
   const model = models && models.find(model => model.id === data.iphoneModelId)
-  let nameReplaced = data.name.replace(/(iPhone|iPad)/ig, "")
-  nameReplaced = nameReplaced.replace(/(3|4|4s|5|X|5s|6|6s|SE|7|Pro)/g, "")
+  let nameReplaced = data.name.replace(/(iPhone)/ig, "")
+  nameReplaced = nameReplaced.replace(/(3|4|4s|5|X|5s|6|6s|SE|7|iPad Pro|iPad Mini)/g, "")
   nameReplaced = nameReplaced.replace(/(Wallpaper)/ig, "")
   nameReplaced = nameReplaced.replace(/(10."|12.9")/g, "")
   nameReplaced = nameReplaced.replace(/(Plus)/ig, "")
