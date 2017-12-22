@@ -26,18 +26,14 @@ class Search extends Component {
   }
 
   render() {
-    const { total, search, models, wallpapers, width, page, title, description, keywords } = this.props
+    const { total, search, models, wallpapers, width, page } = this.props
     return (
       <div>
         <DeviceModels models={models} />              
         <Grid>
           <Helmet
             htmlAttributes={{ lang: 'en' }}
-            title={title}
-            meta={[
-              { name: 'description', content: description },
-              { property: 'og:title', content: title }
-            ]}
+            title={`Download free Apple iPhone and iPad ${search} Wallpapers - by relevance | iPhoneWallsZone`}
           />
           <H1><span>{search}</span> wallpapers</H1>
           <H3>{total} free <span>{search}</span> wallpapers</H3>
@@ -72,8 +68,6 @@ class Search extends Component {
 Search.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
   const search = query && decodeURI(query.search)
-  const title = `Download free Apple iPhone and iPad ${search} Wallpapers - by relevance | iPhoneWallsZone`
-  const description = `${search} iPhone Wallpapers and iPad Wallpapers - by relevance - Free download on iPhoneWallsZone`
   const queryParam = {
     'filter[where][name][like]': `.*${decodeURI(search)}.*`,
     'filter[where][name][options]': 'i',
@@ -98,9 +92,7 @@ Search.getInitialProps = async ({ req, store, query }) => {
   return {
     total: totalResult.count,
     page,
-    search,
-    title,
-    description
+    search
   }
 }
 

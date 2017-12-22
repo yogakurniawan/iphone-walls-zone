@@ -133,10 +133,10 @@ const Action = styled.div`
   border-top: 1px solid #DBDBDB;
   padding: 10px 5px;
   margin-top: 10px;
-    @media screen and (max-width: 480px) {
-      ${IconInfoWrapper} {
-        float: none;
-      }
+  @media screen and (max-width: 480px) {
+    ${IconInfoWrapper} {
+      float: none;
+    }
   }
   button {
     display: inline-block;
@@ -241,7 +241,7 @@ class Wallpaper extends Component {
 
 Wallpaper.getInitialProps = async ({ req, store, query }) => {
   const name = query && decodeURI(query.name)
-  const title = `${replaceDashWithSpace(name)} - Free Download`
+  const title = `${replaceDashWithSpace(name)} - Free Download | iPhoneWallsZone`
   const description = `Download ${replaceDashWithSpace(name)} free`
   if (req) {
     Helmet.renderStatic()

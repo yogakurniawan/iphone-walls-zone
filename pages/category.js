@@ -26,7 +26,7 @@ class Category extends Component {
   }
 
   render() {
-    const { title, models, model, description, wallpapers, width, page, category, total } = this.props;
+    const { title, models, model, wallpapers, width, page, category, total } = this.props;
     const getModelTitle = models.find(m => model === m.meta_route)
     return (
       <div>
@@ -35,12 +35,10 @@ class Category extends Component {
           <Helmet
             htmlAttributes={{ lang: 'en' }}
             title={title}
-            meta={[
-              { name: 'description', content: description },
-              { property: 'og:title', content: title }
-            ]}
           />
-          <H1>{`${category} wallpapers for `}<span>{getModelTitle.name}</span></H1>
+          { model && <H1>{`${category} wallpapers for `}<span>{getModelTitle.name}</span></H1> }
+          { !model && <H1>{`${category} wallpapers`}</H1> }
+
           <Row style={{ margin: 10 }}>
             {
               wallpapers && wallpapers.map((wallpaper) =>
@@ -74,8 +72,7 @@ Category.getInitialProps = async ({ req, store, query }) => {
   const state = store.getState()
   const model = state.global.model
   const category = query && decodeURI(query.category)
-  const title = `Free ${category} iPhone Wallpapers and iPad Wallpapers HD`
-  const description = `Download free ${category} iPhone Wallpapers and iPad Wallpapers HD`
+  const title = `Free ${category} iPhone and iPad Retina Wallpapers - iPhoneWallsZone`
   const queryParam = {
     'filter[where][and][0][category]': category,
     'filter[where][and][1][model]': model,
@@ -97,6 +94,11 @@ Category.getInitialProps = async ({ req, store, query }) => {
     'where[and][0][category]': category,
     'where[and][1][model]': model
   }
+
+  if (!model) {
+    delete queryParam['filter[where][and][1][model]']
+    delete countQueryParam['where[and][1][model]']
+  }
   const countApi = `${api}/count`
   const response = await grab(api, { qs: queryParam })
   const totalResponse = await grab(countApi, { qs: countQueryParam })
@@ -108,8 +110,7 @@ Category.getInitialProps = async ({ req, store, query }) => {
     total: totalResult.count,
     page,
     category,
-    title,
-    description
+    title
   }
 }
 

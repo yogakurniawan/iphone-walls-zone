@@ -152,7 +152,7 @@ export default class MyDocument extends Document {
           <meta name="apple-mobile-web-app-title" content="iPhoneWallsZone" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <meta property="og:title" content="Best iPhone and iPad Wallpapers - Free wallpapers for iPad Mini, iPad Pro, iPhone X, iPhone 8, iPhone 8, iPhone 6s, iPhone 6, iPhone SE, iPhone 5s, iPhone 5, iPhone 4s, iPhone 4, iPhone 3 and iPhone 3G | iPhoneWallsZone" />
+          <meta property="og:title" content="Best Free Download iPhone and iPad Wallpapers - iPhoneWallsZone" />
           <meta property="og:url" content="http://www.iphonewallszone.com/" />
           <meta property="og:type" content="website" />
           <meta property="og:image:secure_url" content="https://storage.googleapis.com/iphonewallszone/featured-image.jpeg" />

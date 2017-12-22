@@ -1,8 +1,7 @@
 import { SET_CURRENT_MENU, SET_SEARCH_KEYWORD, SET_MODEL } from '../constants/actionTypes'
 
 function global(state = {
-  menu: 'home',
-  model: 'iphone6'
+  menu: 'home'
 }, action) {
   const { payload, type } = action;
   switch (type) {

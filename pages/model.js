@@ -26,7 +26,7 @@ class Model extends Component {
   }
 
   render() {
-    const { title, models, description, keywords, wallpapers, width, page, model, total } = this.props;
+    const { models, wallpapers, width, page, model, total } = this.props;
     const getModelTitle = models.find(m => model === m.meta_route)
     return (
       <div>
@@ -34,12 +34,7 @@ class Model extends Component {
         <Grid>
           <Helmet
             htmlAttributes={{ lang: 'en' }}
-            title={title}
-            meta={[
-              { name: 'description', content: description },
-              { name: 'keywords', content: keywords },
-              { property: 'og:title', content: title }
-            ]}
+            title={`Free ${getModelTitle.name} Wallpapers - iPhoneWallsZone`}
           />
           <H1><span>{getModelTitle.name}</span> wallpapers</H1>
           <Row style={{ margin: 10 }}>
@@ -73,9 +68,6 @@ class Model extends Component {
 Model.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1  
   const model = query && decodeURI(query.model)
-  const title = 'Best Free Download iPhone and iPad Wallpapers - iPhoneWallsZone'
-  const description = 'Best iPhone and iPad wallpapers suitable for iPad Mini, iPad Pro 10.5, iPad Pro 12.9, iPhone X, iPhone 8, iPhone 8 Plus, iPhone 6, iPhone 6s, iPhone 6 Plus, iPhone 6s Plus, iPhone 5, iPhone SE, iPhone 4, iPhone 4s, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPad backgrounds.'
-  const keywords = 'HD, apple, iPhone, iPhone 4, iPhone 5, iPhone SE, iPhone 6, iPhone 4s, iPhone 5s, iPhone 6s, iPhone 6 Plus, iPhone 6s Plus, iPhone X, iPad Mini, iPad Pro 10.5, iPad Pro 12.9, wallpapers, free, downloads'
   const queryParam = {
     'filter[where][model]': decodeURI(model),
     'filter[limit]': PER_PAGE,
@@ -99,10 +91,7 @@ Model.getInitialProps = async ({ req, store, query }) => {
   return {
     total: totalResult.count,
     page,
-    model,
-    title,
-    description,
-    keywords
+    model
   }
 }
 

@@ -93,7 +93,7 @@ const page = WrappedComponent => {
       return (
         <Provider store={store}>
           <div>
-            <Navbar menu={state.global.menu} onClickMenu={this.onClickMenu} currentModel={state.global.model} />
+            <Navbar menu={state.global.menu} onClickMenu={this.onClickMenu} />
             <Categories categories={categories || initialState.categories} />
             <WrappedComponent {...rest} />
           </div>

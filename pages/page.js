@@ -13,6 +13,8 @@ import { BASE_API_URL, PER_PAGE } from '../constants/index'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination'
 import { H1 } from '../components/CommonStyled'
+import { setModel } from '../actions/global'
+
 
 class Page extends Component {
 
@@ -25,18 +27,14 @@ class Page extends Component {
   }
 
   render() {
-    const { anotherTitle, total, models, wallpapers, width, page, title, description } = this.props
+    const { anotherTitle, total, models, wallpapers, width, page } = this.props
     return (
       <div>
         <DeviceModels models={models} />
         <Grid>
           <Helmet
             htmlAttributes={{ lang: 'en' }}
-            title={title}
-            meta={[
-              { name: 'description', content: description },
-              { property: 'og:title', content: title }
-            ]}
+            title={`${anotherTitle ? anotherTitle : 'Best Free Download'} iPhone and iPad Wallpapers - iPhoneWallsZone`}
           />
           <H1>{anotherTitle} Wallpapers</H1>
           <Row style={{ margin: 10 }}>
@@ -67,10 +65,8 @@ class Page extends Component {
 
 Page.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
-  const title = 'Best iPhone Wallpapers - Free wallpapers for iPhone X, 8, and 7'
-  const description = 'Best iPhone wallpapers for iPhone 6, iPhone 5, iPhone 4, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPod Touch backgrounds.'
   let isHomePage = true
-  let anotherTitle;
+  let anotherTitle = '';
   const queryParam = {
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
@@ -108,11 +104,10 @@ Page.getInitialProps = async ({ req, store, query }) => {
     totalResult = await parseJSON(totalResponse)  
   }
   store.dispatch(loadWallpapers(result))
+  store.dispatch(setModel(''))
   return {
     total: totalResult ? totalResult.count : 0,
     page,
-    title,
-    description,
     anotherTitle
   }
 }

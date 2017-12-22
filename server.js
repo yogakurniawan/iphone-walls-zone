@@ -17,7 +17,7 @@ app.prepare()
     const { pathname } = parsedUrl
 
     if (pathname === '/') {
-      app.render(req, res, '/model', { model: 'iphone6' })
+      app.render(req, res, '/page', { page: 1 })
     } else {
       handle(req, res, parsedUrl)
     }
