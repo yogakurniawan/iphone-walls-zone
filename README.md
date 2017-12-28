@@ -1,21 +1,24 @@
 ## iPhone Walls Zone
 
-<img src="public/apple-touch-icon.png" alt="iPhone Walls Zone - Logo" align="center" />
+<img src="static/logo.png" width="20%" height="20%" alt="iPhone Walls Zone - Logo" align="center" />
 
-Best iPhone wallpapers for iPhone 6, iPhone 5, iPhone 4, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPod Touch backgrounds.
+The codebase of beautiful curated iPhone and iPad wallpapers.
+Free download and easy to use.
 
 ## Open Source Used
 
-This project is using [React Starter Kit](https://www.reactstarterkit.com).
+This project is using [Next.js v4](https://github.com/zeit/next.js).
 
-[React Starter Kit](https://www.reactstarterkit.com) is an opinionated boilerplate for web development built on top of [Node.js](https://nodejs.org/),
-[Express](http://expressjs.com/), [GraphQL](http://graphql.org/) and
-[React](https://facebook.github.io/react/), containing modern web development
-tools such as [Webpack](http://webpack.github.io/), [Babel](http://babeljs.io/)
-and [Browsersync](http://www.browsersync.io/). Helping you to stay productive
-following the best practices. A solid starting point for both professionals
-and newcomers to the industry.
+> Next.js is a minimalistic framework for server-rendered React applications.
 
-## Live Playground
+## URL
 
 http://iphonewallszone.com
+
+## Author
+
+Yoga Kurniawan
+
+Gmail: yogaygk@gmail.com <br>
+Twitter: [@yogkurniawan](https://twitter.com/yogkurniawan)
+
