@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import styled, { css } from 'styled-components'
 import { connect } from 'react-redux'
 import Router from 'next/router'
-import { setSearchKeyword } from '../../actions/global'
+import { setSearchKeyword, setModel } from '../../actions/global'
+import { EMPTY } from '../../constants'
 import Icon from '../Icon'
 import Link from '../Link'
 import Logo from './Logo.svg'
@@ -299,8 +300,9 @@ class Navbar extends Component {
   }
 
   handleSubmit(event) {
-    const { keyword } = this.props
+    const { keyword, setModel } = this.props
     event.preventDefault()
+    setModel(EMPTY)
     Router.push(`/search?search=${keyword}`, `/search/${keyword}`)
   }
 
@@ -367,7 +369,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  setSearchKeyword
+  setSearchKeyword,
+  setModel
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

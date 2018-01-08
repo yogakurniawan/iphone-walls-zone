@@ -12,8 +12,9 @@ import { BASE_API_URL, PER_PAGE } from '../constants/index'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination'
 import { likeWallpaper, loadWallpapers } from '../actions/wallpaper'
-import { setCurrentMenu } from '../actions/global'
+import { setCurrentMenu, setModel } from '../actions/global'
 import { H1 } from '../components/CommonStyled'
+import { EMPTY } from '../constants'
 
 class Category extends Component {
 
@@ -26,8 +27,7 @@ class Category extends Component {
   }
 
   render() {
-    const { title, models, model, wallpapers, width, page, category, total } = this.props;
-    const getModelTitle = models.find(m => model === m.meta_route)
+    const { title, models, wallpapers, width, page, category, total } = this.props;
     return (
       <div>
         <DeviceModels models={models} />
@@ -36,8 +36,7 @@ class Category extends Component {
             htmlAttributes={{ lang: 'en' }}
             title={title}
           />
-          { model && <H1>{`${category} wallpapers for `}<span>{getModelTitle.name}</span></H1> }
-          { !model && <H1>{`${category} wallpapers`}</H1> }
+          <H1><span>{category}</span> wallpapers</H1>
 
           <Row style={{ margin: 10 }}>
             {
@@ -69,20 +68,16 @@ class Category extends Component {
 
 Category.getInitialProps = async ({ req, store, query }) => {
   const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
-  const state = store.getState()
-  const model = state.global.model
   const category = query && decodeURI(query.category)
   const title = `Free ${category} iPhone and iPad Retina Wallpapers - iPhoneWallsZone`
   const queryParam = {
-    'filter[where][and][0][category]': category,
-    'filter[where][and][1][model]': model,
+    'filter[where][category]': category,
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
   };
 
   if (!category) {
-    delete queryParam['filter[where][and][0][category]']
-    delete queryParam['filter[where][and][1][model]']
+    delete queryParam['filter[where][category]']
   }
 
   if (req) {
@@ -91,14 +86,9 @@ Category.getInitialProps = async ({ req, store, query }) => {
 
   const api = `${BASE_API_URL}/Wallpapers`
   const countQueryParam = {
-    'where[and][0][category]': category,
-    'where[and][1][model]': model
+    'where[category]': category
   }
 
-  if (!model) {
-    delete queryParam['filter[where][and][1][model]']
-    delete countQueryParam['where[and][1][model]']
-  }
   const countApi = `${api}/count`
   const response = await grab(api, { qs: queryParam })
   const totalResponse = await grab(countApi, { qs: countQueryParam })
@@ -106,6 +96,7 @@ Category.getInitialProps = async ({ req, store, query }) => {
   const result = await parseJSON(response)
   store.dispatch(loadWallpapers(result))
   store.dispatch(setCurrentMenu('category'))
+  store.dispatch(setModel(EMPTY))
   return {
     total: totalResult.count,
     page,
@@ -116,9 +107,9 @@ Category.getInitialProps = async ({ req, store, query }) => {
 
 const mapStateToProps = state => ({
   wallpapers: state.wallpaper.wallpapers,
-  models: state.model.models,
-  model: state.global.model
+  models: state.model.models
 })
+
 const mapDispatchToProps = {
   like: likeWallpaper
 }

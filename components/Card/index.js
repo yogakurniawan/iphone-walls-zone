@@ -84,11 +84,18 @@ const Card = (props) => {
     return <Wrapper>
       <Link href={href} as={as}>
         <Wallpaper backgroundImage={data.thumbnail}>
+          <Overlay>
+            <Link href={href} as={as}>
+              <Title>
+                <Name>{nameReplaced}</Name>
+              </Title>
+            </Link>
+          </Overlay>
         </Wallpaper>
       </Link>
     </Wrapper>
   }
-  
+
   return (
     <Wrapper>
       <Wallpaper backgroundImage={data.thumbnail}>
