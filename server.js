@@ -1,28 +1,27 @@
-const { createServer } = require('http')
-const { parse } = require('url')
+const compression = require('compression')
+const express = require('express')
 const next = require('next')
 const routes = require('./routes')
 
 const port = parseInt(process.env.PORT, 10) || 5000
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
+const app = next({ dev: false })
 const handle = routes.getRequestHandler(app)
 
 app.prepare()
 .then(() => {
-  createServer((req, res) => {
-    // Be sure to pass `true` as the second argument to `url.parse`.
-    // This tells it to parse the query portion of the URL.
-    const parsedUrl = parse(req.url, true)
-    const { pathname } = parsedUrl
+  const server = express()
+  server.use(compression())
 
-    if (pathname === '/') {
-      app.render(req, res, '/page', { page: 1 })
-    } else {
-      handle(req, res, parsedUrl)
-    }
+  server.get('/', (req, res) => {
+    return app.render(req, res, '/page', { page: 1 })
   })
-  .listen(port, (err) => {
+
+  server.get('*', (req, res) => {
+    handle(req, res)
+  })
+
+  server.listen(port, (err) => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
   })
