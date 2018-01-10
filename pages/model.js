@@ -81,11 +81,15 @@ Model.getInitialProps = async ({ req, store, query }) => {
   }
   let api = `${BASE_API_URL}/Wallpapers`
   const countApi = `${api}/count?where[model]=${model}`
-  const response = await grab(api, { qs: queryParam })
-  const totalResponse = await grab(countApi)
-  const totalResult = await parseJSON(totalResponse)
-  const result = await parseJSON(response)
-  store.dispatch(loadWallpapers(result))
+  const [itemResponse, totalResponse] = await Promise.all([
+    grab(api, { qs: queryParam }),
+    grab(countApi)
+  ])
+  const [itemResult, totalResult] = await Promise.all([
+    parseJSON(itemResponse),
+    parseJSON(totalResponse)
+  ])
+  store.dispatch(loadWallpapers(itemResult))
   store.dispatch(setCurrentMenu('model'))
   store.dispatch(setModel(model))
   return {

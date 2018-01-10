@@ -90,11 +90,15 @@ Category.getInitialProps = async ({ req, store, query }) => {
   }
 
   const countApi = `${api}/count`
-  const response = await grab(api, { qs: queryParam })
-  const totalResponse = await grab(countApi, { qs: countQueryParam })
-  const totalResult = await parseJSON(totalResponse)
-  const result = await parseJSON(response)
-  store.dispatch(loadWallpapers(result))
+  const [itemResponse, totalResponse] = await Promise.all([
+    grab(api, { qs: queryParam }),
+    grab(countApi, { qs: countQueryParam })
+  ])
+  const [itemResult, totalResult] = await Promise.all([
+    parseJSON(itemResponse),
+    parseJSON(totalResponse)
+  ])
+  store.dispatch(loadWallpapers(itemResult))
   store.dispatch(setCurrentMenu('category'))
   store.dispatch(setModel(EMPTY))
   return {
