@@ -154,9 +154,9 @@ const Action = styled.div`
 
 class Wallpaper extends Component {
 
-  async like(e, wallpaper) {
+  async doLike(e, wallpaper) {
     const url = `${BASE_API_URL}/Wallpapers`
-    const { like } = this.props
+    const { likeWallpaperFromDetail: like } = this.props
     wallpaper.total_like += 1
     like(wallpaper)
     await axios.put(url, wallpaper)
@@ -193,7 +193,7 @@ class Wallpaper extends Component {
               <Description>
                 <Title>{wallpaper.name}</Title>
                 <Action>
-                  <LoveButton onClick={(e) => this.like(e, wallpaper)}>
+                  <LoveButton onClick={(e) => this.doLike(e, wallpaper)}>
                     <span />
                     {wallpaper.total_like}
                   </LoveButton>
@@ -277,7 +277,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  like: likeWallpaperFromDetail,
+  likeWallpaperFromDetail,
   loadWallpaper
 }
 

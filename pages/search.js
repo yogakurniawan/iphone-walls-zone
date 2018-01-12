@@ -17,9 +17,9 @@ import { setCurrentMenu } from '../actions/global'
 
 class Search extends Component {
 
-  async like(e, wallpaper) {
+  async doLike(e, wallpaper) {
     const url = `${BASE_API_URL}/Wallpapers`
-    const { like } = this.props
+    const { likeWallpaper: like } = this.props
     wallpaper.total_like += 1
     like(wallpaper)
     await axios.put(url, wallpaper)
@@ -41,7 +41,7 @@ class Search extends Component {
             {
               wallpapers && wallpapers.map((wallpaper) =>
                 <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
-                  <Card like={(e) => this.like(e, wallpaper)} data={wallpaper} models={models} />
+                  <Card like={(e) => this.doLike(e, wallpaper)} data={wallpaper} models={models} />
                 </Col>
               )
             }
@@ -105,7 +105,7 @@ const mapStateToProps = state => ({
   models: state.model.models
 })
 const mapDispatchToProps = {
-  like: likeWallpaper
+  likeWallpaper
 }
 
 const enhancedSearch = Dimensions()(Search);
