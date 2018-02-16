@@ -153,13 +153,13 @@ const Action = styled.div`
 `
 
 class Wallpaper extends Component {
-
   async doLike(e, wallpaper) {
+    const theWallpaper = wallpaper
     const url = `${BASE_API_URL}/Wallpapers`
     const { likeWallpaperFromDetail: like } = this.props
-    wallpaper.total_like += 1
-    like(wallpaper)
-    await axios.put(url, wallpaper)
+    theWallpaper.total_like += 1
+    like(theWallpaper)
+    await axios.put(url, theWallpaper)
   }
 
   download = (url) => {
@@ -175,7 +175,9 @@ class Wallpaper extends Component {
   }
 
   render() {
-    const { wallpaper, relatedWallpapers, title, description } = this.props;
+    const {
+      wallpaper, relatedWallpapers, title, description
+    } = this.props;
     return (
       <Grid>
         <Helmet
@@ -189,7 +191,9 @@ class Wallpaper extends Component {
         <Row center="xs" style={{ margin: 'auto' }}>
           <Col xs={12} sm={12} md={12} lg={8}>
             <div>
-              <WallpaperSection><Img src={wallpaper.original} alt={wallpaper.name} /></WallpaperSection>
+              <WallpaperSection>
+                <Img src={wallpaper.original} alt={wallpaper.name} />
+              </WallpaperSection>
               <Description>
                 <Title>{wallpaper.name}</Title>
                 <Action>
@@ -221,15 +225,15 @@ class Wallpaper extends Component {
               <div>Related Wallpapers</div>
               <div>
                 <Link href={`/category?category=${wallpaper.category}`} as={`/category/${wallpaper.category}`}>See all <span /></Link>
-              </div>              
+              </div>
             </Related>
             <Row>
               {
-                relatedWallpapers && relatedWallpapers.map((wallpaper) =>
-                  <Col key={wallpaper.id} xs={4} sm={3} md={3} lg={2}>
-                    <Card detailMode data={wallpaper} />
+                relatedWallpapers && relatedWallpapers.map((wp) => (
+                  <Col key={wp.id} xs={4} sm={3} md={3} lg={2}>
+                    <Card detailMode data={wp} />
                   </Col>
-                )
+                ))
               }
             </Row>
           </RelatedWPCol>
@@ -252,8 +256,7 @@ Wallpaper.getInitialProps = async ({ req, store, query }) => {
   const API = `${BASE_API_URL}/Wallpapers`
   const currrentWPResponse = await grab(API, { qs: qsCurrentWP })
   const wallpaper = await parseJSON(currrentWPResponse)
-  const category = wallpaper[0].category
-  const model = wallpaper[0].model
+  const { category, model } = wallpaper[0]
   const qsRelatedWP = {
     'filter[where][and][0][category]': category,
     'filter[where][and][1][model]': model,
