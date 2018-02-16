@@ -15,8 +15,8 @@ function wallpaper(state = {}, action) {
       }
     case LIKE_WALLPAPER: {
       let wallpapers = state.wallpapers.slice(0)
-      wallpapers = wallpapers.map((wallpaper) => {
-        let result = wallpaper;
+      wallpapers = wallpapers.map((wp) => {
+        let result = wp;
         if (result.id === payload.id) {
           result = payload
         }
@@ -27,7 +27,7 @@ function wallpaper(state = {}, action) {
         wallpapers
       }
     }
-    case LIKE_WALLPAPER_FROM_DETAIL: 
+    case LIKE_WALLPAPER_FROM_DETAIL:
       return {
         ...state,
         wallpaper: {

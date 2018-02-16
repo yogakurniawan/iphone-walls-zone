@@ -16,33 +16,35 @@ import { H1 } from '../components/CommonStyled'
 import { setModel } from '../actions/global'
 
 class Page extends Component {
-
   async doLike(e, wallpaper) {
+    const theWallpaper = wallpaper
     const url = `${BASE_API_URL}/Wallpapers`
     const { likeWallpaper: like } = this.props
-    wallpaper.total_like += 1
-    like(wallpaper)
-    await axios.put(url, wallpaper)
+    theWallpaper.total_like += 1
+    like(theWallpaper)
+    await axios.put(url, theWallpaper)
   }
 
   render() {
-    const { anotherTitle, total, models, wallpapers, width, page } = this.props
+    const {
+      anotherTitle, total, models, wallpapers, width, page
+    } = this.props
     return (
       <div>
         <DeviceModels models={models} />
         <Grid>
           <Helmet
             htmlAttributes={{ lang: 'en' }}
-            title={`${anotherTitle ? anotherTitle : 'Best Free Download'} iPhone and iPad Wallpapers - iPhoneWallsZone`}
+            title={`${anotherTitle || 'Best Free Download'} iPhone and iPad Wallpapers - iPhoneWallsZone`}
           />
           <H1>{anotherTitle} Wallpapers</H1>
           <Row style={{ margin: 10 }}>
             {
-              wallpapers && wallpapers.map((wallpaper) =>
+              wallpapers && wallpapers.map((wallpaper) => (
                 <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
                   <Card like={(e) => this.doLike(e, wallpaper)} data={wallpaper} models={models} />
                 </Col>
-              )
+              ))
             }
           </Row>
           <Row center="xs" style={{ margin: 'auto' }}>
@@ -63,7 +65,7 @@ class Page extends Component {
 }
 
 Page.getInitialProps = async ({ req, store, query }) => {
-  const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
+  const page = !Number.isNaN(query.page) ? parseInt(query.page, 10) : 1
   let isHomePage = true
   let anotherTitle = '';
   const queryParam = {
@@ -93,14 +95,14 @@ Page.getInitialProps = async ({ req, store, query }) => {
     Helmet.renderStatic()
   }
 
-  let api = `${BASE_API_URL}/Wallpapers`
+  const api = `${BASE_API_URL}/Wallpapers`
   const countApi = `${api}/count`
   const response = await grab(api, { qs: queryParam })
   const result = await parseJSON(response)
   let totalResult;
   if (isHomePage) {
-    const totalResponse = await grab(countApi)  
-    totalResult = await parseJSON(totalResponse)  
+    const totalResponse = await grab(countApi)
+    totalResult = await parseJSON(totalResponse)
   }
   store.dispatch(loadWallpapers(result))
   store.dispatch(setModel(''))

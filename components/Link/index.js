@@ -2,15 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 
-const LinkComponent = ({ children, router, href, as }) => {
-  return (
-    <Link prefetch href={href} as={as}>
-      <a>
-        {children}
-      </a>
-    </Link>
-  )
-}
+const LinkComponent = ({ children, href, as }) => (
+  <Link prefetch href={href} as={as}>
+    <a href={href}>
+      {children}
+    </a>
+  </Link>
+)
 
 LinkComponent.propTypes = {
   href: PropTypes.string.isRequired,

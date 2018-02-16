@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Slider from 'react-slick'
 import NoSSR from 'react-no-ssr'
@@ -115,55 +115,54 @@ function PrevArrow(props) {
   );
 }
 
-export default class SwipeToSlide extends Component {
-  render() {
-    const { categories } = this.props
-    const settings = {
-      className: 'center',
-      infinite: true,
-      arrows: true,
-      speed: 50,
-      slidesToShow: 8,
-      variableWidth: false,
-      touchThreshold: 16,
-      swipeToSlide: true,
-      nextArrow: <NextArrow />,
-      prevArrow: <PrevArrow />,
-      responsive: [
-        {
-          breakpoint: 385,
-          settings: {
-            slidesToShow: 2
-          }
-        },
-        {
-          breakpoint: 601,
-          settings: {
-            slidesToShow: 3
-          }
-        },
-        {
-          breakpoint: 769,
-          settings: {
-            slidesToShow: 4
-          }
-        },
-        {
-          breakpoint: 1025,
-          settings: {
-            slidesToShow: 5
-          }
-        },
+export default function SwipeToSlide({ categories }) {
+  const settings = {
+    className: 'center',
+    infinite: true,
+    arrows: true,
+    speed: 50,
+    slidesToShow: 8,
+    variableWidth: false,
+    touchThreshold: 16,
+    swipeToSlide: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 385,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 601,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 769,
+        settings: {
+          slidesToShow: 4
+        }
+      },
+      {
+        breakpoint: 1025,
+        settings: {
+          slidesToShow: 5
+        }
+      },
 
-      ]
-    };
-    const Loading = () => (<Div>Loading...</Div>)
-    return (
-      <Container>
-        <NoSSR onSSR={<Loading />}>
-          <SliderStyled {...settings}>
-            {
-              categories && categories.map((category, index) =>
+    ]
+  };
+  const Loading = () => (<Div>Loading...</Div>)
+  return (
+    <Container>
+      <NoSSR onSSR={<Loading />}>
+        <SliderStyled {...settings}>
+          {
+            categories && categories.map(category =>
+              (
                 <div key={category.id}>
                   <Category backgroundImage={category.background_image}>
                     <Link href={`/category?category=${category.name}`} as={`/category/${category.name}`}>
@@ -171,11 +170,10 @@ export default class SwipeToSlide extends Component {
                     </Link>
                   </Category>
                 </div>
-              )
-            }
-          </SliderStyled>
-        </NoSSR>
-      </Container>
-    )
-  }
+              ))
+          }
+        </SliderStyled>
+      </NoSSR>
+    </Container>
+  )
 }

@@ -1,29 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import Link from '../Link'
 import PrevIconStyled from '../Icon/PrevIcon'
 import NextIconStyled from '../Icon/NextIcon'
-import { PaginationButton } from '../Button'
-
-const Button = styled.button`
-  ${PaginationButton}
-  background: ${props => props.active ? 'rgb(60, 180, 110)' : '#ffffff'};
-  color: ${props => props.active ? '#ffffff' : '#484848'};
-  font-weight: ${props => props.active ? 'bold' : 'normal'};
-  svg {
-    display: inline-block;
-  }
-`
-
-const Container = styled.div`
-  a, button {
-    margin-right: 5px;
-  }
-`
+import {
+  Button,
+  Container
+} from './PaginationStyles'
 
 class Pagination extends Component {
-
   getNbPages() {
     return Math.ceil(this.props.total / this.props.perPage) || 1
   }
@@ -31,7 +16,7 @@ class Pagination extends Component {
   range() {
     const input = []
     const { page, perPage, total } = this.props
-    if (isNaN(page)) return input
+    if (Number.isNaN(page)) return input
     const nbPages = Math.ceil(total / perPage) || 1
 
     // display page links around the current page
@@ -81,8 +66,8 @@ class Pagination extends Component {
   }
 
   gotoPage = (event) => {
+    const { currentTarget: { dataset: { page } } } = event
     event.stopPropagation();
-    const page = event.currentTarget.dataset.page;
     if (page < 1 || page > this.getNbPages()) {
       throw new Error('navigation.page_out_of_boundaries')
     }
@@ -102,12 +87,13 @@ class Pagination extends Component {
               {pageNum}
             </Button>
           </Link>
-      )
-    );
+      ))
   }
 
   render() {
-    const { page, total, routeHref, routeAs, screenWidth } = this.props
+    const {
+      page, total, routeHref, routeAs, screenWidth
+    } = this.props
     const hrefPrev = routeHref ? `/${routeHref}&page=${page - 1}` : `/page?page=${page - 1}`
     const asPrev = routeAs ? `/${routeAs}/page/${page - 1}` : `/page/${page - 1}`
     const hrefNext = routeHref ? `/${routeHref}&page=${page + 1}` : `/page?page=${page + 1}`

@@ -1,6 +1,18 @@
 {
-  "extends": "react-app",
+  "parser": "babel-eslint",
+  "extends": "airbnb",
   "rules": {
-    "jsx-a11y/href-no-hash": 0
+    "semi": 0,
+    "template-tag-spacing": 0,
+    "react/prop-types": 0,
+    "comma-dangle": 0,
+    "react/jsx-filename-extension": 0,
+    "arrow-parens": 0,
+    "class-methods-use-this": 0,
+    "no-underscore-dangle": 0
+  },
+  "env": {
+    "browser": true,
+    "node": true
   }
 }

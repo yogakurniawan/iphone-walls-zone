@@ -6,3 +6,7 @@ export function loadCategories(payload) {
     payload
   };
 }
+
+export function dummy() {
+
+}

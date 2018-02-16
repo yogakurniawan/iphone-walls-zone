@@ -16,20 +16,22 @@ import { H1, H3 } from '../components/CommonStyled'
 import { setCurrentMenu } from '../actions/global'
 
 class Search extends Component {
-
   async doLike(e, wallpaper) {
+    const theWallpaper = wallpaper
     const url = `${BASE_API_URL}/Wallpapers`
     const { likeWallpaper: like } = this.props
-    wallpaper.total_like += 1
-    like(wallpaper)
-    await axios.put(url, wallpaper)
+    theWallpaper.total_like += 1
+    like(theWallpaper)
+    await axios.put(url, theWallpaper)
   }
 
   render() {
-    const { total, search, models, wallpapers, width, page } = this.props
+    const {
+      total, search, models, wallpapers, width, page
+    } = this.props
     return (
       <div>
-        <DeviceModels models={models} />              
+        <DeviceModels models={models} />
         <Grid>
           <Helmet
             htmlAttributes={{ lang: 'en' }}

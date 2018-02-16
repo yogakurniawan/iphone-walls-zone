@@ -143,7 +143,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
           <title>Best Free Download iPhone and iPad Wallpapers - iPhoneWallsZone</title>
           <meta charSet="utf-8" />
@@ -162,7 +162,7 @@ export default class MyDocument extends Document {
           <meta name="twitter:url" content="http://iphonewallszone.com" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:image" content="https://storage.googleapis.com/iphonewallszone/featured-image.jpeg" />
-          <link rel='icon' href='/static/assets/favicon.ico' />
+          <link rel="icon" href="/static/assets/favicon.ico" />
           <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css" />
           {this.props.styleTags}
         </Head>

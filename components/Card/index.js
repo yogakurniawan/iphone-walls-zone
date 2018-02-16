@@ -68,32 +68,39 @@ const Title = styled.div`
 `
 
 const Card = (props) => {
-  const { data, detailMode, like, models } = props;
+  const {
+    data,
+    detailMode,
+    like,
+    models
+  } = props;
   const href = `/wallpaper?name=${replaceSpaceWithDash(data.name)}`
   const as = `/wallpaper/${replaceSpaceWithDash(data.name)}`
-  const model = models && models.find(model => model.id === data.iphoneModelId)
-  let nameReplaced = data.name.replace(/(iPhone)/ig, "")
-  nameReplaced = nameReplaced.replace(/(3|4|4s|5|X|5s|6|6s|SE|7|iPad Pro|iPad Mini)/g, "")
-  nameReplaced = nameReplaced.replace(/(Wallpaper)/ig, "")
-  nameReplaced = nameReplaced.replace(/(10."|12.9")/g, "")
-  nameReplaced = nameReplaced.replace(/(Plus)/ig, "")
-  nameReplaced = nameReplaced.replace(/(HD)/g, "")
+  const model = models && models.find(m => (m.id === data.iphoneModelId))
+  let nameReplaced = data.name.replace(/(iPhone)/ig, '')
+  nameReplaced = nameReplaced.replace(/(3|4|4s|5|X|5s|6|6s|SE|7|iPad Pro|iPad Mini)/g, '')
+  nameReplaced = nameReplaced.replace(/(Wallpaper)/ig, '')
+  nameReplaced = nameReplaced.replace(/(10."|12.9")/g, '')
+  nameReplaced = nameReplaced.replace(/(Plus)/ig, '')
+  nameReplaced = nameReplaced.replace(/(HD)/g, '')
   let modelReplaced = model && model.name.replace(/(Plus)/g, '+')
   modelReplaced = modelReplaced && modelReplaced.replace(/(.5"|.9")/g, '')
   if (detailMode) {
-    return <Wrapper>
-      <Link href={href} as={as}>
-        <Wallpaper backgroundImage={data.thumbnail}>
-          <Overlay>
-            <Link href={href} as={as}>
-              <Title>
-                <Name>{nameReplaced}</Name>
-              </Title>
-            </Link>
-          </Overlay>
-        </Wallpaper>
-      </Link>
-    </Wrapper>
+    return (
+      <Wrapper>
+        <Link href={href} as={as}>
+          <Wallpaper backgroundImage={data.thumbnail}>
+            <Overlay>
+              <Link href={href} as={as}>
+                <Title>
+                  <Name>{nameReplaced}</Name>
+                </Title>
+              </Link>
+            </Overlay>
+          </Wallpaper>
+        </Link>
+      </Wrapper>
+    )
   }
 
   return (
@@ -122,4 +129,4 @@ const Card = (props) => {
   )
 }
 
-export default Card;
+export default Card

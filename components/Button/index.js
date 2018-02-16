@@ -94,7 +94,7 @@ export const ModelButton = styled.button`
   padding-bottom: 6px;
   margin-top: 5px;
   border: 1px solid #dce0e0;
-  background-color: ${props => props.active ? '#dedede' : 'none'};
+  background-color: ${props => (props.active ? '#dedede' : 'none')};
   &:hover {
     background: #dedede;
     border-color: #dedede;

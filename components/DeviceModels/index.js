@@ -18,13 +18,16 @@ class DeviceModels extends Component {
       <DeviceModelsRow>
         <Col xs={12}>
           {
-            models && models.map(model =>
-              <Link key={model.name} href={`/model?model=${model.meta_route}`} as={`/model/${model.meta_route}`}>
-                <ModelButton onClick={() => this.handleClick(model.meta_route)} active={model.meta_route === currentModel}>
-                  {model.name}
+            models && models.map(m => (
+              <Link key={m.name} href={`/model?model=${m.meta_route}`} as={`/model/${m.meta_route}`}>
+                <ModelButton
+                  onClick={() => this.handleClick(m.meta_route)}
+                  active={m.meta_route === currentModel}
+                >
+                  {m.name}
                 </ModelButton>
               </Link>
-            )
+            ))
           }
         </Col>
       </DeviceModelsRow>

@@ -12,24 +12,27 @@ export function checkStatus(response) {
   throw error;
 }
 
-export function grab(url, options={}) {
-  options = {
-      // your default options
-      credentials: 'same-origin',
-      redirect: 'error',
-      ...options,
-  };
-
-  if(options.qs) {
-      url += (url.indexOf('?') === -1 ? '?' : '&') + queryParams(options.qs);
-      delete options.queryParams;
-  }
-
-  return fetch(url, options);
-}
-
 export function queryParams(params) {
   return Object.keys(params)
     .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
     .join('&');
 }
+
+export function grab(url, options = {}) {
+  let theOptions = options
+  let theUrl = url
+  theOptions = {
+    // your default options
+    credentials: 'same-origin',
+    redirect: 'error',
+    ...theOptions,
+  };
+
+  if (theOptions.qs) {
+    theUrl += (theUrl.indexOf('?') === -1 ? '?' : '&') + queryParams(theOptions.qs);
+    delete theOptions.queryParams;
+  }
+
+  return fetch(theUrl, options);
+}
+

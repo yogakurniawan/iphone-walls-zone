@@ -6,3 +6,7 @@ export function loadModels(payload) {
     payload
   };
 }
+
+export function dummy() {
+
+}

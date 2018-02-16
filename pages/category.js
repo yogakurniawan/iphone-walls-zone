@@ -8,26 +8,27 @@ import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import PageHOC from '../components/HOC/Page'
 import DeviceModels from '../components/DeviceModels'
 import { grab, parseJSON } from '../utils/request'
-import { BASE_API_URL, PER_PAGE } from '../constants/index'
+import { BASE_API_URL, PER_PAGE, EMPTY } from '../constants'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination'
 import { likeWallpaper, loadWallpapers } from '../actions/wallpaper'
 import { setCurrentMenu, setModel } from '../actions/global'
 import { H1 } from '../components/CommonStyled'
-import { EMPTY } from '../constants'
 
 class Category extends Component {
-
   async doLike(e, wallpaper) {
+    const theWallpaper = wallpaper
     const url = `${BASE_API_URL}/Wallpapers`
     const { likeWallpaper: like } = this.props
-    wallpaper.total_like += 1
-    like(wallpaper)
-    await axios.put(url, wallpaper)
+    theWallpaper.total_like += 1
+    like(theWallpaper)
+    await axios.put(url, theWallpaper)
   }
 
   render() {
-    const { title, models, wallpapers, width, page, category, total } = this.props;
+    const {
+      title, models, wallpapers, width, page, category, total
+    } = this.props;
     return (
       <div>
         <DeviceModels models={models} />
@@ -41,10 +42,11 @@ class Category extends Component {
           <Row style={{ margin: 10 }}>
             {
               wallpapers && wallpapers.map((wallpaper) =>
-                <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
-                  <Card like={(e) => this.doLike(e, wallpaper)} data={wallpaper} models={models} />
-                </Col>
-              )
+                (
+                  <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
+                    <Card like={e => this.doLike(e, wallpaper)} data={wallpaper} models={models} />
+                  </Col>
+                ))
             }
           </Row>
           <Row center="xs" style={{ margin: 'auto' }}>
@@ -67,7 +69,7 @@ class Category extends Component {
 }
 
 Category.getInitialProps = async ({ req, store, query }) => {
-  const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
+  const page = !Number.isNaN(query.page) ? parseInt(query.page, 10) : 1
   const category = query && decodeURI(query.category)
   const title = `Free ${category} iPhone and iPad Retina Wallpapers - iPhoneWallsZone`
   const queryParam = {

@@ -11,44 +11,47 @@ import { setCurrentMenu } from '../../actions/global'
 import { loadModels } from '../../actions/model'
 import { grab, parseJSON } from '../../utils/request'
 
-const debug = process.env.NODE_ENV !== 'production';
+// const debug = process.env.NODE_ENV !== 'production';
 
 const page = WrappedComponent => {
   class Page extends Component {
     static async getInitialProps(context) {
       const store = initStore()
       const state = store.getState()
+      const { category: { categories }, model: { models } } = state;
       const otherProps = WrappedComponent.getInitialProps
         ? await WrappedComponent.getInitialProps({ ...context, store })
         : {}
       let resCategories;
-      let categories;
+      let theCategories;
       if (!state.category.categories || !state.category.categories.length) {
         resCategories = await grab(`${BASE_API_URL}/Categories`, {
           qs: {
             'filter[order]': 'name ASC'
           }
         })
-        categories = await parseJSON(resCategories)
+        theCategories = await parseJSON(resCategories)
         store.dispatch(loadCategories(categories))
       } else {
-        categories = state.category.categories
+        theCategories = categories
       }
 
       let resModels;
-      let models;
+      let theModels;
       if (!state.model.models || !state.model.models.length) {
         resModels = await grab(`${BASE_API_URL}/IphoneModels`, {
           qs: {
             'filter[order]': 'orderId ASC'
           }
         })
-        models = await parseJSON(resModels)
-        store.dispatch(loadModels(models))
+        theModels = await parseJSON(resModels)
+        store.dispatch(loadModels(theModels))
       } else {
-        models = state.model.models
+        theModels = models
       }
-      return { ...otherProps, categories, models, initialState: store.getState() }
+      return {
+        ...otherProps, categories: theCategories, models: theModels, initialState: store.getState()
+      }
     }
 
     constructor(props) {
@@ -57,21 +60,19 @@ const page = WrappedComponent => {
       this.trackPageview = this.trackPageview.bind(this)
     }
 
-    componentDidMount() {
-      this.initGa();
-      this.trackPageview();
-      Router.router.events.on('routeChangeComplete', this.trackPageview);
-    }
+    // componentDidMount() {
+    //   this.initGa();
+    //   this.trackPageview();
+    //   Router.router.events.on('routeChangeComplete', this.trackPageview);
+    // }
 
     componentWillUnmount() {
       Router.router.events.off('routeChangeComplete', this.trackPageview);
     }
 
-    initGa() {
-      if (!window.GA_INITIALIZED) {
-        ReactGA.initialize('UA-97981820-3', { debug });
-        window.GA_INITIALIZED = true;
-      }
+    onClickMenu(menu) {
+      const store = initStore()
+      store.dispatch(setCurrentMenu(menu))
     }
 
     trackPageview(path = document.location.pathname) {
@@ -81,14 +82,16 @@ const page = WrappedComponent => {
       }
     }
 
-    onClickMenu(menu) {
-      const store = initStore()
-      store.dispatch(setCurrentMenu(menu))
-    }
+    // initGa() {
+    //   if (!window.GA_INITIALIZED) {
+    //     ReactGA.initialize('UA-97981820-3', { debug })
+    //     window.GA_INITIALIZED = true
+    //   }
+    // }
 
     render() {
       const { initialState, categories, ...rest } = this.props
-      const store = this.store
+      const { store } = this
       const state = store.getState()
       return (
         <Provider store={store}>

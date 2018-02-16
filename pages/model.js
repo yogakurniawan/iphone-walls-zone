@@ -16,17 +16,19 @@ import { setCurrentMenu, setModel } from '../actions/global'
 import { H1 } from '../components/CommonStyled'
 
 class Model extends Component {
-
   async doLike(e, wallpaper) {
+    const theWallpaper = wallpaper
     const url = `${BASE_API_URL}/Wallpapers`
     const { likeWallpaper: like } = this.props
-    wallpaper.total_like += 1
-    like(wallpaper)
-    await axios.put(url, wallpaper)
+    theWallpaper.total_like += 1
+    like(theWallpaper)
+    await axios.put(url, theWallpaper)
   }
 
   render() {
-    const { models, wallpapers, width, page, model, total } = this.props;
+    const {
+      models, wallpapers, width, page, model, total
+    } = this.props;
     const getModelTitle = models.find(m => model === m.meta_route)
     return (
       <div>
@@ -39,11 +41,11 @@ class Model extends Component {
           <H1><span>{getModelTitle.name}</span> wallpapers</H1>
           <Row style={{ margin: 10 }}>
             {
-              wallpapers && wallpapers.map((wallpaper) =>
+              wallpapers && wallpapers.map((wallpaper) => (
                 <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
                   <Card like={(e) => this.doLike(e, wallpaper)} data={wallpaper} models={models} />
                 </Col>
-              )
+              ))
             }
           </Row>
           <Row center="xs" style={{ margin: 'auto' }}>
@@ -66,7 +68,7 @@ class Model extends Component {
 }
 
 Model.getInitialProps = async ({ req, store, query }) => {
-  const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1  
+  const page = !Number.isNaN(query.page) ? parseInt(query.page, 10) : 1
   const model = query && decodeURI(query.model)
   const queryParam = {
     'filter[where][model]': decodeURI(model),
@@ -79,7 +81,7 @@ Model.getInitialProps = async ({ req, store, query }) => {
   if (req) {
     Helmet.renderStatic()
   }
-  let api = `${BASE_API_URL}/Wallpapers`
+  const api = `${BASE_API_URL}/Wallpapers`
   const countApi = `${api}/count?where[model]=${model}`
   const [itemResponse, totalResponse] = await Promise.all([
     grab(api, { qs: queryParam }),
