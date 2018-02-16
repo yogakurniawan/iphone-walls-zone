@@ -1,5 +1,4 @@
 const CompressionPlugin = require('compression-webpack-plugin')
-const { assocPath } = require('ramda');
 
 module.exports = {
   webpack(config, { dev }) {
@@ -24,6 +23,5 @@ module.exports = {
     };
 
     config.module.rules.push(eslintRule)
-    return config
   }
 }
