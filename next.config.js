@@ -23,5 +23,6 @@ module.exports = {
     };
 
     config.module.rules.push(eslintRule)
+    return config
   }
 }
