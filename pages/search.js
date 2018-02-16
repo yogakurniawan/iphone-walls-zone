@@ -41,11 +41,11 @@ class Search extends Component {
           <H3>{total} free <span>{search}</span> wallpapers</H3>
           <Row style={{ margin: 10 }}>
             {
-              wallpapers && wallpapers.map((wallpaper) =>
+              wallpapers && wallpapers.map((wallpaper) => (
                 <Col key={wallpaper.id} xs={6} sm={3} md={3} lg={2}>
                   <Card like={(e) => this.doLike(e, wallpaper)} data={wallpaper} models={models} />
                 </Col>
-              )
+              ))
             }
           </Row>
           <Row center="xs" style={{ margin: 'auto' }}>
@@ -68,7 +68,7 @@ class Search extends Component {
 }
 
 Search.getInitialProps = async ({ req, store, query }) => {
-  const page = !isNaN(query.page) ? parseInt(query.page, 10) : 1
+  const page = !Number.isNaN(query.page) ? parseInt(query.page, 10) : 1
   const search = query && decodeURI(query.search)
   const queryParam = {
     'filter[where][name][like]': `.*${decodeURI(search)}.*`,
@@ -83,7 +83,7 @@ Search.getInitialProps = async ({ req, store, query }) => {
   if (req) {
     Helmet.renderStatic()
   }
-  let api = `${BASE_API_URL}/Wallpapers`
+  const api = `${BASE_API_URL}/Wallpapers`
   const countApi = `${api}/count?where[name][like]=.*${decodeURI(search)}.*&where[name][options]=i`
   const [itemResponse, totalResponse] = await Promise.all([
     grab(api, { qs: queryParam }),
