@@ -11,7 +11,7 @@ import { setCurrentMenu } from '../../actions/global'
 import { loadModels } from '../../actions/model'
 import { grab, parseJSON } from '../../utils/request'
 
-// const debug = process.env.NODE_ENV !== 'production';
+const debug = process.env.NODE_ENV !== 'production';
 
 const page = WrappedComponent => {
   class Page extends Component {
@@ -60,11 +60,11 @@ const page = WrappedComponent => {
       this.trackPageview = this.trackPageview.bind(this)
     }
 
-    // componentDidMount() {
-    //   this.initGa();
-    //   this.trackPageview();
-    //   Router.router.events.on('routeChangeComplete', this.trackPageview);
-    // }
+    componentDidMount() {
+      this.initGa();
+      this.trackPageview();
+      Router.router.events.on('routeChangeComplete', this.trackPageview);
+    }
 
     componentWillUnmount() {
       Router.router.events.off('routeChangeComplete', this.trackPageview);
@@ -82,12 +82,12 @@ const page = WrappedComponent => {
       }
     }
 
-    // initGa() {
-    //   if (!window.GA_INITIALIZED) {
-    //     ReactGA.initialize('UA-97981820-3', { debug })
-    //     window.GA_INITIALIZED = true
-    //   }
-    // }
+    initGa() {
+      if (!window.GA_INITIALIZED) {
+        ReactGA.initialize('UA-97981820-3', { debug })
+        window.GA_INITIALIZED = true
+      }
+    }
 
     render() {
       const { initialState, categories, ...rest } = this.props
