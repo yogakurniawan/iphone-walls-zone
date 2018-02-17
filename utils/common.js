@@ -9,3 +9,7 @@ export function replaceSpaceWithDash(str) {
 export function replaceDashWithSpace(str) {
   return str.replace(/-/g, ' ');
 }
+
+export function isNumber(input) {
+  return /^\d+$/.test(input)
+}

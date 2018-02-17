@@ -8,6 +8,7 @@ import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import PageHOC from '../components/HOC/Page'
 import DeviceModels from '../components/DeviceModels'
 import { grab, parseJSON } from '../utils/request'
+import { isNumber } from '../utils/common'
 import { BASE_API_URL, PER_PAGE, EMPTY } from '../constants'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination'
@@ -69,7 +70,7 @@ class Category extends Component {
 }
 
 Category.getInitialProps = async ({ req, store, query }) => {
-  const page = !Number.isNaN(query.page) ? parseInt(query.page, 10) : 1
+  const page = isNumber(query.page) ? parseInt(query.page, 10) : 1
   const category = query && decodeURI(query.category)
   const title = `Free ${category} iPhone and iPad Retina Wallpapers - iPhoneWallsZone`
   const queryParam = {
