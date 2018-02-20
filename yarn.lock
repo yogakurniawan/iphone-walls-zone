@@ -5844,9 +5844,9 @@ styled-normalize@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/styled-normalize/-/styled-normalize-2.2.1.tgz#c93a007c0339a69e3254eeef8cb6a5a96e5ca4eb"
 
-styled-sanitize@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/styled-sanitize/-/styled-sanitize-1.0.0.tgz#94cf354b0929b2450d1725a1b04d378fc692bab5"
+styled-sanitize@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/styled-sanitize/-/styled-sanitize-1.0.1.tgz#0efc73f9e4ca70212149cfa5459fcae04aa3761e"
 
 stylis-rule-sheet@0.0.6:
   version "0.0.6"
