@@ -110,5 +110,4 @@ const mapDispatchToProps = {
   likeWallpaper
 }
 
-const enhancedSearch = Dimensions()(Search);
-export default PageHOC(connect(mapStateToProps, mapDispatchToProps)(enhancedSearch))
+export default PageHOC(connect(mapStateToProps, mapDispatchToProps)(Search))
