@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import root from 'window-or-global'
 import Link from '../Link'
 import PrevIconStyled from '../Icon/PrevIcon'
 import NextIconStyled from '../Icon/NextIcon'
@@ -9,6 +10,15 @@ import {
 } from './PaginationStyles'
 
 class Pagination extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { width: null };
+  }
+
+  componentWillMount() {
+    this.setState({ width: root.innerWidth })
+  }
+
   getNbPages() {
     return Math.ceil(this.props.total / this.props.perPage) || 1
   }
@@ -92,8 +102,9 @@ class Pagination extends Component {
 
   render() {
     const {
-      page, total, routeHref, routeAs, screenWidth
+      page, total, routeHref, routeAs
     } = this.props
+    const { width } = this.state
     const hrefPrev = routeHref ? `/${routeHref}&page=${page - 1}` : `/page?page=${page - 1}`
     const asPrev = routeAs ? `/${routeAs}/page/${page - 1}` : `/page/${page - 1}`
     const hrefNext = routeHref ? `/${routeHref}&page=${page + 1}` : `/page?page=${page + 1}`
@@ -114,8 +125,8 @@ class Pagination extends Component {
             </Button>
           </Link>
         }
-        {screenWidth >= 600 && this.renderPageNums()}
-        {screenWidth <= 600 && <Button active>{page}</Button>}
+        {width >= 600 && this.renderPageNums()}
+        {width <= 600 && <Button active>{page}</Button>}
         {page !== nbPages &&
           <Link href={hrefNext} as={asNext}>
             <Button>
@@ -130,7 +141,6 @@ class Pagination extends Component {
 
 Pagination.propTypes = {
   page: PropTypes.number,
-  screenWidth: PropTypes.number,
   perPage: PropTypes.number,
   total: PropTypes.number,
   setPage: PropTypes.func,
@@ -140,7 +150,6 @@ Pagination.propTypes = {
 
 Pagination.defaultProps = {
   page: 0,
-  screenWidth: 0,
   perPage: 12,
   total: 0,
   setPage: null,

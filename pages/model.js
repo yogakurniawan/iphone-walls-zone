@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import 'isomorphic-fetch'
 import axios from 'axios'
-import Dimensions from 'react-sizer'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import PageHOC from '../components/HOC/Page'
 import DeviceModels from '../components/DeviceModels'
@@ -110,5 +109,4 @@ const mapDispatchToProps = {
   likeWallpaper
 }
 
-const enhancedModel = Dimensions()(Model);
-export default PageHOC(connect(mapStateToProps, mapDispatchToProps)(enhancedModel))
+export default PageHOC(connect(mapStateToProps, mapDispatchToProps)(Model))
