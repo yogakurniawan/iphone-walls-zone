@@ -35,7 +35,6 @@
     "redux-form": "^7.2.3",
     "styled-components": "^2.4.0",
     "styled-map": "^2.0.1",
-    "styled-normalize": "^2.3.0",
     "styled-sanitize": "^1.0.1",
     "window-or-global": "^1.0.1"
   },

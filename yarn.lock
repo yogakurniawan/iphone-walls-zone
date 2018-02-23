@@ -5898,10 +5898,6 @@ styled-map@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/styled-map/-/styled-map-2.0.1.tgz#52db5b7b8269788ba01c93c7c3ca4fee4eb2ab35"
 
-styled-normalize@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/styled-normalize/-/styled-normalize-2.3.0.tgz#0ab118085955d37ec03c5c418032bfd68ad649d6"
-
 styled-sanitize@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/styled-sanitize/-/styled-sanitize-1.0.1.tgz#0efc73f9e4ca70212149cfa5459fcae04aa3761e"
