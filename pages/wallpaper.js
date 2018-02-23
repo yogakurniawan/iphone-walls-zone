@@ -230,7 +230,7 @@ class Wallpaper extends Component {
             <Row>
               {
                 relatedWallpapers && relatedWallpapers.map((wp) => (
-                  <Col key={wp.id} xs={4} sm={3} md={3} lg={2}>
+                  <Col key={wp.id} xs={6} sm={3} md={3} lg={2}>
                     <Card detailMode data={wp} />
                   </Col>
                 ))
