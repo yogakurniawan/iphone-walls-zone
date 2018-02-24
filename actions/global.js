@@ -4,19 +4,19 @@ export function setCurrentMenu(payload) {
   return {
     type: SET_CURRENT_MENU,
     payload
-  };
+  }
 }
 
 export function setSearchKeyword(payload) {
   return {
     type: SET_SEARCH_KEYWORD,
     payload
-  };
+  }
 }
 
 export function setModel(payload) {
   return {
     type: SET_MODEL,
     payload
-  };
+  }
 }

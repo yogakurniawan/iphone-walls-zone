@@ -10,6 +10,9 @@ const Icon = css`
 
 const NextIconStyled = styled(NextIcon) `
   ${Icon}
+  ${props => !props.active && css`
+    fill: rgb(197, 197, 197);
+  `}
 `
 
 export default NextIconStyled

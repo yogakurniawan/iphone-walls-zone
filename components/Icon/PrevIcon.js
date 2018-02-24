@@ -10,6 +10,9 @@ const Icon = css`
 
 const PrevIconStyled = styled(PrevIcon) `
   ${Icon}
+  ${props => !props.active && css`
+    fill: rgb(197, 197, 197);
+  `}
 `
 
 export default PrevIconStyled

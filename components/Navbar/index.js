@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Router from 'next/router'
 import { setSearchKeyword, setModel } from '../../actions/global'
@@ -125,5 +125,5 @@ const mapDispatchToProps = {
   setModel
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
 

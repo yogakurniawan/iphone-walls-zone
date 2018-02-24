@@ -4,7 +4,7 @@ export function loadCategories(payload) {
   return {
     type: LOAD_CATEGORIES,
     payload
-  };
+  }
 }
 
 export function dummy() {

@@ -4,26 +4,26 @@ export function loadWallpapers(payload) {
   return {
     type: LOAD_WALLPAPERS,
     payload
-  };
+  }
 }
 
 export function loadWallpaper(payload) {
   return {
     type: LOAD_WALLPAPER,
     payload
-  };
+  }
 }
 
 export function likeWallpaper(payload) {
   return {
     type: LIKE_WALLPAPER,
     payload
-  };
+  }
 }
 
 export function likeWallpaperFromDetail(payload) {
   return {
     type: LIKE_WALLPAPER_FROM_DETAIL,
     payload
-  };
+  }
 }

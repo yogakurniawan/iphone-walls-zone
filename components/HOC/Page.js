@@ -11,19 +11,19 @@ import { setCurrentMenu } from '../../actions/global'
 import { loadModels } from '../../actions/model'
 import { grab, parseJSON } from '../../utils/request'
 
-const debug = process.env.NODE_ENV !== 'production';
+const debug = process.env.NODE_ENV !== 'production'
 
 const page = WrappedComponent => {
   class Page extends Component {
     static async getInitialProps(context) {
       const store = initStore()
       const state = store.getState()
-      const { category: { categories }, model: { models } } = state;
+      const { category: { categories }, model: { models } } = state
       const otherProps = WrappedComponent.getInitialProps
         ? await WrappedComponent.getInitialProps({ ...context, store })
         : {}
-      let resCategories;
-      let theCategories;
+      let resCategories
+      let theCategories
       if (!state.category.categories || !state.category.categories.length) {
         resCategories = await grab(`${BASE_API_URL}/Categories`, {
           qs: {
@@ -36,8 +36,8 @@ const page = WrappedComponent => {
         theCategories = categories
       }
 
-      let resModels;
-      let theModels;
+      let resModels
+      let theModels
       if (!state.model.models || !state.model.models.length) {
         resModels = await grab(`${BASE_API_URL}/IphoneModels`, {
           qs: {
@@ -61,13 +61,13 @@ const page = WrappedComponent => {
     }
 
     componentDidMount() {
-      this.initGa();
-      this.trackPageview();
-      Router.router.events.on('routeChangeComplete', this.trackPageview);
+      this.initGa()
+      this.trackPageview()
+      Router.router.events.on('routeChangeComplete', this.trackPageview)
     }
 
     componentWillUnmount() {
-      Router.router.events.off('routeChangeComplete', this.trackPageview);
+      Router.router.events.off('routeChangeComplete', this.trackPageview)
     }
 
     onClickMenu(menu) {
@@ -77,8 +77,8 @@ const page = WrappedComponent => {
 
     trackPageview(path = document.location.pathname) {
       if (path !== this.lastTrackedPath) {
-        ReactGA.pageview(path);
-        this.lastTrackedPath = path;
+        ReactGA.pageview(path)
+        this.lastTrackedPath = path
       }
     }
 
