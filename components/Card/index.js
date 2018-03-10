@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from '../Link'
 import { LoveButton, ModelButtonOnCard } from '../Button'
+import { Eye } from '../Icon'
 import { replaceSpaceWithDash } from '../../utils/common'
 
 const Overlay = styled.div`
@@ -45,13 +46,8 @@ const Div = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   text-align: right;
-  button {
-    margin-right: 5px;
-    margin-bottom: 2px;
-    display: inline-block;
-  }
 `
 
 const Title = styled.div`
@@ -64,6 +60,18 @@ const Title = styled.div`
   &:hover span {
     text-decoration: underline;
     color: #FFFFFF;
+  }
+`
+
+const Views = styled.div`
+  display: inline-block;
+  color: #fff;
+  float: left;
+  span {
+    margin-right: 3px;
+    &:before {
+      ${Eye}
+    }
   }
 `
 
@@ -106,6 +114,10 @@ const Card = (props) => {
       <Wallpaper backgroundImage={data.thumbnail}>
         <Overlay>
           <Div>
+            <Views>
+              <span />
+              {data.total_view}
+            </Views>
             <Link href={`/model?model=${data.model}`} as={`/model/${data.model}`}>
               <ModelButtonOnCard>
                 {modelReplaced}

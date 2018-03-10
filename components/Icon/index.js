@@ -14,4 +14,23 @@ export const AngleRight = css`
   content: '\f105';
 `
 
+export const Eye = css`
+  ${Icon}
+  content: '\f06e';
+`
+
+export const Download = css`
+  ${Icon}
+  content: '\f063';
+`
+
+export const IconInfo = css`
+  color: #999;
+  line-height: 32px;
+  display: inline-block;
+  span {
+    margin-right: 5px;
+  }
+`
+
 export default Icon

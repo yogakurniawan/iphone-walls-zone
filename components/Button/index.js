@@ -58,6 +58,8 @@ const CommonButton = css`
   background-color: #ffffffb8;
   border-color: #ddd;
   color: #484848;
+  font-size: 0.85em;
+  padding: 0 4px;
   &:hover {
     fill: currentColor;
     background-color: #fff;
@@ -72,9 +74,13 @@ const CommonButton = css`
 export const LoveButton = styled.button`
   ${ButtonStyle}
   ${CommonButton}
+  font-size: 0.85em;
+  padding: 0 4px;
+  height: 22px;
+  margin-right: 0;
   span {
     color: red;
-    margin-right: 10px;
+    margin-right: 3px;
     &:before {
       ${Heart}
     }
@@ -84,6 +90,8 @@ export const LoveButton = styled.button`
 export const ModelButtonOnCard = styled.button`
   ${ButtonStyle}
   ${CommonButton}
+  height: 22px;
+  margin-right: 3px;
 `
 
 export const ModelButton = styled.button`

@@ -7,7 +7,7 @@ import Helmet from 'react-helmet'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import PageHOC from '../components/HOC/Page'
 import { LoveButton, DownloadButton } from '../components/Button'
-import Icon, { AngleRight } from '../components/Icon'
+import { AngleRight, IconInfo, Eye, Download } from '../components/Icon'
 import Card from '../components/Card'
 import Link from '../components/Link'
 import { grab, parseJSON } from '../utils/request'
@@ -80,29 +80,10 @@ const Description = styled.div`
   padding-right: 10px;
 `
 
-const Eye = css`
-  ${Icon}
-  content: '\f06e';
-`
-
-const Download = css`
-  ${Icon}
-  content: '\f063';
-`
-
 const IconInfoWrapper = styled.div`
   float: right;
   > div {
     margin-right: 10px;
-  }
-`
-
-const IconInfo = css`
-  color: #999;
-  line-height: 32px;
-  display: inline-block;
-  span {
-    margin-right: 5px;
   }
 `
 
