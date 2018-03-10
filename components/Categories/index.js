@@ -98,7 +98,7 @@ function NextArrow(props) {
   return (
     <Next onClick={onClick}>
       <NextIconWrapper>
-        <NextIconStyled />
+        <NextIconStyled active />
       </NextIconWrapper>
     </Next>
   );
@@ -109,7 +109,7 @@ function PrevArrow(props) {
   return (
     <Prev onClick={onClick}>
       <PrevIconWrapper>
-        <PrevIconStyled />
+        <PrevIconStyled active />
       </PrevIconWrapper>
     </Prev>
   );
