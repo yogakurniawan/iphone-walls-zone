@@ -58,7 +58,7 @@ const invisible = css`
 
 export const Li = styled.li`
   list-style: none;
-  margin-right: 1em;
+  margin-right: 0.6em;
   @media only screen and ( max-width: 40.063em ) {
     ${invisible}
     ${props => props.current && css`
