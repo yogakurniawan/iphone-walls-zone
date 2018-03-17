@@ -66,7 +66,7 @@ class Search extends Component {
   }
 }
 
-Search.getInitialProps = async ({ req, store, query }) => {
+Search.getInitialProps = async ({ store, query }) => {
   const page = isNumber(query.page) ? parseInt(query.page, 10) : 1
   const search = query && decodeURI(query.search)
   const queryParam = {
@@ -78,9 +78,6 @@ Search.getInitialProps = async ({ req, store, query }) => {
   if (!search) {
     delete queryParam['filter[where][name][like]']
     delete queryParam['filter[where][name][options]']
-  }
-  if (req) {
-    Helmet.renderStatic()
   }
   const api = `${BASE_API_URL}/Wallpapers`
   const countApi = `${api}/count?where[name][like]=.*${decodeURI(search)}.*&where[name][options]=i`

@@ -162,7 +162,6 @@ class Wallpaper extends Component {
     return (
       <Grid>
         <Helmet
-          htmlAttributes={{ lang: 'en' }}
           title={title}
           meta={[
             { name: 'description', content: description },
@@ -225,13 +224,10 @@ class Wallpaper extends Component {
   }
 }
 
-Wallpaper.getInitialProps = async ({ req, store, query }) => {
+Wallpaper.getInitialProps = async ({ store, query }) => {
   const name = query && decodeURI(query.name)
   const title = `${replaceDashWithSpace(name)} - Free Download | iPhoneWallsZone`
   const description = `Download ${replaceDashWithSpace(name)} free`
-  if (req) {
-    Helmet.renderStatic()
-  }
   const qsCurrentWP = {
     'filter[where][name]': replaceDashWithSpace(name)
   };

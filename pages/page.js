@@ -63,7 +63,7 @@ class Page extends Component {
   }
 }
 
-Page.getInitialProps = async ({ req, store, query }) => {
+Page.getInitialProps = async ({ store, query }) => {
   const page = isNumber(query.page) ? parseInt(query.page, 10) : 1
   let isHomePage = true
   let title = '';
@@ -88,10 +88,6 @@ Page.getInitialProps = async ({ req, store, query }) => {
     queryParam['filter[order]'] = 'total_download DESC'
     isHomePage = false
     title = 'Top Downloaded'
-  }
-
-  if (req) {
-    Helmet.renderStatic()
   }
 
   const api = `${BASE_API_URL}/Wallpapers`

@@ -27,7 +27,14 @@ class Category extends Component {
 
   render() {
     const {
-      title, models, wallpapers, width, page, category, total
+      title,
+      description,
+      models,
+      wallpapers,
+      width,
+      page,
+      category,
+      total
     } = this.props;
     return (
       <div>
@@ -35,6 +42,9 @@ class Category extends Component {
         <Grid>
           <Helmet
             title={title}
+            meta={[
+              { name: 'description', content: description },
+            ]}
           />
           <H1><span>{category}</span> wallpapers</H1>
 
@@ -67,10 +77,11 @@ class Category extends Component {
   }
 }
 
-Category.getInitialProps = async ({ req, store, query }) => {
+Category.getInitialProps = async ({ store, query }) => {
   const page = isNumber(query.page) ? parseInt(query.page, 10) : 1
   const category = query && decodeURI(query.category)
   const title = `Free ${category} iPhone and iPad Retina Wallpapers - iPhoneWallsZone`
+  const description = `Download free ${category} iPhone Wallpapers HD - iPhoneWallsZone`
   const queryParam = {
     'filter[where][category]': category,
     'filter[limit]': PER_PAGE,
@@ -79,10 +90,6 @@ Category.getInitialProps = async ({ req, store, query }) => {
 
   if (!category) {
     delete queryParam['filter[where][category]']
-  }
-
-  if (req) {
-    Helmet.renderStatic()
   }
 
   const api = `${BASE_API_URL}/Wallpapers`
@@ -106,7 +113,8 @@ Category.getInitialProps = async ({ req, store, query }) => {
     total: totalResult.count,
     page,
     category,
-    title
+    title,
+    description
   }
 }
 

@@ -30,12 +30,16 @@ class Model extends Component {
       models, wallpapers, width, page, model, total
     } = this.props;
     const getModelTitle = models.find(m => model === m.meta_route)
+    const description = `Download free ${getModelTitle.name} iPhone Wallpapers HD - iPhoneWallsZone`
     return (
       <div>
         <DeviceModels models={models} />
         <Grid>
           <Helmet
             title={`Free ${getModelTitle.name} Wallpapers - iPhoneWallsZone`}
+            meta={[
+              { name: 'description', content: description },
+            ]}
           />
           <H1><span>{getModelTitle.name}</span> wallpapers</H1>
           <Row style={{ margin: 10 }}>
@@ -66,7 +70,7 @@ class Model extends Component {
   }
 }
 
-Model.getInitialProps = async ({ req, store, query }) => {
+Model.getInitialProps = async ({ store, query }) => {
   const page = isNumber(query.page) ? parseInt(query.page, 10) : 1
   const model = query && decodeURI(query.model)
   const queryParam = {
@@ -77,9 +81,7 @@ Model.getInitialProps = async ({ req, store, query }) => {
   if (!model) {
     delete queryParam['filter[where][model]']
   }
-  if (req) {
-    Helmet.renderStatic()
-  }
+
   const api = `${BASE_API_URL}/Wallpapers`
   const countApi = `${api}/count?where[model]=${model}`
   const [itemResponse, totalResponse] = await Promise.all([
