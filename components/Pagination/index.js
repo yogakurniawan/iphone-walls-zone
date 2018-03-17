@@ -8,7 +8,7 @@ import {
   Pagination,
   PaginationWrapper,
   Li
-} from './PaginationStyles'
+} from './Styles'
 
 class PaginationComponent extends Component {
   getNbPages() {

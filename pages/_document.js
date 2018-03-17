@@ -152,6 +152,7 @@ export default class MyDocument extends Document {
   get helmetJsx() {
     const title = 'Best Free Download iPhone and iPad Wallpapers - iPhoneWallsZone'
     const description = 'Best iPhone and iPad wallpapers suitable for iPad Mini, iPad Pro 10.5, iPad Pro 12.9, iPhone X, iPhone 8, iPhone 8 Plus, iPhone 6, iPhone 6s, iPhone 6 Plus, iPhone 6s Plus, iPhone 5, iPhone SE, iPhone 4, iPhone 4s, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPad backgrounds.'
+    const featuredImage = 'https://storage.googleapis.com/iphonewallszone/featured-image.jpeg'
     return (<Helmet
       title={title}
       meta={[
@@ -162,7 +163,7 @@ export default class MyDocument extends Document {
         { property: 'og:title', content: title },
         { property: 'og:url', content: 'http://www.iphonewallszone.com/' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:image:secure_url', content: 'https://storage.googleapis.com/iphonewallszone/featured-image.jpeg' },
+        { property: 'og:image:secure_url', content: featuredImage },
         { property: 'og:description', content: description },
         { name: 'keywords', content: 'HD, apple, iPhone, iPhone 4, iPhone 5, iPhone SE, iPhone 6, iPhone 4s, iPhone 5s, iPhone 6s, iPhone 6 Plus, iPhone 6s Plus, iPhone X, iPad Mini, iPad Pro 10.5, iPad Pro 12.9, wallpapers, free, downloads' },
         { name: 'description', content: description },
@@ -171,7 +172,7 @@ export default class MyDocument extends Document {
         { name: 'twitter:description', content: description },
         { name: 'twitter:creator', content: '@yogkurniawan' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:image', content: 'https://storage.googleapis.com/iphonewallszone/featured-image.jpeg' }]}
+        { name: 'twitter:image', content: featuredImage }]}
     />)
   }
 
