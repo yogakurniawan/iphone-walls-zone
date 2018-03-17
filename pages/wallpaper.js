@@ -166,6 +166,7 @@ class Wallpaper extends Component {
           meta={[
             { name: 'description', content: description },
             { property: 'og:title', content: title },
+            { property: 'og:description', content: description },
             { property: 'og:image:secure_url', content: wallpaper.thumbnail }
           ]}
         />

@@ -29,12 +29,18 @@ class Search extends Component {
     const {
       total, search, models, wallpapers, width, page
     } = this.props
+    const title = `Download free Apple iPhone and iPad ${search} Wallpapers - by relevance | iPhoneWallsZone`
     return (
       <div>
         <DeviceModels models={models} />
         <Grid>
           <Helmet
-            title={`Download free Apple iPhone and iPad ${search} Wallpapers - by relevance | iPhoneWallsZone`}
+            title={title}
+            meta={[
+              { name: 'description', content: title },
+              { property: 'og:title', content: title },
+              { property: 'og:description', content: title }
+            ]}
           />
           <H1><span>{search}</span> wallpapers</H1>
           <H3>{total} free <span>{search}</span> wallpapers</H3>

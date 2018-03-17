@@ -44,6 +44,8 @@ class Category extends Component {
             title={title}
             meta={[
               { name: 'description', content: description },
+              { name: 'og:title', content: title },
+              { name: 'og:description', content: description },
             ]}
           />
           <H1><span>{category}</span> wallpapers</H1>

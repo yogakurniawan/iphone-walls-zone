@@ -30,15 +30,18 @@ class Model extends Component {
       models, wallpapers, width, page, model, total
     } = this.props;
     const getModelTitle = models.find(m => model === m.meta_route)
+    const title = `Free ${getModelTitle.name} Wallpapers - iPhoneWallsZone`
     const description = `Download free ${getModelTitle.name} iPhone Wallpapers HD - iPhoneWallsZone`
     return (
       <div>
         <DeviceModels models={models} />
         <Grid>
           <Helmet
-            title={`Free ${getModelTitle.name} Wallpapers - iPhoneWallsZone`}
+            title={title}
             meta={[
               { name: 'description', content: description },
+              { name: 'og:title', content: title },
+              { name: 'og:description', content: description },
             ]}
           />
           <H1><span>{getModelTitle.name}</span> wallpapers</H1>
