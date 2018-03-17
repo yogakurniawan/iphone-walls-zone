@@ -39,7 +39,9 @@ class Search extends Component {
             meta={[
               { name: 'description', content: title },
               { property: 'og:title', content: title },
-              { property: 'og:description', content: title }
+              { property: 'og:description', content: title },
+              { name: 'twitter:title', content: title },
+              { name: 'twitter:description', content: title }
             ]}
           />
           <H1><span>{search}</span> wallpapers</H1>

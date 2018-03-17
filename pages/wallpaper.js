@@ -165,9 +165,13 @@ class Wallpaper extends Component {
           title={title}
           meta={[
             { name: 'description', content: description },
+            { name: 'twitter:image', content: wallpaper.thumbnail },
             { property: 'og:title', content: title },
             { property: 'og:description', content: description },
-            { property: 'og:image:secure_url', content: wallpaper.thumbnail }
+            { property: 'og:image:secure_url', content: wallpaper.thumbnail },
+            { name: 'twitter:title', content: title },
+            { name: 'twitter:description', content: description },
+            { name: 'twitter:image', content: wallpaper.thumbnail }
           ]}
         />
         <Row center="xs" style={{ margin: 'auto' }}>
