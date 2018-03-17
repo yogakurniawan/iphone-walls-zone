@@ -34,7 +34,6 @@ class Category extends Component {
         <DeviceModels models={models} />
         <Grid>
           <Helmet
-            htmlAttributes={{ lang: 'en' }}
             title={title}
           />
           <H1><span>{category}</span> wallpapers</H1>

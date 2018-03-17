@@ -34,7 +34,6 @@ class Search extends Component {
         <DeviceModels models={models} />
         <Grid>
           <Helmet
-            htmlAttributes={{ lang: 'en' }}
             title={`Download free Apple iPhone and iPad ${search} Wallpapers - by relevance | iPhoneWallsZone`}
           />
           <H1><span>{search}</span> wallpapers</H1>

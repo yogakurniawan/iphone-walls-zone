@@ -2,6 +2,7 @@ import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet, injectGlobal } from 'styled-components'
 import styledSanitize from 'styled-sanitize'
+import Helmet from 'react-helmet'
 
 // eslint-disable-next-line no-unused-expressions
 injectGlobal`
@@ -136,33 +137,16 @@ export default class MyDocument extends Document {
     const sheet = new ServerStyleSheet()
     const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
     const styleTags = sheet.getStyleElement()
-    return { ...page, styleTags }
+    return { ...page, styleTags, helmet: Helmet.renderStatic() }
   }
 
   render() {
     return (
       <html lang="en">
         <Head>
-          <title>Best Free Download iPhone and iPad Wallpapers - iPhoneWallsZone</title>
-          <meta charSet="utf-8" />
-          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-          <meta name="google-site-verification" content="FTBhgLUyRcmYTRn7Z1hv9g9VlnYHY4U9XFhxhWJ5084" />
-          <meta name="apple-mobile-web-app-title" content="iPhoneWallsZone" />
-          <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-          <meta property="og:title" content="Best Free Download iPhone and iPad Wallpapers - iPhoneWallsZone" />
-          <meta property="og:url" content="http://www.iphonewallszone.com/" />
-          <meta property="og:type" content="website" />
-          <meta property="og:image:secure_url" content="https://storage.googleapis.com/iphonewallszone/featured-image.jpeg" />
-          <meta property="og:description" content="Best iPhone and iPad wallpapers suitable for iPad Mini, iPad Pro 10.5, iPad Pro 12.9, iPhone X, iPhone 8, iPhone 8 Plus, iPhone 6, iPhone 6s, iPhone 6 Plus, iPhone 6s Plus, iPhone 5, iPhone SE, iPhone 4, iPhone 4s, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPad backgrounds." />
-          <meta name="keywords" content="HD, apple, iPhone, iPhone 4, iPhone 5, iPhone SE, iPhone 6, iPhone 4s, iPhone 5s, iPhone 6s, iPhone 6 Plus, iPhone 6s Plus, iPhone X, iPad Mini, iPad Pro 10.5, iPad Pro 12.9, wallpapers, free, downloads" />
-          <meta name="description" content="Best iPhone and iPad wallpapers suitable for iPad Mini, iPad Pro 10.5, iPad Pro 12.9, iPhone X, iPhone 8, iPhone 8 Plus, iPhone 6, iPhone 6s, iPhone 6 Plus, iPhone 6s Plus, iPhone 5, iPhone SE, iPhone 4, iPhone 4s, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPad backgrounds." />
-          <meta name="twitter:url" content="http://iphonewallszone.com" />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:image" content="https://storage.googleapis.com/iphonewallszone/featured-image.jpeg" />
+          {this.props.styleTags}
           <link rel="icon" href="/static/assets/favicon.ico" />
           <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css" />
-          {this.props.styleTags}
         </Head>
         <body>
           <Main />

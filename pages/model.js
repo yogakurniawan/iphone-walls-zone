@@ -35,7 +35,6 @@ class Model extends Component {
         <DeviceModels models={models} />
         <Grid>
           <Helmet
-            htmlAttributes={{ lang: 'en' }}
             title={`Free ${getModelTitle.name} Wallpapers - iPhoneWallsZone`}
           />
           <H1><span>{getModelTitle.name}</span> wallpapers</H1>

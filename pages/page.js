@@ -27,17 +27,16 @@ class Page extends Component {
 
   render() {
     const {
-      anotherTitle, total, models, wallpapers, width, page
+      title, total, models, wallpapers, width, page
     } = this.props
     return (
       <div>
         <DeviceModels models={models} />
         <Grid>
           <Helmet
-            htmlAttributes={{ lang: 'en' }}
-            title={`${anotherTitle || 'Best Free Download'} iPhone and iPad Wallpapers - iPhoneWallsZone`}
+            title={`${title || 'Best Free Download'} iPhone and iPad Wallpapers - iPhoneWallsZone`}
           />
-          <H1>{anotherTitle} Wallpapers</H1>
+          <H1>{title} Wallpapers</H1>
           <Row style={{ margin: 10 }}>
             {
               wallpapers && wallpapers.map((wallpaper) => (
@@ -67,7 +66,7 @@ class Page extends Component {
 Page.getInitialProps = async ({ req, store, query }) => {
   const page = isNumber(query.page) ? parseInt(query.page, 10) : 1
   let isHomePage = true
-  let anotherTitle = '';
+  let title = '';
   const queryParam = {
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
@@ -76,19 +75,19 @@ Page.getInitialProps = async ({ req, store, query }) => {
   if (query.page === 'top-liked') {
     queryParam['filter[order]'] = 'total_like DESC'
     isHomePage = false
-    anotherTitle = 'Top Liked'
+    title = 'Top Liked'
   }
 
   if (query.page === 'top-viewed') {
     queryParam['filter[order]'] = 'total_view DESC'
     isHomePage = false
-    anotherTitle = 'Top Viewed'
+    title = 'Top Viewed'
   }
 
   if (query.page === 'top-downloaded') {
     queryParam['filter[order]'] = 'total_download DESC'
     isHomePage = false
-    anotherTitle = 'Top Downloaded'
+    title = 'Top Downloaded'
   }
 
   if (req) {
@@ -109,7 +108,7 @@ Page.getInitialProps = async ({ req, store, query }) => {
   return {
     total: totalResult ? totalResult.count : 0,
     page,
-    anotherTitle
+    title
   }
 }
 
