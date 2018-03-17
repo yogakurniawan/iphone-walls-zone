@@ -92,7 +92,7 @@ const page = WrappedComponent => {
           { name: 'description', content: 'Best iPhone and iPad wallpapers suitable for iPad Mini, iPad Pro 10.5, iPad Pro 12.9, iPhone X, iPhone 8, iPhone 8 Plus, iPhone 6, iPhone 6s, iPhone 6 Plus, iPhone 6s Plus, iPhone 5, iPhone SE, iPhone 4, iPhone 4s, and iPhone 3G. Awesome collection of iPhone wallpapers HD and iPad backgrounds.' },
           { name: 'twitter:url', content: 'http://iphonewallszone.com' },
           { name: 'twitter:card', content: 'summary_large_image' },
-          { name: 'twitter:image', content: 'https://storage.googleapis.com/iphonewallszone/featured-image.jpeg' }        ]}
+          { name: 'twitter:image', content: 'https://storage.googleapis.com/iphonewallszone/featured-image.jpeg' }]}
       />)
     }
 
