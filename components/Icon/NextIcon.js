@@ -10,7 +10,7 @@ const Icon = css`
 
 const NextIconStyled = styled(NextIcon) `
   ${Icon}
-  ${props => !props.active && css`
+  ${props => props.active === 'false' && css`
     fill: rgb(197, 197, 197);
   `}
 `

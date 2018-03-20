@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Router from 'next/router'
 import Link from '../Link'
 import PrevIconStyled from '../Icon/PrevIcon'
 import NextIconStyled from '../Icon/NextIcon'
@@ -7,10 +8,18 @@ import {
   Button,
   Pagination,
   PaginationWrapper,
-  Li
+  Li,
+  StyledDropdown
 } from './Styles'
 
 class PaginationComponent extends Component {
+  constructor() {
+    super();
+    this.state = {
+      currentPage: 1
+    }
+  }
+
   getNbPages() {
     return Math.ceil(this.props.total / this.props.perPage) || 1
   }
@@ -52,19 +61,27 @@ class PaginationComponent extends Component {
   }
 
   prevPage = (event) => {
+    const { page } = this.props
     event.stopPropagation()
-    if (this.props.page === 1) {
+    if (page === 1) {
       throw new Error('navigation.page_out_from_begin')
     }
-    this.props.setPage(this.props.page - 1)
+    this.props.setPage(page - 1)
+    this.setState({
+      currentPage: page - 1
+    })
   }
 
   nextPage = (event) => {
+    const { page } = this.props
     event.stopPropagation()
-    if (this.props.page > this.getNbPages()) {
+    if (page > this.getNbPages()) {
       throw new Error('navigation.page_out_from_end')
     }
-    this.props.setPage(this.props.page + 1)
+    this.props.setPage(page + 1)
+    this.setState({
+      currentPage: page + 1
+    })
   }
 
   gotoPage = (event) => {
@@ -83,9 +100,9 @@ class PaginationComponent extends Component {
     return this.range().map(pageNum =>
       (
         (pageNum === '.') ?
-          <Li><span key={`hyphen_${Math.random()}`}>...</span></Li> :
-          <Li current={pageNum === this.props.page}>
-            <Link key={`hyphen_${Math.random()}`} as={`${as}${pageNum}`} href={`${href}${pageNum}`}>
+          <Li key={`hyphen_${Math.random()}`}><span>...</span></Li> :
+          <Li key={`hyphen_${Math.random()}`} current={pageNum === this.props.page}>
+            <Link as={`${as}${pageNum}`} href={`${href}${pageNum}`}>
               <Button active={pageNum === this.props.page}>
                 {pageNum}
               </Button>
@@ -94,20 +111,43 @@ class PaginationComponent extends Component {
       ))
   }
 
+  onSelect(evt) {
+    const { routeHref } = this.props
+    const href = routeHref ? `/${routeHref}&page=` : '/page?page='
+    Router.push(`${href}${evt.value}`)
+    this.setState({ currentPage: evt.value })
+  }
+
+  getOptions(nbPages) {
+    const options = []
+    for (let i=1; i<=nbPages; i++) {
+      options.push({ value: i, label: i })
+    }
+    return options
+  }
+
   render() {
     const {
       page, total, routeHref, routeAs
     } = this.props
+    const { currentPage } = this.state
     const hrefPrev = routeHref ? `/${routeHref}&page=${page - 1}` : `/page?page=${page - 1}`
     const asPrev = routeAs ? `/${routeAs}/page/${page - 1}` : `/page/${page - 1}`
     const hrefNext = routeHref ? `/${routeHref}&page=${page + 1}` : `/page?page=${page + 1}`
     const asNext = routeAs ? `/${routeAs}/page/${page + 1}` : `/page/${page + 1}`
-    if (total === 0) return null
     const nbPages = this.getNbPages()
+    const options = this.getOptions(nbPages)
+    const selectedOption = options.find((option) => {
+      if (option.value === currentPage) {
+        return option
+      }
+    })
+
+    if (total === 0) return null
 
     if (nbPages <= 1) {
       return <div />
-    }
+    }    
 
     return (
       <PaginationWrapper>
@@ -115,18 +155,21 @@ class PaginationComponent extends Component {
           <Li>
             {page > 1 &&
               <Link href={hrefPrev} as={asPrev}>
-                <PrevIconStyled active />
+                <PrevIconStyled active="true" />
               </Link>}
-            {page <= 1 && <PrevIconStyled />}
+            {page <= 1 && <PrevIconStyled active="false" />}
           </Li>
           {this.renderPageNums()}
+          <Li mobile>
+            <StyledDropdown options={options} onChange={(data) => this.onSelect(data)} value={selectedOption} placeholder="Select an option" />
+          </Li>
           <Li>
             {page !== nbPages &&
               <Link href={hrefNext} as={asNext}>
-                <NextIconStyled active />
+                <NextIconStyled active="true" />
               </Link>
             }
-            {page === nbPages && <NextIconStyled />}
+            {page === nbPages && <NextIconStyled active="false" />}
           </Li>
         </Pagination>
       </PaginationWrapper>
