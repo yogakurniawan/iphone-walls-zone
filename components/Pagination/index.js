@@ -155,7 +155,6 @@ class PaginationComponent extends Component {
     const nbPages = this.getNbPages()
     const options = this.getOptions(nbPages)
     const thePage = currentPage || page;
-    console.log(thePage)
     const selectedOption = options.find((option) => {
       if (option.value === thePage) {
         return option
