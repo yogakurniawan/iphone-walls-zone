@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
-import { PaginationButton } from '../Button'
 import Dropdown from 'react-dropdown'
+import { PaginationButton } from '../Button'
 
 export const Button = styled.button`
   ${PaginationButton}
