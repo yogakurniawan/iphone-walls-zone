@@ -64,14 +64,17 @@ export const Li = styled.li`
   ${props => props.mobile && css`
     ${invisible}
   `}
+  ${props => props.desktop && css`
+    ${initial}
+  `}
   @media only screen and ( max-width: 40.063em ) {
     ${invisible}
     ${props => (props.current || props.mobile) && css`
       ${initial}
     `}
-    &:first-of-type, &:last-of-type {
-      ${initial}
-    } 
+    ${props => props.desktop && css`
+      ${invisible}
+    `}
   }
   
   @media only screen and ( max-width: 15.063em ) {

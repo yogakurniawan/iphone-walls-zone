@@ -16,7 +16,7 @@ class PaginationComponent extends Component {
   constructor() {
     super();
     this.state = {
-      currentPage: 1
+      currentPage: 0
     }
   }
 
@@ -79,9 +79,26 @@ class PaginationComponent extends Component {
       throw new Error('navigation.page_out_from_end')
     }
     this.props.setPage(page + 1)
+  }
+
+  next(evt, route) {
+    const { page } = this.props
+    const currentPage = page + 1; 
+    const href = route ? `/${route}&page=${currentPage}` : `/page?page=${currentPage}`
     this.setState({
-      currentPage: page + 1
+      currentPage
     })
+    Router.push(href)
+  }
+
+  prev(evt, route) {
+    const { page } = this.props
+    const currentPage = page - 1; 
+    const href = route ? `/${route}&page=${currentPage}` : `/page?page=${currentPage}`
+    this.setState({
+      currentPage
+    })
+    Router.push(href)
   }
 
   gotoPage = (event) => {
@@ -100,8 +117,8 @@ class PaginationComponent extends Component {
     return this.range().map(pageNum =>
       (
         (pageNum === '.') ?
-          <Li key={`hyphen_${Math.random()}`}><span>...</span></Li> :
-          <Li key={`hyphen_${Math.random()}`} current={pageNum === this.props.page}>
+          <Li desktop key={`hyphen_${Math.random()}`}><span>...</span></Li> :
+          <Li desktop key={`hyphen_${Math.random()}`} current={pageNum === this.props.page}>
             <Link as={`${as}${pageNum}`} href={`${href}${pageNum}`}>
               <Button active={pageNum === this.props.page}>
                 {pageNum}
@@ -137,8 +154,10 @@ class PaginationComponent extends Component {
     const asNext = routeAs ? `/${routeAs}/page/${page + 1}` : `/page/${page + 1}`
     const nbPages = this.getNbPages()
     const options = this.getOptions(nbPages)
+    const thePage = currentPage || page;
+    console.log(thePage)
     const selectedOption = options.find((option) => {
-      if (option.value === currentPage) {
+      if (option.value === thePage) {
         return option
       }
     })
@@ -152,18 +171,26 @@ class PaginationComponent extends Component {
     return (
       <PaginationWrapper>
         <Pagination>
-          <Li>
+          <Li desktop>
             {page > 1 &&
               <Link href={hrefPrev} as={asPrev}>
                 <PrevIconStyled active="true" />
               </Link>}
             {page <= 1 && <PrevIconStyled active="false" />}
+          </Li>          
+          <Li mobile>
+            {page > 1 && <PrevIconStyled active="true" onClick={evt => this.prev(evt, routeHref)} />}
+            {page <= 1 && <PrevIconStyled active="false" />}
           </Li>
-          {this.renderPageNums()}
           <Li mobile>
             <StyledDropdown options={options} onChange={(data) => this.onSelect(data)} value={selectedOption} placeholder="Select an option" />
           </Li>
-          <Li>
+          {this.renderPageNums()}
+          <Li mobile>
+            {page !== nbPages && <NextIconStyled active="true" onClick={evt => this.next(evt, routeHref)}/>}
+            {page === nbPages && <NextIconStyled active="false" />}
+          </Li>
+          <Li desktop>
             {page !== nbPages &&
               <Link href={hrefNext} as={asNext}>
                 <NextIconStyled active="true" />

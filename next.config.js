@@ -10,19 +10,19 @@ module.exports = {
       minRatio: 0.8
     }))
 
-    // const eslintRule = {
-    //   test: /\.js$/,
-    //   enforce: 'pre',
-    //   exclude: /node_modules/,
-    //   loader: 'eslint-loader',
-    //   options: {
-    //     // Emit errors as warnings for dev to not break webpack build.
-    //     // Eslint errors are shown in console for dev, yay :-)
-    //     emitWarning: dev,
-    //   },
-    // };
+    const eslintRule = {
+      test: /\.js$/,
+      enforce: 'pre',
+      exclude: /node_modules/,
+      loader: 'eslint-loader',
+      options: {
+        // Emit errors as warnings for dev to not break webpack build.
+        // Eslint errors are shown in console for dev, yay :-)
+        emitWarning: dev,
+      },
+    };
 
-    // config.module.rules.push(eslintRule)
+    config.module.rules.push(eslintRule)
     return config
   }
 }
