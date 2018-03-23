@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "iPhone Wallpaper",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "start": "next start",
     "build": "next build",
     "clean": "rimraf node_modules/.cache/babel-loader",

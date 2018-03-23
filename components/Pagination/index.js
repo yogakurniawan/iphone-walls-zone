@@ -14,14 +14,29 @@ import {
 
 class PaginationComponent extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       currentPage: 0
     }
   }
 
+  onSelect(evt) {
+    const { routeHref } = this.props
+    const href = routeHref ? `/${routeHref}&page=` : '/page?page='
+    Router.push(`${href}${evt.value}`)
+    this.setState({ currentPage: evt.value })
+  }
+
   getNbPages() {
     return Math.ceil(this.props.total / this.props.perPage) || 1
+  }
+
+  getOptions(nbPages) {
+    const options = []
+    for (let i = 1; i <= nbPages; i += 1) {
+      options.push({ value: i, label: i })
+    }
+    return options
   }
 
   range() {
@@ -83,7 +98,7 @@ class PaginationComponent extends Component {
 
   next(evt, route) {
     const { page } = this.props
-    const currentPage = page + 1; 
+    const currentPage = page + 1
     const href = route ? `/${route}&page=${currentPage}` : `/page?page=${currentPage}`
     this.setState({
       currentPage
@@ -93,7 +108,7 @@ class PaginationComponent extends Component {
 
   prev(evt, route) {
     const { page } = this.props
-    const currentPage = page - 1; 
+    const currentPage = page - 1
     const href = route ? `/${route}&page=${currentPage}` : `/page?page=${currentPage}`
     this.setState({
       currentPage
@@ -128,21 +143,6 @@ class PaginationComponent extends Component {
       ))
   }
 
-  onSelect(evt) {
-    const { routeHref } = this.props
-    const href = routeHref ? `/${routeHref}&page=` : '/page?page='
-    Router.push(`${href}${evt.value}`)
-    this.setState({ currentPage: evt.value })
-  }
-
-  getOptions(nbPages) {
-    const options = []
-    for (let i=1; i<=nbPages; i++) {
-      options.push({ value: i, label: i })
-    }
-    return options
-  }
-
   render() {
     const {
       page, total, routeHref, routeAs
@@ -154,18 +154,19 @@ class PaginationComponent extends Component {
     const asNext = routeAs ? `/${routeAs}/page/${page + 1}` : `/page/${page + 1}`
     const nbPages = this.getNbPages()
     const options = this.getOptions(nbPages)
-    const thePage = currentPage || page;
-    const selectedOption = options.find((option) => {
+    const thePage = currentPage || page
+    const selectedOption = options.find(option => {
       if (option.value === thePage) {
         return option
       }
+      return null
     })
 
     if (total === 0) return null
 
     if (nbPages <= 1) {
       return <div />
-    }    
+    }
 
     return (
       <PaginationWrapper>
@@ -176,7 +177,7 @@ class PaginationComponent extends Component {
                 <PrevIconStyled active="true" />
               </Link>}
             {page <= 1 && <PrevIconStyled active="false" />}
-          </Li>          
+          </Li>
           <Li mobile>
             {page > 1 && <PrevIconStyled active="true" onClick={evt => this.prev(evt, routeHref)} />}
             {page <= 1 && <PrevIconStyled active="false" />}
@@ -186,7 +187,7 @@ class PaginationComponent extends Component {
           </Li>
           {this.renderPageNums()}
           <Li mobile>
-            {page !== nbPages && <NextIconStyled active="true" onClick={evt => this.next(evt, routeHref)}/>}
+            {page !== nbPages && <NextIconStyled active="true" onClick={evt => this.next(evt, routeHref)} />}
             {page === nbPages && <NextIconStyled active="false" />}
           </Li>
           <Li desktop>

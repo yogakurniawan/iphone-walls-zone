@@ -9,20 +9,18 @@ const app = next({ dev })
 const handle = routes.getRequestHandler(app)
 
 app.prepare()
-.then(() => {
-  const server = express()
-  server.use(compression())
+  .then(() => {
+    const server = express()
+    server.use(compression())
 
-  server.get('/', (req, res) => {
-    return app.render(req, res, '/page', { page: 1 })
-  })
+    server.get('/', (req, res) => app.render(req, res, '/page', { page: 1 }))
 
-  server.get('*', (req, res) => {
-    handle(req, res)
-  })
+    server.get('*', (req, res) => {
+      handle(req, res)
+    })
 
-  server.listen(port, (err) => {
-    if (err) throw err
-    console.log(`> Ready on http://localhost:${port}`)
+    server.listen(port, (err) => {
+      if (err) throw err
+      console.log(`> Ready on http://localhost:${port}`) // eslint-disable-line no-console
+    })
   })
-})
