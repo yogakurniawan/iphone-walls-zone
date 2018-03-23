@@ -134,7 +134,7 @@ export const StyledDropdown = styled(Dropdown) `
     max-height: 200px;
     overflow-y: auto;
     position: absolute;
-    top: 100%;
+    bottom: 100%;
     width: 100%;
     z-index: 1000;
     -webkit-overflow-scrolling: touch;
