@@ -48,7 +48,6 @@ class Navbar extends Component {
   handleClickMenu(menu) {
     const { onClickMenu } = this.props
     onClickMenu(menu)
-    this.handleToggleMenu()
   }
 
   handleSubmit(event) {
@@ -63,8 +62,7 @@ class Navbar extends Component {
     return (
       <ContainerFluid>
         <NavbarFixed>
-          <NavbarCheckbox checked={this.state.toggleMenu} type="checkbox" id="Navbar-checkbox" />
-          <NavbarMenu>
+          <NavbarMenu expand={this.state.toggleMenu}>
             <NavbarNavigation>
               <NavbarHeader>
                 <NavbarBrand>
@@ -73,7 +71,7 @@ class Navbar extends Component {
                       <LogoIcon onClick={() => this.handleClickMenu('home')} />
                     </Link>
                   </LogoIconWrapper>
-                  <ArrowDownWrapper onClick={this.handleToggleMenu} htmlFor="Navbar-checkbox">
+                  <ArrowDownWrapper onClick={this.handleToggleMenu}>
                     <span />
                   </ArrowDownWrapper>
                 </NavbarBrand>

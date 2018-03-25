@@ -8,18 +8,6 @@ export const NavbarFixed = styled.header`
   z-index: 5;
 `
 
-export const NavbarMenu = styled.div`
-  @media screen and (min-width: 768px) {
-    overflow: visible;
-  }
-  height: 81px;
-  background-color: #fff;
-  color: #484848;
-  min-height: 81px;
-  width: 100%;
-  transition: 250ms ease-in-out;
-`
-
 export const NavbarNavigation = styled.ul`
   @media screen and (min-width: 768px) {
     flex-flow: row;
@@ -75,6 +63,41 @@ export const ArrowDownWrapper = styled.label`
   }
 `
 
+export const NavbarMenu = styled.div`
+  @media screen and (min-width: 768px) {
+    overflow: visible;
+  }
+  height: 81px;
+  background-color: #fff;
+  color: #484848;
+  min-height: 81px;
+  width: 100%;
+  transition: 250ms ease-in-out;
+
+  ${props => !props.expand &&
+    css`
+      @media screen and (min-width: 768px) {
+        overflow: visible;
+      }
+      overflow: hidden;
+      height: 81px;
+    `}
+
+  ${props => props.expand &&
+    css`
+      @media screen and (min-width: 768px) {
+        height: 81px !important;
+      }
+      position: absolute;
+      transition: height 250ms ease-in-out;
+      height: 100vh;
+      overflow: hidden;
+      ${ArrowDownWrapper} {
+        transform: rotate(180deg);
+      }
+    `}
+`
+
 export const NavbarBrand = styled.div`
   @media screen and (max-width: 320px) {
     padding: 10px;
@@ -99,39 +122,6 @@ export const NavbarItem = styled.li`
     ${BaseAStyle}
     padding: 18px 15px 18px 15px;
     display: block;
-  }
-`
-
-export const NavbarCheckbox = styled.input`
-  @media screen and (min-width: 768px) {
-    &:not(:checked) {
-      ${NavbarMenu} {
-        overflow: visible;
-      }
-    }
-    &:checked ~ ${NavbarMenu} {
-      height: 81px !important;
-    }
-  }
-  display: none;
-  &:checked ~ ${NavbarMenu} {
-      position: absolute;
-      transition: height 250ms ease-in-out;
-      height: 100vh;
-      overflow: hidden;
-    }
-  }
-  &:checked + ${NavbarMenu} {
-      ${ArrowDownWrapper} {
-        transform: rotate(180deg);
-      }
-    }
-  }
-  &:not(:checked) ~ {
-    ${NavbarMenu} {
-      overflow: hidden;
-      height: 81px;  
-    }
   }
 `
 
