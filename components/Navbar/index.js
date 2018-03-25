@@ -8,7 +8,6 @@ import {
   ContainerFluid,
   NavbarBrand,
   NavbarFixed,
-  NavbarCheckbox,
   NavbarHeader,
   NavbarMenu,
   NavbarItem,
