@@ -49,8 +49,9 @@ export const ArrowDownWrapper = styled.label`
   @media screen and (min-width: 768px) {
     display: none;
   }
-  display: inline-block;
-  font-size: 9px;
+  line-height: 3;
+  display: inline-flex;
+  font-size: 12px;
   margin-left: 8px;
   vertical-align: middle;
   transition-property: -ms-transform,-webkit-transform,transform;
@@ -108,7 +109,7 @@ export const NavbarBrand = styled.div`
   }
   margin-right: 10px;
   padding: 6px 10px 6px 10px;
-  display: table;
+  display: inline-flex;
 `
 
 export const NavbarItem = styled.li`
@@ -198,7 +199,7 @@ export const LogoIconWrapper = styled.div`
   @media screen and (min-width: 768px) {
     font-size: 50px;
   }
-  display: inline-block;
+  display: inline-flex;
 `
 
 export const SearchIcon = styled(Search) `
