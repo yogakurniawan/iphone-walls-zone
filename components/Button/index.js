@@ -72,13 +72,7 @@ const CommonButton = css`
   }
 `
 
-export const LoveButton = styled.button`
-  ${ButtonStyle}
-  ${CommonButton}
-  font-size: 0.85em;
-  padding: 0 4px;
-  height: 22px;
-  margin-right: 0;
+const LoveButton = css`
   span {
     color: red;
     margin-right: 3px;
@@ -86,6 +80,22 @@ export const LoveButton = styled.button`
       ${Heart}
     }
   }
+`
+
+export const LoveButtonSmall = styled.button`
+  ${ButtonStyle}
+  ${CommonButton}
+  ${LoveButton}
+  font-size: 0.85em;
+  padding: 0 4px;
+  height: 22px;
+  margin-right: 0;
+`
+
+export const LoveButtonMedium = styled.button`
+  ${ButtonStyle}
+  ${CommonButton}
+  ${LoveButton}
 `
 
 export const ModelButtonOnCard = styled.button`

@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col } from 'react-styled-flexboxgrid'
 import Card from '../Card'
 import Link from '../Link'
-import { LoveButton, DownloadButton } from '../Button'
+import { LoveButtonMedium, DownloadButton } from '../Button'
 import {
   Name,
   Description,
@@ -17,7 +17,13 @@ import {
   Related
 } from './Styles'
 
-export default function WallpaperSection({ wallpaper, relatedWallpapers }) {
+export default function WallpaperSection(props) {
+  const {
+    like,
+    download,
+    wallpaper,
+    relatedWallpapers
+  } = props
   return (
     <div>
       <Row center="xs" style={{ margin: 'auto' }}>
@@ -28,11 +34,11 @@ export default function WallpaperSection({ wallpaper, relatedWallpapers }) {
           <Description>
             <Title>{wallpaper.name}</Title>
             <Action>
-              <LoveButton onClick={(e) => this.doLike(e, wallpaper)}>
+              <LoveButtonMedium onClick={(e) => like(e, wallpaper)}>
                 <span />
                 {wallpaper.total_like}
-              </LoveButton>
-              <DownloadButton onClick={() => this.download(wallpaper.original)}>
+              </LoveButtonMedium>
+              <DownloadButton onClick={() => download(wallpaper.original)}>
                 Download free
               </DownloadButton>
               <Info>

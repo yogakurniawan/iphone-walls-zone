@@ -13,7 +13,7 @@ import { likeWallpaperFromDetail, loadWallpaper } from '../actions/wallpaper'
 import { setCurrentMenu, setModel } from '../actions/global'
 
 class Wallpaper extends Component {
-  async doLike(e, wallpaper) {
+  doLike = async (e, wallpaper) => {
     const theWallpaper = wallpaper
     const url = `${BASE_API_URL}/Wallpapers`
     const { likeWallpaperFromDetail: like } = this.props
@@ -24,20 +24,20 @@ class Wallpaper extends Component {
 
   download = (url) => {
     if (typeof window !== 'undefined') {
-      const tempLink = document.createElement('a');
-      tempLink.style.display = 'none';
-      tempLink.href = url;
-      tempLink.setAttribute('download', '');
-      tempLink.setAttribute('target', '_blank');
-      document.body.appendChild(tempLink);
-      tempLink.click();
+      const tempLink = document.createElement('a')
+      tempLink.style.display = 'none'
+      tempLink.href = url
+      tempLink.setAttribute('download', '')
+      tempLink.setAttribute('target', '_blank')
+      document.body.appendChild(tempLink)
+      tempLink.click()
     }
   }
 
   render() {
     const {
       wallpaper, relatedWallpapers, title, description
-    } = this.props;
+    } = this.props
     return (
       <Grid>
         <Helmet
@@ -53,7 +53,12 @@ class Wallpaper extends Component {
             { name: 'twitter:image', content: wallpaper.thumbnail }
           ]}
         />
-        <WallpaperSection relatedWallpapers={relatedWallpapers} wallpaper={wallpaper} />
+        <WallpaperSection
+          like={this.doLike}
+          download={this.download}
+          relatedWallpapers={relatedWallpapers}
+          wallpaper={wallpaper}
+        />
       </Grid>
     )
   }
@@ -65,7 +70,7 @@ Wallpaper.getInitialProps = async ({ store, query }) => {
   const description = `Download ${replaceDashWithSpace(name)} free`
   const qsCurrentWP = {
     'filter[where][name]': replaceDashWithSpace(name)
-  };
+  }
   const API = `${BASE_API_URL}/Wallpapers`
   const currrentWPResponse = await grab(API, { qs: qsCurrentWP })
   const wallpaper = await parseJSON(currrentWPResponse)
@@ -76,7 +81,7 @@ Wallpaper.getInitialProps = async ({ store, query }) => {
     'filter[where][and][2][name][neq]': replaceDashWithSpace(name),
     'filter[limit]': 6
   }
-  wallpaper[0].total_view += 1;
+  wallpaper[0].total_view += 1
   const [relatedWPResponse] = await Promise.all([
     await grab(API, { qs: qsRelatedWP }),
     axios.put(API, wallpaper[0])
