@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from '../Link'
-import { LoveButtonSmall, ModelButtonOnCard } from '../Button'
+import { LoveButtonSmall, ModelButtonSmall } from '../Button'
 import { Eye } from '../Icon'
 import { replaceSpaceWithDash } from '../../utils/common'
 
@@ -119,9 +119,9 @@ const Card = (props) => {
               {data.total_view}
             </Views>
             <Link href={`/model?model=${data.model}`} as={`/model/${data.model}`}>
-              <ModelButtonOnCard>
+              <ModelButtonSmall>
                 {modelReplaced}
-              </ModelButtonOnCard>
+              </ModelButtonSmall>
             </Link>
             <LoveButtonSmall onClick={like}>
               <span />

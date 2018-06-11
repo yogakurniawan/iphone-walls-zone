@@ -59,8 +59,6 @@ const CommonButton = css`
   background-color: #ffffffb8;
   border-color: #ddd;
   color: #484848;
-  font-size: 0.85em;
-  padding: 0 4px;
   &:hover {
     fill: currentColor;
     background-color: #fff;
@@ -82,26 +80,27 @@ const LoveButton = css`
   }
 `
 
-export const LoveButtonSmall = styled.button`
-  ${ButtonStyle}
-  ${CommonButton}
-  ${LoveButton}
+const ButtonSmall = css`
+  height: 22px;
   font-size: 0.85em;
   padding: 0 4px;
-  height: 22px;
+`
+
+export const LoveButtonSmall = styled.button`
+  ${CommonButton}
+  ${LoveButton}
+  ${ButtonSmall}
   margin-right: 0;
 `
 
 export const LoveButtonMedium = styled.button`
-  ${ButtonStyle}
   ${CommonButton}
   ${LoveButton}
 `
 
-export const ModelButtonOnCard = styled.button`
-  ${ButtonStyle}
+export const ModelButtonSmall = styled.button`
   ${CommonButton}
-  height: 22px;
+  ${ButtonSmall}
   margin-right: 3px;
 `
 
@@ -122,6 +121,7 @@ export const ModelButton = styled.button`
 
 export const DownloadButton = styled.button`
   ${ButtonStyle}
+  text-transform: uppercase;
   background-color: #3cb46e;
   color: #fff;
   &:hover {
