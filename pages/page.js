@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Helmet from 'react-helmet'
 import 'isomorphic-fetch'
 import axios from 'axios'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
@@ -27,16 +26,13 @@ class Page extends Component {
 
   render() {
     const {
-      title, total, models, wallpapers, width, page
+      popularityCategory, total, models, wallpapers, width, page
     } = this.props
     return (
       <div>
         <DeviceModels models={models} />
         <Grid>
-          <Helmet
-            title={`${title || 'Best Free Download'} iPhone and iPad Wallpapers - iPhoneWallsZone`}
-          />
-          <H1>{title} Wallpapers</H1>
+          <H1>{popularityCategory} Wallpapers</H1>
           <Row style={{ margin: 10 }}>
             {
               wallpapers && wallpapers.map((wallpaper) => (
@@ -66,7 +62,7 @@ class Page extends Component {
 Page.getInitialProps = async ({ store, query }) => {
   const page = isNumber(query.page) ? parseInt(query.page, 10) : 1
   let isHomePage = true
-  let title = '';
+  let popularityCategory = 'All';
   const queryParam = {
     'filter[limit]': PER_PAGE,
     'filter[skip]': page > 1 ? ((page - 1) * PER_PAGE) : 0
@@ -75,19 +71,19 @@ Page.getInitialProps = async ({ store, query }) => {
   if (query.page === 'top-liked') {
     queryParam['filter[order]'] = 'total_like DESC'
     isHomePage = false
-    title = 'Top Liked'
+    popularityCategory = 'Top Liked'
   }
 
   if (query.page === 'top-viewed') {
     queryParam['filter[order]'] = 'total_view DESC'
     isHomePage = false
-    title = 'Top Viewed'
+    popularityCategory = 'Top Viewed'
   }
 
   if (query.page === 'top-downloaded') {
     queryParam['filter[order]'] = 'total_download DESC'
     isHomePage = false
-    title = 'Top Downloaded'
+    popularityCategory = 'Top Downloaded'
   }
 
   const api = `${BASE_API_URL}/Wallpapers`
@@ -104,7 +100,8 @@ Page.getInitialProps = async ({ store, query }) => {
   return {
     total: totalResult ? totalResult.count : 0,
     page,
-    title
+    popularityCategory,
+    title: `${popularityCategory || 'Best Free Download'} iPhone and iPad Wallpapers - iPhoneWallsZone`
   }
 }
 

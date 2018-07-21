@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Helmet from 'react-helmet'
 import 'isomorphic-fetch'
 import axios from 'axios'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
@@ -30,22 +29,10 @@ class Model extends Component {
       models, wallpapers, width, page, model, total
     } = this.props;
     const getModelTitle = models.find(m => model === m.meta_route)
-    const title = `Free ${getModelTitle.name} Wallpapers - iPhoneWallsZone`
-    const description = `Download free ${getModelTitle.name} iPhone Wallpapers HD - iPhoneWallsZone`
     return (
       <div>
         <DeviceModels models={models} />
         <Grid>
-          <Helmet
-            title={title}
-            meta={[
-              { name: 'description', content: description },
-              { name: 'og:title', content: title },
-              { name: 'og:description', content: description },
-              { name: 'twitter:title', content: title },
-              { name: 'twitter:description', content: description }
-            ]}
-          />
           <H1><span>{getModelTitle.name}</span> wallpapers</H1>
           <Row style={{ margin: 10 }}>
             {
@@ -78,6 +65,10 @@ class Model extends Component {
 Model.getInitialProps = async ({ store, query }) => {
   const page = isNumber(query.page) ? parseInt(query.page, 10) : 1
   const model = query && decodeURI(query.model)
+  const modelName = model.split('-').join(' ')
+  const title = `Free ${modelName} Wallpapers - iPhoneWallsZone`
+  const description = `Download free ${modelName} iPhone Wallpapers HD - iPhoneWallsZone`
+
   const queryParam = {
     'filter[where][model]': decodeURI(model),
     'filter[limit]': PER_PAGE,
@@ -103,7 +94,9 @@ Model.getInitialProps = async ({ store, query }) => {
   return {
     total: totalResult.count,
     page,
-    model
+    model,
+    title,
+    description
   }
 }
 

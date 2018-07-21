@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Helmet from 'react-helmet'
 import 'isomorphic-fetch'
 import axios from 'axios'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
@@ -27,8 +26,6 @@ class Category extends Component {
 
   render() {
     const {
-      title,
-      description,
       models,
       wallpapers,
       width,
@@ -40,18 +37,7 @@ class Category extends Component {
       <div>
         <DeviceModels models={models} />
         <Grid>
-          <Helmet
-            title={title}
-            meta={[
-              { name: 'description', content: description },
-              { name: 'og:title', content: title },
-              { name: 'og:description', content: description },
-              { name: 'twitter:title', content: title },
-              { name: 'twitter:description', content: description }
-            ]}
-          />
           <H1><span>{category}</span> wallpapers</H1>
-
           <Row style={{ margin: 10 }}>
             {
               wallpapers && wallpapers.map((wallpaper) =>

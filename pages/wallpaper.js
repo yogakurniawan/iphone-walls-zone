@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import 'isomorphic-fetch'
 import axios from 'axios'
-import Helmet from 'react-helmet'
 import { Grid } from 'react-styled-flexboxgrid'
 import PageHOC from '../components/HOC/Page'
 import WallpaperSection from '../components/WallpaperSection'
@@ -36,23 +35,10 @@ class Wallpaper extends Component {
 
   render() {
     const {
-      wallpaper, relatedWallpapers, title, description
+      wallpaper, relatedWallpapers
     } = this.props
     return (
       <Grid>
-        <Helmet
-          title={title}
-          meta={[
-            { name: 'description', content: description },
-            { name: 'twitter:image', content: wallpaper.thumbnail },
-            { property: 'og:title', content: title },
-            { property: 'og:description', content: description },
-            { property: 'og:image:secure_url', content: wallpaper.thumbnail },
-            { name: 'twitter:title', content: title },
-            { name: 'twitter:description', content: description },
-            { name: 'twitter:image', content: wallpaper.thumbnail }
-          ]}
-        />
         <WallpaperSection
           like={this.doLike}
           download={this.download}

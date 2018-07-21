@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Helmet from 'react-helmet'
 import 'isomorphic-fetch'
 import axios from 'axios'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
@@ -29,21 +28,10 @@ class Search extends Component {
     const {
       total, search, models, wallpapers, width, page
     } = this.props
-    const title = `Download free Apple iPhone and iPad ${search} Wallpapers - by relevance | iPhoneWallsZone`
     return (
       <div>
         <DeviceModels models={models} />
         <Grid>
-          <Helmet
-            title={title}
-            meta={[
-              { name: 'description', content: title },
-              { property: 'og:title', content: title },
-              { property: 'og:description', content: title },
-              { name: 'twitter:title', content: title },
-              { name: 'twitter:description', content: title }
-            ]}
-          />
           <H1><span>{search}</span> wallpapers</H1>
           <H3>{total} free <span>{search}</span> wallpapers</H3>
           <Row style={{ margin: 10 }}>
@@ -102,7 +90,8 @@ Search.getInitialProps = async ({ store, query }) => {
   return {
     total: totalResult.count,
     page,
-    search
+    search,
+    title: `Download free Apple iPhone and iPad ${search} Wallpapers - by relevance | iPhoneWallsZone`
   }
 }
 
